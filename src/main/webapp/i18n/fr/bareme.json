@@ -1,0 +1,33 @@
+
+{
+    "senPaieApp": {
+        "bareme" : {
+            "home": {
+                "title": "Baremes",
+                "createLabel": "Créer un nouveau Bareme",
+                "createOrEditLabel": "Créer ou éditer un Bareme"
+            },
+            "created": "Un nouveau Bareme a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Bareme avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Bareme avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Bareme {{ id }} ?"
+            },
+            "detail": {
+                "title": "Bareme"
+            },
+            "revenuBrut": "Revenu Brut",
+            "trimF": "Trim F",
+            "unePart": "Une Part",
+            "unePartEtDemi": "Une Part Et Demi",
+            "deuxParts": "Deux Parts",
+            "deuxPartsEtDemi": "Deux Parts Et Demi",
+            "troisParts": "Trois Parts",
+            "troisPartsEtDemi": "Trois Parts Et Demi",
+            "quatreParts": "Quatre Parts",
+            "quatrePartsEtDemi": "Quatre Parts Et Demi",
+            "cinqParts": "Cinq Parts",
+            "deleted": "Deleted"
+        }
+    }
+}

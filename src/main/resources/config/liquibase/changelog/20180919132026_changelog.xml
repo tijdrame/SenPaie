@@ -1,0 +1,162 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-1">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FK346s2egkovh8sb48ks45i93dm"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-2">
+        <dropForeignKeyConstraint baseTableName="detail_pret" constraintName="FK52scp0dki6d50h9f40ebdmgri"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-3">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FK5e4h6pg1mdpklntjenqfclu26"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-4">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FK7hlrycn4ytb2xrhqag8wuhs9k"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-5">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FK7hmyrvilac8rtciaed9lgkmmq"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-6">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FK7sgbvclsxifqlahg2nlgox6h3"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-7">
+        <dropForeignKeyConstraint baseTableName="detail_pret" constraintName="FKapo7lqpuotf23m425mc5aw35y"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-8">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FKat1yx5r7wi0bf8je6rdb11w70"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-9">
+        <dropForeignKeyConstraint baseTableName="membre_famille" constraintName="FKbyr7fltcgp0ankvowkqrxy6mp"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-10">
+        <dropForeignKeyConstraint baseTableName="membre_famille" constraintName="FKfplrcryf25wdxt3cvel75eo8h"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-11">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FKgie0kfoeg0abjhekfvcs71f7"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-12">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FKi90sksba9q1nu27c0a0h58chf"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-13">
+        <dropForeignKeyConstraint baseTableName="detail_pret" constraintName="FKicxlxtw35489l6srwx48whkh2"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-14">
+        <dropForeignKeyConstraint baseTableName="detail_pret" constraintName="FKk0kw3qoqpkafmk6vsjj9h6pv9"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-15">
+        <dropForeignKeyConstraint baseTableName="membre_famille" constraintName="FKkgx6ybjhol5ccxlkww1nj7xdv"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-16">
+        <dropForeignKeyConstraint baseTableName="collaborateur" constraintName="FKo4sjwahiw8r24i92snrvh4i51"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-17">
+        <dropForeignKeyConstraint baseTableName="detail_pret" constraintName="FKrjklrqdwndqrm8tmmc9e2yvy7"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-18">
+        <dropForeignKeyConstraint baseTableName="membre_famille" constraintName="FKrqujnw796d5hypsjjh40ctbp5"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-19">
+        <dropForeignKeyConstraint baseTableName="membre_famille" constraintName="FKt414bfuevy4tpjkatn03q1982"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-20">
+        <dropForeignKeyConstraint baseTableName="jhi_user_authority" constraintName="fk_authority_name"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-21">
+        <dropForeignKeyConstraint baseTableName="jhi_persistent_audit_evt_data" constraintName="fk_evt_pers_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-22">
+        <dropForeignKeyConstraint baseTableName="pret" constraintName="fk_pret_user_create_id"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-23">
+        <dropForeignKeyConstraint baseTableName="pret" constraintName="fk_pret_user_deleted_id"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-24">
+        <dropForeignKeyConstraint baseTableName="pret" constraintName="fk_pret_user_update_id"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-25">
+        <dropForeignKeyConstraint baseTableName="structure" constraintName="fk_structure_convention_id"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-26">
+        <dropForeignKeyConstraint baseTableName="jhi_user_authority" constraintName="fk_user_id"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-27">
+        <dropForeignKeyConstraint baseTableName="jhi_persistent_token" constraintName="fk_user_persistent_token"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-28">
+        <dropUniqueConstraint constraintName="ux_user_email" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-29">
+        <dropUniqueConstraint constraintName="ux_user_login" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-30">
+        <dropTable tableName="bareme"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-31">
+        <dropTable tableName="categorie"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-32">
+        <dropTable tableName="collaborateur"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-33">
+        <dropTable tableName="convention"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-34">
+        <dropTable tableName="detail_pret"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-35">
+        <dropTable tableName="exercice"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-36">
+        <dropTable tableName="fonction"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-37">
+        <dropTable tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-38">
+        <dropTable tableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-39">
+        <dropTable tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-40">
+        <dropTable tableName="jhi_persistent_token"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-41">
+        <dropTable tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-42">
+        <dropTable tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-43">
+        <dropTable tableName="membre_famille"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-44">
+        <dropTable tableName="nationalite"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-45">
+        <dropTable tableName="pret"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-46">
+        <dropTable tableName="regime"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-47">
+        <dropTable tableName="situation_matrimoniale"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-48">
+        <dropTable tableName="statut"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-49">
+        <dropTable tableName="structure"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-50">
+        <dropTable tableName="type_contrat"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-51">
+        <dropTable tableName="type_paiement"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-52">
+        <dropTable tableName="type_relation"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537363237517-53">
+        <dropSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+</databaseChangeLog>

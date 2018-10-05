@@ -1,0 +1,110 @@
+
+<div *ngIf="membreFamille">
+    <h2><span jhiTranslate="senPaieApp.membreFamille.detail.title">Membre Famille</span> {{membreFamille.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <table style="width: 80%">
+            <tr>
+                <td><dt><span jhiTranslate="senPaieApp.membreFamille.photo">Photo</span></dt></td>
+                <td>
+                    <dd>
+                        <div *ngIf="membreFamille.photo">
+                            <a (click)="openFile(membreFamille.photoContentType, membreFamille.photo)">
+                                <img [src]="'data:' + membreFamille.photoContentType + ';base64,' + membreFamille.photo" style="width: 100px" alt="membreFamille image"/>
+                            </a>
+                        </div>
+                    </dd>
+                </td>
+                <td><dt><span jhiTranslate="senPaieApp.collaborateur.telephone">Téléphone</span></dt></td>
+                <td>
+                    <dd>
+                        <span>{{membreFamille.telephone}}</span>
+                    </dd>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%">
+        <dt><span jhiTranslate="senPaieApp.membreFamille.prenom">Prenom</span></dt>
+                </td>
+                <td style="width: 25%">
+        <dd>
+            <span>{{membreFamille.prenom}}</span>
+        </dd>
+                </td>
+                <td style="width: 25%">
+        <dt><span jhiTranslate="senPaieApp.membreFamille.nom">Nom</span></dt>
+                </td>
+                <td style="width: 25%">
+                    <dd>
+                        <span>{{membreFamille.nom}}</span>
+                    </dd>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dt><span jhiTranslate="senPaieApp.membreFamille.adresse">Adresse</span></dt>
+                </td>
+                <td>
+                    <dd>
+                        <span>{{membreFamille.adresse}}</span>
+                    </dd>
+                </td>
+                <td><dt><span jhiTranslate="senPaieApp.membreFamille.isActif">Is Actif</span></dt></td>
+                <td>
+                    <dd>
+                        <span>{{membreFamille.isActif?'Oui':'Non'}}</span>
+                    </dd>
+                </td>
+            </tr>
+            <tr>
+                <td><dt><span jhiTranslate="senPaieApp.membreFamille.dateNaissance">Date Naissance</span></dt></td>
+                <td>
+                    <dd>
+                        <span>{{membreFamille.dateNaissance | date:'dd/MM/yyyy'}}</span>
+                    </dd>
+                </td>
+                <td><dt><span jhiTranslate="senPaieApp.membreFamille.dateMariage">Date Mariage</span></dt></td>
+                <td>
+                    <dd>
+                        <span>{{membreFamille.dateMariage | date:'dd/MM/yyyy'}}</span>
+                    </dd>
+                </td>
+            </tr>
+            <tr>
+                <td><dt><span jhiTranslate="senPaieApp.membreFamille.collaborateur">Collaborateur</span></dt></td>
+                <td>
+                    <dd>
+                        <div *ngIf="membreFamille.collaborateur">
+                            <a [routerLink]="['/collaborateur', membreFamille.collaborateur?.id]">{{membreFamille.collaborateur?.prenom}} {{membreFamille.collaborateur?.nom}}</a>
+                        </div>
+                    </dd>
+                </td>
+                <td><dt><span jhiTranslate="senPaieApp.membreFamille.typeRelation">Type Relation</span></dt></td>
+                <td>
+                    <dd>
+                        <div *ngIf="membreFamille.typeRelation">
+                            <a [routerLink]="['/type-relation', membreFamille.typeRelation?.id]">{{membreFamille.typeRelation?.libelle}}</a>
+                        </div>
+                    </dd>
+                </td>
+            </tr>
+        </table>
+
+
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'membre-famille/'+ membreFamille.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

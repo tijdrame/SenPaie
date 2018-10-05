@@ -1,0 +1,29 @@
+
+{
+    "senPaieApp": {
+        "detailPret" : {
+            "home": {
+                "title": "Détails Prêt",
+                "createLabel": "Créer un nouveau Detail Prêt",
+                "createOrEditLabel": "Créer ou éditer un Detail Prêt"
+            },
+            "created": "Un nouveau Detail Prêt a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Detail Prêt avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Detail Prêt avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Detail Prêt {{ id }} ?"
+            },
+            "detail": {
+                "title": "Detail Prêt"
+            },
+            "montant": "Montant",
+            "isRembourse": "Est Remboursé?",
+            "collaborateur": "Collaborateur",
+            "pret": "Pret",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted",
+            "Deleted": "Deleted"
+        }
+    }
+}

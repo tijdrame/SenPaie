@@ -1,0 +1,34 @@
+
+<div *ngIf="fonction">
+    <h2><span jhiTranslate="senPaieApp.fonction.detail.title">Fonction</span> {{fonction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.fonction.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{fonction.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.fonction.code">Code</span></dt>
+        <dd>
+            <span>{{fonction.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.fonction.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{fonction.deleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'fonction/'+ fonction.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

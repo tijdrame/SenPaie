@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Absence.
+    -->
+    <changeSet id="20180926160018-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_created_id"
+                                 baseTableName="absence"
+                                 constraintName="fk_absence_user_created_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_updated_id"
+                                 baseTableName="absence"
+                                 constraintName="fk_absence_user_updated_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id"
+                                 baseTableName="absence"
+                                 constraintName="fk_absence_user_deleted_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id"
+                                 baseTableName="absence"
+                                 constraintName="fk_absence_collaborateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collaborateur"/>
+
+        <addForeignKeyConstraint baseColumnNames="motif_id"
+                                 baseTableName="absence"
+                                 constraintName="fk_absence_motif_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motif"/>
+
+        <addForeignKeyConstraint baseColumnNames="exercice_id"
+                                 baseTableName="absence"
+                                 constraintName="fk_absence_exercice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exercice"/>
+
+    </changeSet>
+</databaseChangeLog>

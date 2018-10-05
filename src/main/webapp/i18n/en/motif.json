@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "motif" : {
+            "home": {
+                "title": "Motifs",
+                "createLabel": "Create a new Motif",
+                "createOrEditLabel": "Create or edit a Motif"
+            },
+            "created": "A new Motif is created with identifier {{ param }}",
+            "updated": "A Motif is updated with identifier {{ param }}",
+            "deleted": "A Motif is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Motif {{ id }}?"
+            },
+            "detail": {
+                "title": "Motif"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

@@ -1,0 +1,38 @@
+
+<div *ngIf="typeRelation">
+    <h2><span jhiTranslate="senPaieApp.typeRelation.detail.title">Type Relation</span> {{typeRelation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.typeRelation.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{typeRelation.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.typeRelation.code">Code</span></dt>
+        <dd>
+            <span>{{typeRelation.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.typeRelation.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{typeRelation.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.typeRelation.nbParts">Nb Parts</span></dt>
+        <dd>
+            <span>{{typeRelation.nbParts}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'type-relation/'+ typeRelation.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

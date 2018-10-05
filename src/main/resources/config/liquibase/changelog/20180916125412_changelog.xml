@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-1">
+        <addColumn tableName="membre_famille">
+            <column name="date_mariage" type="bytea"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-2">
+        <addColumn tableName="collaborateur">
+            <column name="date_naissance" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-3">
+        <addColumn tableName="membre_famille">
+            <column name="date_naissance" type="bytea"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-4">
+        <addColumn tableName="collaborateur">
+            <column name="photo" type="oid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-5">
+        <addColumn tableName="membre_famille">
+            <column name="photo" type="oid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-6">
+        <addColumn tableName="collaborateur">
+            <column name="photo_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537102463291-7">
+        <addColumn tableName="membre_famille">
+            <column name="photo_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

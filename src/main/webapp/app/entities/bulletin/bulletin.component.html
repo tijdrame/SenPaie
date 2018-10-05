@@ -1,0 +1,95 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.bulletin.home.title">Bulletins</span>
+        <button class="btn btn-primary float-right jh-create-entity create-bulletin" [routerLink]="['/', { outlets: { popup: ['bulletin-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.bulletin.home.createLabel">
+            Create new Bulletin
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="bulletins">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.bulletin.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.bulletin.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="brutFiscal"><span jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="primeTransport"><span jhiTranslate="senPaieApp.bulletin.primeTransport">Prime Transport</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="netAPayer"><span jhiTranslate="senPaieApp.bulletin.netAPayer">Net A Payer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="salaireBrutMensuel"><span jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel">Salaire Brut Mensuel</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="impotSurRevenu"><span jhiTranslate="senPaieApp.bulletin.impotSurRevenu">Impot Sur Revenu</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="trimf"><span jhiTranslate="senPaieApp.bulletin.trimf">Trimf</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipresPartSalariale"><span jhiTranslate="senPaieApp.bulletin.ipresPartSalariale">Ipres Part Salariale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totRetenue"><span jhiTranslate="senPaieApp.bulletin.totRetenue">Tot Retenue</span> <span class="fa fa-sort"></span></th>
+
+            <th jhiSortBy="typePaiement.libelle"><span jhiTranslate="senPaieApp.bulletin.typePaiement">Type Paiement</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bulletin of bulletins ;trackBy: trackId">
+                <td>
+                    <div *ngIf="bulletin.collaborateur">
+                        <a [routerLink]="['../collaborateur', bulletin.collaborateur?.id ]" >{{bulletin.collaborateur?.prenom}} {{bulletin.collaborateur?.nom}}</a>
+                    </div>
+                </td>
+                <td>{{bulletin.dateCreated | date:'mediumDate'}}</td>
+                <td>{{bulletin.brutFiscal}}</td>
+                <td>{{bulletin.primeTransport}}</td>
+                <td>{{bulletin.netAPayer}}</td>
+                <td>{{bulletin.salaireBrutMensuel}}</td>
+                <td>{{bulletin.impotSurRevenu}}</td>
+                <td>{{bulletin.trimf}}</td>
+                <td>{{bulletin.ipresPartSalariale}}</td>
+                <td>{{bulletin.totRetenue}}</td>
+
+                <td>
+                    <div *ngIf="bulletin.typePaiement">
+                        <a [routerLink]="['../type-paiement', bulletin.typePaiement?.id ]" >{{bulletin.typePaiement?.libelle}}</a>
+                    </div>
+                </td>
+
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../bulletin', bulletin.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <!--<button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>-->
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="bulletins && bulletins.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

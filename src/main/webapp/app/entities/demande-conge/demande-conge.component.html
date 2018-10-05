@@ -1,0 +1,136 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.absence.home.critere">Critéres de recherche</span>
+    </h2>
+    <div class="row">
+        <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+            <table class="table">
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.prenom" for="field_prenom">Prénom</label></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="prenom" name="prenom" id="field_prenom">
+                        </div>
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nom" for="field_nom">Nom</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="nom" name="nom" id="field_nom">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.telephone" for="field_tel">Téléphone</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="telephone" name="teleph" id="field_tel">
+                    </td>
+
+                   <!-- <td><label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.dateDebut" for="field_dateDebut">Date Debut</label></td>
+                    <td>
+                        <div class="input-group">
+                        <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker"
+                               [(ngModel)]="dateDebut"  />
+                        <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+                        </div>
+                    </td>-->
+                    <td>
+                        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
+                        </button>
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+        </form>
+
+    </div>
+
+    <h2>
+        <span jhiTranslate="senPaieApp.demandeConge.home.title">Demande Conges</span>
+        <button class="btn btn-primary float-right jh-create-entity create-demande-conge" [routerLink]="['/', { outlets: { popup: ['demande-conge-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.demandeConge.home.createLabel">
+            Create new Demande Conge
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="demandeConges">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)"><th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.demandeConge.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.demandeConge.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateDebut"><span jhiTranslate="senPaieApp.demandeConge.dateDebut">Date Debut</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateFin"><span jhiTranslate="senPaieApp.demandeConge.dateFin">Date Fin</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="motifRejet"><span jhiTranslate="senPaieApp.demandeConge.motifRejet">Motif Rejet</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="statutRH.libelle"><span jhiTranslate="senPaieApp.demandeConge.statutRH">Statut RH</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="statutDG.libelle"><span jhiTranslate="senPaieApp.demandeConge.statutDG">Statut DG</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let demandeConge of demandeConges ;trackBy: trackId">
+                <td>
+                    <div *ngIf="demandeConge.collaborateur">
+                        <a [routerLink]="['../collaborateur', demandeConge.collaborateur?.id ]" >
+                            {{demandeConge.collaborateur?.prenom}} {{demandeConge.collaborateur?.nom}}</a>
+                    </div>
+                </td>
+                <td>{{demandeConge.dateCreated | date:'mediumDate'}}</td>
+                <td>{{demandeConge.dateDebut | date:'mediumDate'}}</td>
+                <td>{{demandeConge.dateFin | date:'mediumDate'}}</td>
+                <td>{{demandeConge.motifRejet}}</td>
+                <td>
+                    <div *ngIf="demandeConge.statutRH">
+                        <a [routerLink]="['../statut-demande', demandeConge.statutRH?.id ]" >{{demandeConge.statutRH?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="demandeConge.statutDG">
+                        <a [routerLink]="['../statut-demande', demandeConge.statutDG?.id ]" >{{demandeConge.statutDG?.libelle}}</a>
+                    </div>
+                </td>
+
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../demande-conge', demandeConge.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="demandeConges && demandeConges.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

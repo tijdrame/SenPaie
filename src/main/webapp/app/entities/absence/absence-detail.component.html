@@ -1,0 +1,58 @@
+
+<div *ngIf="absence">
+    <h2><span jhiTranslate="senPaieApp.absence.detail.title">Absence</span> {{absence.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.absence.dateAbsence">Date Absence</span></dt>
+        <dd>
+            <span>{{absence.dateAbsence | date:'mediumDate'}}</span>
+        </dd>
+
+        <dt><span jhiTranslate="senPaieApp.absence.dateCreated">Date Created</span></dt>
+        <dd>
+            <span>{{absence.dateCreated | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.absence.userCreated">User Created</span></dt>
+        <dd>
+            {{absence.userCreated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.absence.userUpdated">User Updated</span></dt>
+        <dd>
+            {{absence.userUpdated?.login}}
+        </dd>
+
+        <dt><span jhiTranslate="senPaieApp.absence.collaborateur">Collaborateur</span></dt>
+        <dd>
+            <div *ngIf="absence.collaborateur">
+                <a [routerLink]="['/collaborateur', absence.collaborateur?.id]">{{absence.collaborateur?.prenom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.absence.motif">Motif</span></dt>
+        <dd>
+            <div *ngIf="absence.motif">
+                <a [routerLink]="['/motif', absence.motif?.id]">{{absence.motif?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.absence.exercice">Exercice</span></dt>
+        <dd>
+            <div *ngIf="absence.exercice">
+                <a [routerLink]="['/exercice', absence.exercice?.id]">{{absence.exercice?.debutExercice}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'absence/'+ absence.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

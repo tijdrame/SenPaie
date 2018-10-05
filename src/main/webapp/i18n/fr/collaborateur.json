@@ -1,0 +1,46 @@
+
+{
+    "senPaieApp": {
+        "collaborateur" : {
+            "home": {
+                "title": "Liste des Collaborateurs",
+                "createLabel": "Créer un nouveau Collaborateur",
+                "createOrEditLabel": "Créer ou éditer un Collaborateur"
+            },
+            "created": "Un nouveau Collaborateur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Collaborateur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Collaborateur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Collaborateur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Collaborateur"
+            },
+            "prenom": "Prénom",
+            "nom": "Nom",
+            "login": "Login",
+            "email": "Email",
+            "prime": "Prime Transport",
+            "matricule": "Matricule",
+            "adresse": "Adresse",
+            "tauxHoraire": "Taux Horaire",
+            "salaireDeBase": "Salaire De Base",
+            "surSalaire": "SurSalaire",
+            "retenueRepas": "Retenue Repas",
+            "deleted": "Supprimé?",
+            "telephone": "Téléphone",
+            "matricule": "Matricule Collaborateur",
+            "dateNaissance": "Date Naissance",
+            "photo": "Photo",
+            "fonction": "Fonction",
+            "categorie": "Categorie",
+            "nationalite": "Nationalite",
+            "statut": "Statut",
+            "situationMatrimoniale": "Situation Matrimoniale",
+            "typeContrat": "Type Contrat",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted"
+        }
+    }
+}

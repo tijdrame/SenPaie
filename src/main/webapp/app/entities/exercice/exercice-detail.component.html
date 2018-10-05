@@ -1,0 +1,32 @@
+
+<div *ngIf="exercice">
+    <h2><span jhiTranslate="senPaieApp.exercice.detail.title">Exercice</span> {{exercice.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.exercice.debutExercice">Debut Exercice</span></dt>
+        <dd>
+            <span>{{exercice.debutExercice|number :'1.0'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.exercice.finExercice">Fin Exercice</span></dt>
+        <dd>
+            <span>{{exercice.finExercice|number :'1.0'}}</span>
+        </dd>
+
+
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'exercice/'+ exercice.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

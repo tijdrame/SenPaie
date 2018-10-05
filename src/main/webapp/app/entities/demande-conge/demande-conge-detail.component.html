@@ -1,0 +1,72 @@
+
+<div *ngIf="demandeConge">
+    <h2><span jhiTranslate="senPaieApp.demandeConge.detail.title">Demande Conge</span> {{demandeConge.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.demandeConge.dateCreated">Date Created</span></dt>
+        <dd>
+            <span>{{demandeConge.dateCreated | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.dateDebut">Date Debut</span></dt>
+        <dd>
+            <span>{{demandeConge.dateDebut | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.dateFin">Date Fin</span></dt>
+        <dd>
+            <span>{{demandeConge.dateFin | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.motifRejet">Motif Rejet</span></dt>
+        <dd>
+            <span>{{demandeConge.motifRejet}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{demandeConge.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.statutRH">Statut RH</span></dt>
+        <dd>
+            <div *ngIf="demandeConge.statutRH">
+                <a [routerLink]="['/statut-demande', demandeConge.statutRH?.id]">{{demandeConge.statutRH?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.statutDG">Statut DG</span></dt>
+        <dd>
+            <div *ngIf="demandeConge.statutDG">
+                <a [routerLink]="['/statut-demande', demandeConge.statutDG?.id]">{{demandeConge.statutDG?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.collaborateur">Collaborateur</span></dt>
+        <dd>
+            <div *ngIf="demandeConge.collaborateur">
+                <a [routerLink]="['/collaborateur', demandeConge.collaborateur?.id]">{{demandeConge.collaborateur?.prenom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.userCreated">User Created</span></dt>
+        <dd>
+            {{demandeConge.userCreated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.userUpdated">User Updated</span></dt>
+        <dd>
+            {{demandeConge.userUpdated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.demandeConge.userDeleted">User Deleted</span></dt>
+        <dd>
+            {{demandeConge.userDeleted?.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

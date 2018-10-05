@@ -1,0 +1,33 @@
+
+{
+    "senPaieApp": {
+        "structure" : {
+            "home": {
+                "title": "Entreprise",
+                "createLabel": "Créer une nouvelle Structure",
+                "createOrEditLabel": "Créer ou éditer une Structure"
+            },
+            "created": "Un nouveau Structure a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Structure avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Structure avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Structure {{ id }} ?"
+            },
+            "detail": {
+                "title": "Structure"
+            },
+            "denomination": "Denomination",
+            "telephone": "Telephone",
+            "adresse": "Adresse",
+            "ninea": "Ninea",
+            "capital": "Capital",
+            "numeroIpres": "Numero Ipres",
+            "numeroCss": "Numero Css",
+            "logo": "Logo",
+            "ipm": "Ipm",
+            "signature": "Signature",
+            "montantIpm": "Montant Ipm",
+            "convention": "Convention"
+        }
+    }
+}

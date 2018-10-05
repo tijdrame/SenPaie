@@ -1,0 +1,131 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myStructureLabel" jhiTranslate="senPaieApp.structure.home.createOrEditLabel">Create or edit a Structure</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.denomination" for="field_denomination">Denomination</label>
+            <input type="text" class="form-control" name="denomination" id="field_denomination"
+                [(ngModel)]="structure.denomination" required/>
+            <div [hidden]="!(editForm.controls.denomination?.dirty && editForm.controls.denomination?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.denomination?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.telephone" for="field_telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="field_telephone"
+                [(ngModel)]="structure.telephone" required/>
+            <div [hidden]="!(editForm.controls.telephone?.dirty && editForm.controls.telephone?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.telephone?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="structure.adresse" required/>
+            <div [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.adresse?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.ninea" for="field_ninea">Ninea</label>
+            <input type="text" class="form-control" name="ninea" id="field_ninea"
+                [(ngModel)]="structure.ninea" required/>
+            <div [hidden]="!(editForm.controls.ninea?.dirty && editForm.controls.ninea?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.ninea?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.capital" for="field_capital">Capital</label>
+            <input type="number" class="form-control" name="capital" id="field_capital"
+                [(ngModel)]="structure.capital" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.numeroIpres" for="field_numeroIpres">Numero Ipres</label>
+            <input type="text" class="form-control" name="numeroIpres" id="field_numeroIpres"
+                [(ngModel)]="structure.numeroIpres" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.numeroCss" for="field_numeroCss">Numero Css</label>
+            <input type="text" class="form-control" name="numeroCss" id="field_numeroCss"
+                [(ngModel)]="structure.numeroCss" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.logo" for="field_logo">Logo</label>
+            <div>
+                <img [src]="'data:' + structure.logoContentType + ';base64,' + structure.logo" style="max-height: 100px;" *ngIf="structure.logo" alt="structure image"/>
+                <div *ngIf="structure.logo" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{structure.logoContentType}}, {{byteSize(structure.logo)}}</span>
+                    <button type="button" (click)="clearInputImage('logo', 'logoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_logo" (change)="setFileData($event, structure, 'logo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="logo" id="field_logo"
+                [(ngModel)]="structure.logo" />
+            <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType"
+                [(ngModel)]="structure.logoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.ipm" for="field_ipm">Ipm</label>
+            <input type="checkbox" class="form-control" name="ipm" id="field_ipm"
+                [(ngModel)]="structure.ipm" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.signature" for="field_signature">Signature</label>
+            <div>
+                <img [src]="'data:' + structure.signatureContentType + ';base64,' + structure.signature" style="max-height: 100px;" *ngIf="structure.signature" alt="structure image"/>
+                <div *ngIf="structure.signature" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{structure.signatureContentType}}, {{byteSize(structure.signature)}}</span>
+                    <button type="button" (click)="clearInputImage('signature', 'signatureContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_signature" (change)="setFileData($event, structure, 'signature', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="signature" id="field_signature"
+                [(ngModel)]="structure.signature" />
+            <input type="hidden" class="form-control" name="signatureContentType" id="field_signatureContentType"
+                [(ngModel)]="structure.signatureContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.montantIpm" for="field_montantIpm">Montant Ipm</label>
+            <input type="number" class="form-control" name="montantIpm" id="field_montantIpm"
+                [(ngModel)]="structure.montantIpm" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.structure.convention" for="field_convention">Convention</label>
+            <select class="form-control" id="field_convention" name="convention" [(ngModel)]="structure.convention" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="conventionOption.id === structure.convention?.id ? structure.convention : conventionOption" *ngFor="let conventionOption of conventions; trackBy: trackConventionById">{{conventionOption.libelle}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,32 @@
+
+{
+    "senPaieApp": {
+        "statut" : {
+            "home": {
+                "title": "Liste des Statuts",
+                "createLabel": "Créer un nouveau Statut",
+                "createOrEditLabel": "Créer ou éditer un Statut"
+            },
+            "created": "Un nouveau Statut a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Statut avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Statut avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Statut {{ id }} ?"
+            },
+            "detail": {
+                "title": "Statut",
+                "NbFemmes": "Nb Femmes",
+                "NbParts": "Nb Parts",
+                "tauxH": "Taux Horaire",
+                "typeC": "Type Contrat",
+                "salBase": "Salaire de Base",
+                "surSal": "Sursalaire",
+                "NbEnf": "Nb Enfants"
+
+            },
+            "libelle": "Libellé",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

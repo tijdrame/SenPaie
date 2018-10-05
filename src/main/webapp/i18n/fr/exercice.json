@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "exercice" : {
+            "home": {
+                "title": "Liste des Exercices",
+                "createLabel": "Créer un nouveau Exercice",
+                "createOrEditLabel": "Créer ou éditer un Exercice"
+            },
+            "created": "Un nouveau Exercice a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Exercice avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Exercice avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Exercice {{ id }} ?"
+            },
+            "detail": {
+                "title": "Exercice"
+            },
+            "debutExercice": "Début Exercice",
+            "finExercice": "Fin Exercice",
+            "actif": "Actif",
+            "deleted": "Deleted"
+        }
+    }
+}

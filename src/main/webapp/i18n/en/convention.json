@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "convention" : {
+            "home": {
+                "title": "Conventions",
+                "createLabel": "Create a new Convention",
+                "createOrEditLabel": "Create or edit a Convention"
+            },
+            "created": "A new Convention is created with identifier {{ param }}",
+            "updated": "A Convention is updated with identifier {{ param }}",
+            "deleted": "A Convention is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Convention {{ id }}?"
+            },
+            "detail": {
+                "title": "Convention"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

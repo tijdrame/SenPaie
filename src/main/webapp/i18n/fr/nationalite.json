@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "nationalite" : {
+            "home": {
+                "title": "Liste des Nationalités",
+                "createLabel": "Créer une Nationalité",
+                "createOrEditLabel": "Créer ou éditer une Nationalité"
+
+            },
+            "created": "Une nouvelle Nationalité a été créé avec l'identifiant {{ param }}",
+            "updated": "La Nationalité avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La Nationalité avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer la Nationalité {{ id }} ?"
+            },
+            "detail": {
+                "title": "Nationalité",
+                "convention": "Convention"
+            },
+            "libelle": "Libellé",
+            "deleted": "Deleted"
+        }
+    }
+}

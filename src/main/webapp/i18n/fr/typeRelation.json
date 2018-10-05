@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "typeRelation" : {
+            "home": {
+                "title": "Liste des Types de Relation",
+                "createLabel": "Créer un nouveau Type de Relation",
+                "createOrEditLabel": "Créer ou éditer un Type de Relation"
+            },
+            "created": "Un nouveau Type de Relation a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Type de Relation avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Type de Relation avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer ce Type de Relation {{ id }} ?"
+            },
+            "detail": {
+                "title": "Type de Relation"
+            },
+            "libelle": "Libellé",
+            "code": "Code",
+            "deleted": "Deleted",
+            "nbParts": "Nb Parts"
+        }
+    }
+}

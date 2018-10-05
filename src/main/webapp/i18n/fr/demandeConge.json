@@ -1,0 +1,32 @@
+
+{
+    "senPaieApp": {
+        "demandeConge" : {
+            "home": {
+                "title": "Liste Demandes Conges",
+                "createLabel": "Créer une Demande Congé",
+                "createOrEditLabel": "Créer ou éditer une Demande Congé"
+            },
+            "created": "Une nouvelle Demande Conge a été créé avec l'identifiant {{ param }}",
+            "updated": "La Demande Congé avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La Demande Congé avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer la Demande Congé {{ id }} ?"
+            },
+            "detail": {
+                "title": "Demande Congé"
+            },
+            "dateCreated": "Date Saisie",
+            "dateDebut": "Date Debut",
+            "dateFin": "Date Fin",
+            "motifRejet": "Motif Rejet",
+            "deleted": "Deleted",
+            "statutRH": "Statut RH",
+            "statutDG": "Statut DG",
+            "collaborateur": "Collaborateur",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted"
+        }
+    }
+}

@@ -1,0 +1,124 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.absence.home.critere">Critéres de recherche</span>
+    </h2>
+    <div class="row">
+        <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+            <table class="table">
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.prenom" for="field_prenom">Prénom</label></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="prenom" name="prenom" id="field_prenom">
+                        </div>
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nom" for="field_nom">Nom</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="nom" name="nom" id="field_nom">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.matricule" for="field_tel">Matricule Collaborateur</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="telephone" name="tel" id="field_tel">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.deleted" for="field_del">Supprimé?</label></td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="deleted" name="deleted" id="field_del">
+                    </td>
+                    <td>
+                        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
+                        </button>
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+        </form>
+
+    </div>
+    <h2>
+        <span jhiTranslate="senPaieApp.membreFamille.home.title">Membre Familles</span>
+        <button class="btn btn-primary float-right jh-create-entity create-membre-famille" [routerLink]="['/', { outlets: { popup: ['membre-famille-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.membreFamille.home.createLabel">
+            Create new Membre Famille
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="membreFamilles">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="nom"><span jhiTranslate="senPaieApp.membreFamille.nom">Nom</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="adresse"><span jhiTranslate="senPaieApp.membreFamille.adresse">Adresse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isActif"><span jhiTranslate="senPaieApp.membreFamille.isActif">Is Actif</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateNaissance"><span jhiTranslate="senPaieApp.membreFamille.dateNaissance">Date Naissance</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateMariage"><span jhiTranslate="senPaieApp.membreFamille.dateMariage">Date Mariage</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.membreFamille.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeRelation.libelle"><span jhiTranslate="senPaieApp.membreFamille.typeRelation">Type Relation</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let membreFamille of membreFamilles ;trackBy: trackId">
+                <td>{{membreFamille.prenom}} {{membreFamille.nom}}</td>
+                <td>{{membreFamille.adresse}}</td>
+                <td>{{membreFamille.isActif?'Oui':'Non'}}</td>
+                <td>{{membreFamille.dateNaissance | date:'mediumDate'}}</td>
+                <td>{{membreFamille.dateMariage | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="membreFamille.collaborateur">
+                        <a [routerLink]="['../collaborateur', membreFamille.collaborateur?.id ]" >{{membreFamille.collaborateur?.prenom}}
+                            {{membreFamille.collaborateur?.nom}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="membreFamille.typeRelation">
+                        <a [routerLink]="['../type-relation', membreFamille.typeRelation?.id ]" >{{membreFamille.typeRelation?.libelle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../membre-famille', membreFamille.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'membre-famille/'+ membreFamille.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'membre-famille/'+ membreFamille.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="membreFamilles && membreFamilles.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.absence.home.critere">Critéres de recherche</span>
+    </h2>
+    <div class="row">
+        <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+            <table class="table">
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.prenom" for="field_prenom">Prénom</label></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="prenom" name="prenom" id="field_prenom">
+                        </div>
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nom" for="field_nom">Nom</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="nom" name="nom" id="field_nom">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.telephone" for="field_tel">Téléphone</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="telephone" name="tel" id="field_tel">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.deleted" for="field_del">Supprimé?</label></td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="deleted" name="deleted" id="field_del">
+                    </td>
+                    <td>
+                        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
+                        </button>
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+        </form>
+
+    </div>
+
+
+    <h2>
+        <span jhiTranslate="senPaieApp.collaborateur.home.title">Collaborateurs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-collaborateur" [routerLink]="['/', { outlets: { popup: ['collaborateur-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.collaborateur.home.createLabel">
+            Create new Collaborateur
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="collaborateurs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="nom"><span jhiTranslate="senPaieApp.collaborateur.nom">Nom</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="matricule"><span jhiTranslate="senPaieApp.collaborateur.matricule">Matricule</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="salaireDeBase"><span jhiTranslate="senPaieApp.collaborateur.salaireDeBase">Salaire De Base</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="surSalaire"><span jhiTranslate="senPaieApp.collaborateur.surSalaire">Sur Salaire</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateNaissance"><span jhiTranslate="senPaieApp.collaborateur.dateNaissance">Date Naissance</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fonction.libelle"><span jhiTranslate="senPaieApp.collaborateur.fonction">Fonction</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="situationMatrimoniale.libelle"><span jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale">Situation Matrimoniale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeContrat.libelle"><span jhiTranslate="senPaieApp.collaborateur.typeContrat">Type Contrat</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let collaborateur of collaborateurs ;trackBy: trackId">
+                <td>{{collaborateur.prenom}} {{collaborateur.nom}}</td>
+                <td>{{collaborateur.matricule}}</td>
+                <td>{{collaborateur.salaireDeBase|number :'1.0'}}</td>
+                <td>{{collaborateur.surSalaire|number :'1.0'}}</td>
+                <td>{{collaborateur.dateNaissance | date:'dd/MM/yyyy'}}</td>
+
+                <td>
+                    <div *ngIf="collaborateur.fonction">
+                        <a [routerLink]="['../fonction', collaborateur.fonction?.id ]" >{{collaborateur.fonction?.libelle}}</a>
+                    </div>
+                </td>
+
+                <td>
+                    <div *ngIf="collaborateur.situationMatrimoniale">
+                        <a [routerLink]="['../situation-matrimoniale', collaborateur.situationMatrimoniale?.id ]" >{{collaborateur.situationMatrimoniale?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.typeContrat">
+                        <a [routerLink]="['../type-contrat', collaborateur.typeContrat?.id ]" >{{collaborateur.typeContrat?.code}}</a>
+                    </div>
+                </td>
+
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../collaborateur', collaborateur.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'collaborateur/'+ collaborateur.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'collaborateur/'+ collaborateur.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="collaborateurs && collaborateurs.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

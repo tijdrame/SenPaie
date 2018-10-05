@@ -1,0 +1,296 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBulletinLabel" jhiTranslate="senPaieApp.bulletin.home.createOrEditLabel">Create or edit a Bulletin</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <table width="100%">
+            <tr>
+                <td style="width: 25%">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.collaborateur" for="field_collaborateur">Collaborateur</label>
+                        <select class="form-control" id="field_collaborateur" name="collaborateur"
+                                [(ngModel)]="bulletin.collaborateur"  required (change)="collabChoisi(bulletin.collaborateur)">
+                            <option *ngIf="!editForm.value.collaborateur" [ngValue]="null" selected></option>
+                            <option [ngValue]="collaborateurOption.id === bulletin.collaborateur?.id ? bulletin.collaborateur : collaborateurOption"
+                                    *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">{{collaborateurOption.prenom}} {{collaborateurOption.nom}}</option>
+                        </select>
+                    </div>
+                </td>
+                <td style="width: 25%">
+                    <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.emploi" >Emploi</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin.collaborateur?.fonction?.libelle}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td style="width: 25%">
+                    <label class="form-control-label" jhiTranslate="senPaieApp.categorie.detail.title" >Catégorie</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin.collaborateur?.categorie?.libelle}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td style="width: 25%">
+                    <label class="form-control-label" jhiTranslate="senPaieApp.nationalite.detail.title" >Catégorie</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin.collaborateur?.nationalite?.libelle}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.nationalite.detail.convention" >Convention</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{structure?.convention?.libelle}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.title" >Convention</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin.collaborateur?.statut?.libelle}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.situationMatrimoniale.detail.title" >Convention</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin.collaborateur?.situationMatrimoniale?.libelle}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.NbFemmes" >Nb Femmes</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{nbFemme}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.NbEnf">Nb Enfants</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{nbEnfant}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.NbParts">Nb Parts</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{nombreParts}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.tauxH">Taux Horaire</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin?.collaborateur?.tauxHoraire}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.typeC">Type Contrat</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin?.collaborateur?.typeContrat?.code}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.salBase">Salaire de Base</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin?.collaborateur?.salaireDeBase|number :'1.0'}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.statut.detail.surSal">Sursalaire</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin?.collaborateur?.surSalaire|number :'1.0'}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</label>
+                    <input type="text" class="form-control" disabled
+                           value="{{bulletin?.brutFiscal|number :'1.0'}}" />
+                    <label class="form-control-label"  ></label>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.primeTransport" for="field_primeTransport">Prime Transport</label>
+                        <input type="text" class="form-control" name="primeTransport" id="field_primeTransport" disabled
+                               value="{{bulletin?.collaborateur?.primeTransport|number :'1.0'}}"  />
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel" for="field_salaireBrutMensuel">Salaire Brut Mensuel</label>
+                    <input type="text" class="form-control" name="salaireBrutMensuel" id="field_salaireBrutMensuel" disabled
+                           value="{{bulletin?.salaireBrutMensuel|number :'1.0'}}" />
+                </div>
+                </td>
+                <td>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.impotSurRevenu" for="field_salaireBrutMensuel">Impot sur le revenu</label>
+                    <input type="text" class="form-control" name="salaireBrutMensuel" disabled
+                           value="{{bulletin.impotSurRevenu|number:'1.0'}}" />
+                </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.trimf" >TRIMF</label>
+                        <input type="text" class="form-control" name="salaireBrutMensuel" disabled
+                               value="{{bulletin.trimf|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipresRG" >IPRES Régime Général</label>
+                        <input type="text" class="form-control" name="salaireBrutMensuel" disabled
+                               value="{{bulletin.ipresPartSalariale|number:'1.0'}}" />
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipm" >IPM</label>
+                        <input type="text" class="form-control" name="salaireBrutMensuel" disabled
+                               value="{{ipm|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.retenueIpm" for="field_retenueIpm">Retenue Ipm</label>
+                        <input type="number" class="form-control" name="retenueIpm" id="field_retenueIpm"
+                               [(ngModel)]="bulletin.retenueIpm" (blur)="getTotalRetenue()"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.retenuePharmacie" for="field_retenuePharmacie">Retenue Pharmacie</label>
+                        <input type="number" class="form-control" name="retenuePharmacie" id="field_retenuePharmacie"
+                               [(ngModel)]="bulletin.retenuePharmacie" (blur)="getTotalRetenue()"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.retenueRepas" >Retenue repas</label>
+                        <input type="text" class="form-control" name="salaireBrutMensuel" disabled
+                               value="{{bulletin?.collaborateur?.retenueRepas|number:'1.0'}}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+
+            </tr>
+        </table>
+        <div class="form-group">
+            <label jhiTranslate="senPaieApp.bulletin.remboursement" for="field_remboursement">Remboursement</label>
+            <select class="form-control" id="field_remboursement" multiple spellcheck="true" name="remboursement" [(ngModel)]="bulletin.remboursements"
+            (click)="getTotalRetenue()" >
+                <option  [ngValue]="getSelected(bulletin.remboursements, remboursementOption)" *ngFor="let remboursementOption of remboursements;
+                trackBy: trackRemboursementById">
+                    {{remboursementOption?.detailPret?.pret?.libelle}} - {{remboursementOption?.detailPret?.montant}} -
+                    {{remboursementOption?.dateRemboursement|date:'MMMM/yyyy'}}</option>
+            </select>
+        </div>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.totRetenue" >Tot Retenue</label>
+                        <input type="text" class="form-control" name="totRetenue" disabled
+                               value="{{bulletin?.totRetenue|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.netAPayer" >Net A Payer</label>
+                        <input type="text" class="form-control" name="netAPayer"  disabled
+                               value="{{bulletin?.netAPayer|number:'1.0'}}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.cssAccidentDeTravail" for="field_cssAccidentDeTravail">Css Accident De Travail</label>
+                        <input type="text" class="form-control" disabled name="cssAccidentDeTravail" id="field_cssAccidentDeTravail"
+                               value="{{bulletin.cssAccidentDeTravail|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.cssPrestationFamiliale" for="field_cssPrestationFamiliale">Css Prestation Familiale</label>
+                        <input type="text" class="form-control" disabled name="cssPrestationFamiliale" id="field_cssPrestationFamiliale"
+                               value="{{bulletin.cssPrestationFamiliale|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipresPartPatronales" for="field_ipresPartPatronales">Ipres Part Patronales</label>
+                        <input type="text" class="form-control" disabled name="ipresPartPatronales" id="field_ipresPartPatronales"
+                               value="{{bulletin.ipresPartPatronales|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipmPatronale" for="field_ipmPatronale">Ipm Patronale</label>
+                        <input type="text" class="form-control" name="ipmPatronale" id="field_ipmPatronale" disabled
+                               value="{{bulletin.ipmPatronale|number:'1.0'}}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.contributionForfaitaire" for="field_contributionForfaitaire">Contribution Forfaitaire</label>
+                        <input type="text" class="form-control" disabled name="contributionForfaitaire" id="field_contributionForfaitaire"
+                               value="{{bulletin.contributionForfaitaire|number:'1.0'}}" />
+                    </div>
+                </td>
+                <td colspan="3">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.typePaiement" for="field_typePaiement">Type Paiement</label>
+                        <select class="form-control" id="field_typePaiement" name="typePaiement" [(ngModel)]="bulletin.typePaiement"  required>
+                            <option *ngIf="!editForm.value.typePaiement" [ngValue]="null" selected></option>
+                            <option [ngValue]="typePaiementOption.id === bulletin.typePaiement?.id ? bulletin.typePaiement : typePaiementOption" *ngFor="let typePaiementOption of typepaiements; trackBy: trackTypePaiementById">{{typePaiementOption.libelle}}</option>
+                        </select>
+                    </div>
+                    <div [hidden]="!(editForm.controls.typePaiement?.dirty && editForm.controls.typePaiement?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.typePaiement?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

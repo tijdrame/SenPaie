@@ -1,0 +1,328 @@
+
+<div *ngIf="bulletin" id="myBulletin">
+
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <table style="width: 90%; alignment: center; " border="1">
+            <tr>
+                <td width="20%">
+                    <table>
+                        <tr>
+                            <td rowspan="5">
+                                <div *ngIf="structure.logo">
+                                    <a (click)="openFile(structure.logoContentType, structure.logo)">
+                                        <img [src]="'data:' + structure.logoContentType + ';base64,' + structure.logo" style="max-width: 100%;" alt="structure image"/>
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+                <td width="80%">
+                    <table>
+                        <tr>
+                            <td width="30%"><b><u><span jhiTranslate="senPaieApp.bulletin.dateCreated">Date de paie:</span></u></b></td>
+                            <td >{{bulletin.dateCreated|date:'dd/MM/yyyy'}}</td>
+
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.collaborateur.matricule">Matricule:</span></u></b></td>
+                            <td>{{bulletin.collaborateur?.matricule}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.collaborateur.nom">Nom</span></u></b></td>
+                            <td>{{bulletin.collaborateur?.prenom}} {{bulletin.collaborateur?.nom}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.collaborateur.adresse">Adresse</span></u></b></td>
+                            <td>{{bulletin.collaborateur?.adresse}}</td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table style="width: 90%; alignment: center" border="1">
+            <tr>
+                <td width="34%">
+                    <table>
+                        <tr>
+                            <td width="70%"><b><u><span jhiTranslate="senPaieApp.collaborateur.fonction">Fonction</span></u></b></td>
+                            <td>{{bulletin.collaborateur.fonction.libelle}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.collaborateur.categorie">Categorie</span></u></b></td>
+                            <td>{{bulletin.collaborateur?.categorie.libelle}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.collaborateur.nationalite">Nationalite</span></u></b></td>
+                            <td>{{bulletin.collaborateur?.nationalite?.libelle}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.convention.detail.title">Convention</span></u></b></td>
+                            <td>{{structure?.convention?.libelle}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="33%">
+                    <table>
+                        <tr>
+                            <td width="70%"><b><u><span jhiTranslate="senPaieApp.collaborateur.statut">Statut</span></u></b></td>
+                            <td>{{bulletin?.collaborateur?.statut?.libelle}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale">Situation Matrimoniale</span></u></b></td>
+                            <td>{{bulletin?.collaborateur?.situationMatrimoniale?.libelle}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.statut.detail.NbFemmes" >Nb Femmes</span></u></b></td>
+                            <td>{{bulletin?.nbFemmes}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.statut.detail.NbEnf">Nb Enfants</span></u></b></td>
+                            <td>{{bulletin?.nbEnfants}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="33%">
+                    <table>
+                        <tr>
+                            <td width="70%"><b><u><span jhiTranslate="senPaieApp.statut.detail.NbParts">Nb Parts</span></u></b></td>
+                            <td>{{bulletin?.nbPart}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.statut.detail.tauxH">Taux Horaire</span></u></b></td>
+                            <td>{{bulletin?.collaborateur?.tauxHoraire}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.bulletin.typePaiement">Type Paiement</span></u></b></td>
+                            <td>{{bulletin?.collaborateur?.typeContrat?.code}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.statut.detail.NbParts">Nb Parts</span></u></b></td>
+                            <td>{{bulletin?.typePaiement?.libelle}}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table style="width: 90%; alignment: center" border="1">
+            <thead>
+            <th><span jhiTranslate="senPaieApp.categorie.code">Code</span></th>
+            <th><span jhiTranslate="senPaieApp.categorie.design">Désignation</span></th>
+            <th><span jhiTranslate="senPaieApp.categorie.nb">Nombres</span></th>
+            <th><span jhiTranslate="senPaieApp.categorie.taux">Taux</span></th>
+            <th><span jhiTranslate="senPaieApp.categorie.gains">Gains</span></th>
+            <th><span jhiTranslate="senPaieApp.categorie.retenues">Retenues</span></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.statut.detail.salBase">Salaire de base</span></td>
+                <td>{{bulletin?.collaborateur?.tauxHoraire}}</td>
+                <td></td>
+                <td>{{bulletin.collaborateur?.salaireDeBase|number:'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.collaborateur.surSalaire">Sursalaire</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin?.collaborateur?.surSalaire|number:'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.categorie.forfait">Forfait heure supplémentaire</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><b><span jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</span></b></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.brutFiscal|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.primeTransport">Prime Transport</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.collaborateur.primeTransport|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><b><span jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel">Salaire Brut Mensuel</span></b></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.salaireBrutMensuel|number:'1.0'}}</td>
+                <td></td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.impotSurRevenu">Impot Sur Revenu</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.impotSurRevenu|number :'1.0'}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.trimf">Trimf</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.trimf|number :'1.0'}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.ipresPartSalariale">Ipres Part Salariale</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.ipresPartSalariale|number :'1.0'}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.ipm">IPM</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.ipmPatronale|number :'1.0'}}</td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.retenueIpm">Retenue Ipm</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.retenueIpm|number :'1.0'}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.retenuePharmacie">Retenue Pharmacie</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.retenuePharmacie|number :'1.0'}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.collaborateur.retenueRepas" >Retenue repas></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin?.collaborateur?.retenueRepas|number:'1.0'}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="5"><span *ngFor="let remboursement of bulletin.remboursements; let last = last">
+                <a [routerLink]="['/remboursement', remboursement?.id ]">{{remboursement.detailPret.pret.libelle}}
+                - {{remboursement?.detailPret?.montant|number :'1.0'}} -
+                    {{remboursement?.dateRemboursement|date:'MMMM/yyyy'}}</a>{{last ? '' : ', '}}
+            </span></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td><b><span jhiTranslate="senPaieApp.bulletin.totRetenue">Tot Retenue</span></b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.totRetenue|number :'1.0'}}</td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.netAPayer">Net A Payer</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.netAPayer|number:'1.0'}}</td>
+                <td></td>
+            </tr>
+            <div style="height: 20px"></div>
+            <tr>
+                <td></td>
+                <td><b><span jhiTranslate="senPaieApp.categorie.charge">Charges Patronales</span></b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.cssAccidentDeTravail">Css Accident De Travail</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.cssAccidentDeTravail|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.cssPrestationFamiliale">Css Prestation Familiale</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.cssPrestationFamiliale|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.ipresRG">Ipres Régime Général</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.ipresPartPatronales|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.ipmPatronale">Ipm Patronale</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.ipmPatronale|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.contributionForfaitaire">Contribution Forfaitaire</span></td>
+                <td></td>
+                <td></td>
+                <td>{{bulletin.contributionForfaitaire|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            </tbody>
+
+        </table>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+    <button type="button" (click)="downLoadPdf()" > PDF...</button>
+    <button type="submit"
+            (click)="downLoadPdf()"
+            class="btn btn-info">
+        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="entity.action"> Imprimer</span>
+    </button>
+
+    <!--<button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>-->
+</div>

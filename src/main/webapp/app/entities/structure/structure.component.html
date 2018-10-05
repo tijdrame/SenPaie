@@ -1,0 +1,86 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.structure.home.title">Structures</span>
+        <button class="btn btn-primary float-right jh-create-entity create-structure" [routerLink]="['/', { outlets: { popup: ['structure-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.structure.home.createLabel">
+            Create new Structure
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="structures">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="denomination"><span jhiTranslate="senPaieApp.structure.denomination">Denomination</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="telephone"><span jhiTranslate="senPaieApp.structure.telephone">Telephone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ninea"><span jhiTranslate="senPaieApp.structure.ninea">Ninea</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="capital"><span jhiTranslate="senPaieApp.structure.capital">Capital</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numeroIpres"><span jhiTranslate="senPaieApp.structure.numeroIpres">Numero Ipres</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numeroCss"><span jhiTranslate="senPaieApp.structure.numeroCss">Numero Css</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipm"><span jhiTranslate="senPaieApp.structure.ipm">Ipm</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montantIpm"><span jhiTranslate="senPaieApp.structure.montantIpm">Montant Ipm</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="convention.libelle"><span jhiTranslate="senPaieApp.structure.convention">Convention</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let structure of structures ;trackBy: trackId">
+                <td>{{structure.denomination}}</td>
+                <td>{{structure.telephone}}</td>
+                <td>{{structure.ninea}}</td>
+                <td>{{structure.capital|number :'1.0'}}</td>
+                <td>{{structure.numeroIpres}}</td>
+                <td>{{structure.numeroCss}}</td>
+
+                <td>{{structure.ipm?'Oui':'Non'}}</td>
+
+                <td>{{structure.montantIpm|number :'1.0'}}</td>
+                <td>
+                    <div *ngIf="structure.convention">
+                        <a [routerLink]="['../convention', structure.convention?.id ]" >{{structure.convention?.libelle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../structure', structure.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'structure/'+ structure.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'structure/'+ structure.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="structures && structures.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

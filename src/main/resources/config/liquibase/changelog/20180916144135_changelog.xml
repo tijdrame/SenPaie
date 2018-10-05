@@ -1,0 +1,118 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-1">
+        <createTable tableName="collaborateur">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="collaborateurPK"/>
+            </column>
+            <column name="adresse" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_naissance" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted" type="BOOLEAN"/>
+            <column name="matricule" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="longblob"/>
+            <column name="photo_content_type" type="VARCHAR(255)"/>
+            <column name="prenom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="retenue_repas" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salaire_de_base" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sur_salaire" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taux_horaire" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categorie_id" type="BIGINT"/>
+            <column name="fonction_id" type="BIGINT"/>
+            <column name="nationalite_id" type="BIGINT"/>
+            <column name="situation_matrimoniale_id" type="BIGINT"/>
+            <column name="statut_id" type="BIGINT"/>
+            <column name="type_contrat_id" type="BIGINT"/>
+            <column name="user_created_id" type="BIGINT"/>
+            <column name="user_deleted_id" type="BIGINT"/>
+            <column name="user_updated_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-2">
+        <createTable tableName="membre_famille">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="membre_famillePK"/>
+            </column>
+            <column name="adresse" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_mariage" type="date"/>
+            <column name="date_naissance" type="date"/>
+            <column name="deleted" type="BOOLEAN"/>
+            <column name="is_actif" type="BOOLEAN"/>
+            <column name="nom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="longblob"/>
+            <column name="photo_content_type" type="VARCHAR(255)"/>
+            <column name="prenom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="collaborateur_id" type="BIGINT"/>
+            <column name="type_relation_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+            <column name="user_deleted_id" type="BIGINT"/>
+            <column name="user_update_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-3">
+        <addForeignKeyConstraint baseColumnNames="statut_id" baseTableName="collaborateur" constraintName="FK346s2egkovh8sb48ks45i93dm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="statut"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-4">
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id" baseTableName="collaborateur" constraintName="FK5e4h6pg1mdpklntjenqfclu26" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-5">
+        <addForeignKeyConstraint baseColumnNames="situation_matrimoniale_id" baseTableName="collaborateur" constraintName="FK7hlrycn4ytb2xrhqag8wuhs9k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="situation_matrimoniale"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-6">
+        <addForeignKeyConstraint baseColumnNames="user_created_id" baseTableName="collaborateur" constraintName="FK7hmyrvilac8rtciaed9lgkmmq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-7">
+        <addForeignKeyConstraint baseColumnNames="fonction_id" baseTableName="collaborateur" constraintName="FK7sgbvclsxifqlahg2nlgox6h3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="fonction"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-8">
+        <addForeignKeyConstraint baseColumnNames="categorie_id" baseTableName="collaborateur" constraintName="FKat1yx5r7wi0bf8je6rdb11w70" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categorie"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-9">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="membre_famille" constraintName="FKbyr7fltcgp0ankvowkqrxy6mp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-10">
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id" baseTableName="membre_famille" constraintName="FKfplrcryf25wdxt3cvel75eo8h" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-11">
+        <addForeignKeyConstraint baseColumnNames="type_contrat_id" baseTableName="collaborateur" constraintName="FKgie0kfoeg0abjhekfvcs71f7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="type_contrat"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-12">
+        <addForeignKeyConstraint baseColumnNames="user_updated_id" baseTableName="collaborateur" constraintName="FKi90sksba9q1nu27c0a0h58chf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-13">
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id" baseTableName="membre_famille" constraintName="FKkgx6ybjhol5ccxlkww1nj7xdv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="collaborateur"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-14">
+        <addForeignKeyConstraint baseColumnNames="nationalite_id" baseTableName="collaborateur" constraintName="FKo4sjwahiw8r24i92snrvh4i51" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="nationalite"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-15">
+        <addForeignKeyConstraint baseColumnNames="user_update_id" baseTableName="membre_famille" constraintName="FKrqujnw796d5hypsjjh40ctbp5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537108905437-16">
+        <addForeignKeyConstraint baseColumnNames="type_relation_id" baseTableName="membre_famille" constraintName="FKt414bfuevy4tpjkatn03q1982" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="type_relation"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,43 @@
+
+<div *ngIf="detailPret">
+    <h2><span jhiTranslate="senPaieApp.detailPret.detail.title">Detail Pret</span> {{detailPret.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.detailPret.montant">Montant</span></dt>
+        <dd>
+            <span>{{detailPret.montant|number :'1.0'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.detailPret.isRembourse">Is Rembourse</span></dt>
+        <dd>
+            <span>{{detailPret.isRembourse?'Oui':'Non'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.detailPret.collaborateur">Collaborateur</span></dt>
+        <dd>
+            <div *ngIf="detailPret.collaborateur">
+                <a [routerLink]="['/collaborateur', detailPret.collaborateur?.id]">{{detailPret.collaborateur?.prenom}} {{detailPret.collaborateur?.nom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.detailPret.pret">Pret</span></dt>
+        <dd>
+            <div *ngIf="detailPret.pret">
+                <a [routerLink]="['/pret', detailPret.pret?.id]">{{detailPret.pret?.libelle}}</a>
+            </div>
+        </dd>
+
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'detail-pret/'+ detailPret.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

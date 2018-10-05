@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "statutDemande" : {
+            "home": {
+                "title": "Statut Demandes",
+                "createLabel": "Create a new Statut Demande",
+                "createOrEditLabel": "Create or edit a Statut Demande"
+            },
+            "created": "A new Statut Demande is created with identifier {{ param }}",
+            "updated": "A Statut Demande is updated with identifier {{ param }}",
+            "deleted": "A Statut Demande is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Statut Demande {{ id }}?"
+            },
+            "detail": {
+                "title": "Statut Demande"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

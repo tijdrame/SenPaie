@@ -1,0 +1,31 @@
+
+{
+    "senPaieApp": {
+        "categorie" : {
+            "home": {
+                "title": "Liste des Catégories",
+                "createLabel": "Créer une  Catégorie",
+                "createOrEditLabel": "Créer ou éditer une Catégorie"
+            },
+            "created": "Une Catégorie a été créé avec l'identifiant {{ param }}",
+            "updated": "La Catégorie avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La Catégorie avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer la Catégorie {{ id }} ?"
+            },
+            "detail": {
+                "title": "Catégorie"
+            },
+            "libelle": "Libellé",
+            "code": "Code",
+            "design": "Désignation",
+            "taux": "Taux",
+            "nb": "Nombres",
+            "gains": "Gains",
+            "retenues": "Retenues",
+            "charge": "Charges Patronales",
+            "forfait": "Forfait heure supplémentaire",
+            "deleted": "Deleted"
+        }
+    }
+}

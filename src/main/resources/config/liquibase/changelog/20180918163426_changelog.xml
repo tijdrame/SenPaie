@@ -1,0 +1,65 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-1">
+        <createTable tableName="detail_pret">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="detail_pretPK"/>
+            </column>
+            <column name="is_rembourse" type="BOOLEAN"/>
+            <column name="montant" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="collaborateur_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pret_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_created_id" type="BIGINT"/>
+            <column name="user_deleted_id" type="BIGINT"/>
+            <column name="user_updated_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-2">
+        <createTable tableName="remboursement">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="remboursementPK"/>
+            </column>
+            <column name="date_remboursement" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="montant" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="detail_pret_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_created_id" type="BIGINT"/>
+            <column name="user_updated_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-3">
+        <addForeignKeyConstraint baseColumnNames="user_updated_id" baseTableName="remboursement" constraintName="FK2rh1ro9rgvlraeuajefci0vq2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-4">
+        <addForeignKeyConstraint baseColumnNames="pret_id" baseTableName="detail_pret" constraintName="FK52scp0dki6d50h9f40ebdmgri" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pret"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-5">
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id" baseTableName="detail_pret" constraintName="FKapo7lqpuotf23m425mc5aw35y" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="collaborateur"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-6">
+        <addForeignKeyConstraint baseColumnNames="detail_pret_id" baseTableName="remboursement" constraintName="FKg0aexhxr98mpgqa2dicjagumy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="detail_pret"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-7">
+        <addForeignKeyConstraint baseColumnNames="user_updated_id" baseTableName="detail_pret" constraintName="FKicxlxtw35489l6srwx48whkh2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-8">
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id" baseTableName="detail_pret" constraintName="FKk0kw3qoqpkafmk6vsjj9h6pv9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-9">
+        <addForeignKeyConstraint baseColumnNames="user_created_id" baseTableName="remboursement" constraintName="FKmpqejh6dlxf5ebebaw5cx158y" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537288478531-10">
+        <addForeignKeyConstraint baseColumnNames="user_created_id" baseTableName="detail_pret" constraintName="FKrjklrqdwndqrm8tmmc9e2yvy7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-1">
+        <createTable tableName="bulletin">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="bulletinPK"/>
+            </column>
+            <column name="autre_retenue" type="FLOAT8"/>
+            <column name="contribution_forfaitaire" type="FLOAT8"/>
+            <column name="css_accident_de_travail" type="FLOAT8"/>
+            <column name="css_prestation_familiale" type="FLOAT8"/>
+            <column name="date_created" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_deleted" type="BYTEA"/>
+            <column name="date_updated" type="BYTEA"/>
+            <column name="deleted" type="BOOLEAN"/>
+            <column name="impot_sur_revenu" type="FLOAT8"/>
+            <column name="ipm_patronale" type="FLOAT8"/>
+            <column name="ipres_part_patronales" type="FLOAT8"/>
+            <column name="ipres_part_salariale" type="FLOAT8"/>
+            <column name="net_a_payer" type="FLOAT8"/>
+            <column name="prime_transport" type="FLOAT8"/>
+            <column name="retenue_ipm" type="FLOAT8"/>
+            <column name="retenue_pharmacie" type="FLOAT8"/>
+            <column name="salaire_brut_mensuel" type="FLOAT8"/>
+            <column name="tot_retenue" type="FLOAT8"/>
+            <column name="trimf" type="FLOAT8"/>
+            <column name="collaborateur_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_paiement_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_created_id" type="BIGINT"/>
+            <column name="user_deleted_id" type="BIGINT"/>
+            <column name="user_updated_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-2">
+        <addForeignKeyConstraint baseColumnNames="user_created_id" baseTableName="bulletin" constraintName="FK2dwo75f24ccbf0wsqctej59l8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-3">
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id" baseTableName="bulletin" constraintName="FK55nvvn1a4orvv9pes3j3y97xk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-4">
+        <addForeignKeyConstraint baseColumnNames="type_paiement_id" baseTableName="bulletin" constraintName="FK8pk37vw3g9ciodwbdkfooxku9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="type_paiement"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-5">
+        <addForeignKeyConstraint baseColumnNames="user_updated_id" baseTableName="bulletin" constraintName="FK9auvmindw38ie8ua7wipl0p5t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-6">
+        <addForeignKeyConstraint baseColumnNames="bulletins_id" baseTableName="bulletin_remboursement" constraintName="FKe9l329cqts034i2huvywyclxv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bulletin"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1537896402064-7">
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id" baseTableName="bulletin" constraintName="FKimxpxlsofs9l8x1ho0w78hu2a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="collaborateur"/>
+    </changeSet>
+</databaseChangeLog>

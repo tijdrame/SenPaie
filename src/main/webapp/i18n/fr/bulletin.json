@@ -1,0 +1,53 @@
+
+{
+    "senPaieApp": {
+        "bulletin" : {
+            "home": {
+                "title": "Bulletins",
+                "createLabel": "Créer un nouveau Bulletin",
+                "createOrEditLabel": "Créer ou éditer un Bulletin"
+            },
+            "created": "Un nouveau Bulletin a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Bulletin avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Bulletin avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Bulletin {{ id }} ?"
+            },
+            "detail": {
+                "title": "Bulletin"
+            },
+            "retenueIpm": "Retenue Ipm",
+            "retenuePharmacie": "Retenue Pharmacie",
+            "autreRetenue": "Autre Retenue",
+            "deleted": "Deleted",
+            "dateCreated": "Date de paie",
+            "dateUpdated": "Date Updated",
+            "dateDeleted": "Date Deleted",
+            "brutFiscal": "Brut Fiscal",
+            "primeTransport": "Prime Transport",
+            "netAPayer": "Net A Payer",
+            "salaireBrutMensuel": "Salaire Brut Mensuel",
+            "impotSurRevenu": "Impot sur le revenu",
+            "trimf": "Trimf",
+            "ipresPartSalariale": "Ipres Part Salariale",
+            "totRetenue": "Tot Retenue",
+            "ipresPartPatronales": "Ipres Part Patronales",
+            "cssAccidentDeTravail": "Css Accident De Travail",
+            "cssPrestationFamiliale": "Css Prestation Familiale",
+            "ipmPatronale": "Ipm Patronale",
+            "contributionForfaitaire": "Contribution Forfaitaire",
+            "collaborateur": "Collaborateur",
+            "typePaiement": "Type Paiement",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted",
+            "categorie": "Catégorie",
+            "emploi": "Emploi",
+            "nationalite": "Nationalité",
+            "conve": "Convention",
+            "ipresRG": "IPRES Régime Général",
+            "ipm": "IPM",
+            "remboursement": "Remboursement"
+        }
+    }
+}
