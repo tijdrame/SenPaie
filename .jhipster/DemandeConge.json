@@ -42,6 +42,12 @@
             "otherEntityField": "login",
             "ownerSide": true,
             "otherEntityRelationshipName": "demandeConge"
+        },
+        {
+            "relationshipName": "typeAbsence",
+            "otherEntityName": "typeAbsence",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "libelle"
         }
     ],
     "fields": [
@@ -70,6 +76,10 @@
         {
             "fieldName": "deleted",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180927104955",

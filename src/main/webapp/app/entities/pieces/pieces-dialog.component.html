@@ -1,0 +1,86 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPiecesLabel" jhiTranslate="senPaieApp.pieces.home.createOrEditLabel">Create or edit a Pieces</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pieces.libelle" for="field_libelle">Libelle</label>
+            <input type="text" class="form-control" name="libelle" id="field_libelle"
+                [(ngModel)]="pieces.libelle" required/>
+            <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pieces.dateDebut" for="field_dateDebut">Date Debut</label>
+            <div class="input-group">
+                <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker" [(ngModel)]="pieces.dateDebut"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateDebut?.dirty && editForm.controls.dateDebut?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateDebut?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pieces.dateExpiration" for="field_dateExpiration">Date Expiration</label>
+            <div class="input-group">
+                <input id="field_dateExpiration" type="text" class="form-control" name="dateExpiration" ngbDatepicker  #dateExpirationDp="ngbDatepicker" [(ngModel)]="pieces.dateExpiration"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateExpirationDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pieces.image" for="field_image">Image</label>
+            <div>
+                <img [src]="'data:' + pieces.imageContentType + ';base64,' + pieces.image" style="max-height: 100px;" *ngIf="pieces.image" alt="pieces image"/>
+                <div *ngIf="pieces.image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{pieces.imageContentType}}, {{byteSize(pieces.image)}}</span>
+                    <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_image" (change)="setFileData($event, pieces, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                [(ngModel)]="pieces.image" />
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                [(ngModel)]="pieces.imageContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pieces.collaborateur" for="field_collaborateur">Collaborateur</label>
+            <select class="form-control" id="field_collaborateur" name="collaborateur" [(ngModel)]="pieces.collaborateur" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="collaborateurOption.id === pieces.collaborateur?.id ? pieces.collaborateur : collaborateurOption"
+                        *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">
+                    {{collaborateurOption.prenom}} {{collaborateurOption.nom}</option>
+            </select>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

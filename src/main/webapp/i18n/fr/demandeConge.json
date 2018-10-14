@@ -3,7 +3,7 @@
     "senPaieApp": {
         "demandeConge" : {
             "home": {
-                "title": "Liste Demandes Conges",
+                "title": "Liste Demandes Conges/Abscences",
                 "createLabel": "Créer une Demande Congé",
                 "createOrEditLabel": "Créer ou éditer une Demande Congé"
             },
@@ -21,12 +21,14 @@
             "dateFin": "Date Fin",
             "motifRejet": "Motif Rejet",
             "deleted": "Deleted",
+            "libelle": "Libellé",
             "statutRH": "Statut RH",
             "statutDG": "Statut DG",
             "collaborateur": "Collaborateur",
             "userCreated": "User Created",
             "userUpdated": "User Updated",
-            "userDeleted": "User Deleted"
+            "userDeleted": "User Deleted",
+            "type": "Type demande"
         }
     }
 }

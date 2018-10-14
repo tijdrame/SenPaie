@@ -1,6 +1,7 @@
 package com.emard.service;
 
 import com.emard.domain.Collaborateur;
+import com.emard.domain.DetailPret;
 import com.emard.domain.Remboursement;
 import com.emard.repository.RemboursementRepository;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,5 +109,14 @@ public class RemboursementService {
         //log.debug(list+"list remb");
         //return list;
         return remboursementRepository.findByDetailPret_CollaborateurAndDeletedFalseAndIsRembourseFalse(collaborateur);
+    }
+
+    public List<Remboursement> findByRemboursement(DetailPret detailPret) {
+        return remboursementRepository.findByDetailPret(detailPret);
+    }
+
+    public Page<Remboursement> findByCriteres(String prenom, String nom, String matricule, Pageable pageable) {
+        return remboursementRepository.findByDetailPret_Collaborateur_PrenomLikeIgnoreCaseAndDetailPret_Collaborateur_NomLikeIgnoreCaseAndDetailPret_Collaborateur_MatriculeLikeIgnoreCase
+            (prenom, nom, matricule, pageable);
     }
 }

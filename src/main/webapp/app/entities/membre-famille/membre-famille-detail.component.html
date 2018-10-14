@@ -11,7 +11,7 @@
                     <dd>
                         <div *ngIf="membreFamille.photo">
                             <a (click)="openFile(membreFamille.photoContentType, membreFamille.photo)">
-                                <img [src]="'data:' + membreFamille.photoContentType + ';base64,' + membreFamille.photo" style="width: 100px" alt="membreFamille image"/>
+                                <img [src]="'data:' + membreFamille.photoContentType + ';base64,' + membreFamille.photo" style="width: 150px" alt="membreFamille image"/>
                             </a>
                         </div>
                     </dd>
@@ -85,6 +85,19 @@
                     <dd>
                         <div *ngIf="membreFamille.typeRelation">
                             <a [routerLink]="['/type-relation', membreFamille.typeRelation?.id]">{{membreFamille.typeRelation?.libelle}}</a>
+                        </div>
+                    </dd>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <dt><span jhiTranslate="senPaieApp.sexe.detail.title">Sexe</span></dt>
+                </td>
+                <td>
+                    <dd>
+                        <div *ngIf="membreFamille.sexe">
+                            <a [routerLink]="['/sexe', membreFamille?.sexe?.id]">{{membreFamille?.sexe?.libelle}}</a>
                         </div>
                     </dd>
                 </td>

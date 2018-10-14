@@ -30,6 +30,7 @@ export class Collaborateur implements BaseEntity {
         public userDeleted?: User,
         public regime?: BaseEntity,
         public userCollab?: User,
+        public sexe?: BaseEntity,
     ) {
         this.deleted = false;
     }

@@ -1,7 +1,53 @@
 <div>
     <h2>
-        <span jhiTranslate="senPaieApp.bulletin.home.title">Bulletins</span>
-        <button class="btn btn-primary float-right jh-create-entity create-bulletin" [routerLink]="['/', { outlets: { popup: ['bulletin-new'] } }]">
+        <span jhiTranslate="senPaieApp.absence.home.critere">Critéres de recherche</span>
+    </h2>
+    <div class="row">
+        <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+            <table class="table">
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.prenom" for="field_prenom">Prénom</label></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="prenom" name="prenom" id="field_prenom">
+                        </div>
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nom" for="field_nom">Nom</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="nom" name="nom" id="field_nom">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.matricule" for="field_matri">Matricule</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="matricule" name="matricule" id="field_matri">
+                    </td>
+                    <!--<td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.date" for="field_dateNaissance">Date</label></td>
+                    <td>
+                        <div class="input-group">
+                            <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker
+                                   #dateNaissanceDp="ngbDatepicker" [minDate]="1960" [maxDate]="2018" [(ngModel)]="theDate"/>
+                            <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+                        </div>
+                    </td>-->
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.deleted" for="field_del">Supprimé?</label></td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="deleted" name="deleted" id="field_del">
+                    </td>
+                    <td>
+                        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
+                            <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <h2>
+
+        <button class="btn btn-primary float-right jh-create-entity create-bulletin" [routerLink]="['/', { outlets: { popup: ['bulletin-new'] } }]"
+                *jhiHasAnyAuthority="['ROLE_RH']">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="senPaieApp.bulletin.home.createLabel">
             Create new Bulletin
@@ -10,6 +56,9 @@
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
+        <h2>
+            <span jhiTranslate="senPaieApp.bulletin.home.title">Bulletins</span>
+        </h2>
     </div>
     <br/>
     <div class="table-responsive" *ngIf="bulletins">
@@ -39,14 +88,14 @@
                     </div>
                 </td>
                 <td>{{bulletin.dateCreated | date:'mediumDate'}}</td>
-                <td>{{bulletin.brutFiscal}}</td>
-                <td>{{bulletin.primeTransport}}</td>
-                <td>{{bulletin.netAPayer}}</td>
-                <td>{{bulletin.salaireBrutMensuel}}</td>
-                <td>{{bulletin.impotSurRevenu}}</td>
-                <td>{{bulletin.trimf}}</td>
-                <td>{{bulletin.ipresPartSalariale}}</td>
-                <td>{{bulletin.totRetenue}}</td>
+                <td>{{bulletin.brutFiscal|number :'1.0'}}</td>
+                <td>{{bulletin.primeTransport|number :'1.0'}}</td>
+                <td>{{bulletin.netAPayer|number :'1.0'}}</td>
+                <td>{{bulletin.salaireBrutMensuel|number :'1.0'}}</td>
+                <td>{{bulletin.impotSurRevenu|number :'1.0'}}</td>
+                <td>{{bulletin.trimf|number :'1.0'}}</td>
+                <td>{{bulletin.ipresPartSalariale|number :'1.0'}}</td>
+                <td>{{bulletin.totRetenue|number :'1.0'}}</td>
 
                 <td>
                     <div *ngIf="bulletin.typePaiement">
@@ -70,7 +119,7 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>-->
-                        <button type="submit"
+                        <button type="submit" *jhiHasAnyAuthority="['ROLE_RH']"
                                 [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

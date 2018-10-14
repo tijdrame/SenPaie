@@ -17,6 +17,7 @@
                 "title": "Exercice"
             },
             "debutExercice": "Début Exercice",
+            "motif": "Motif",
             "finExercice": "Fin Exercice",
             "actif": "Actif",
             "deleted": "Deleted"

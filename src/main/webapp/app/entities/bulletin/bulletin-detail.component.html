@@ -1,9 +1,9 @@
 
-<div *ngIf="bulletin" id="myBulletin">
+<div *ngIf="bulletin" >
 
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <table style="width: 90%; alignment: center; " border="1">
+    <dl class="row-md jh-entity-details" id="myBulletin">
+        <table style="width: 90%; alignment: center; font-size: 18px" border="1">
             <tr>
                 <td width="20%">
                     <table>
@@ -77,7 +77,7 @@
                         </tr>
                         <tr>
                             <td><b><u><span jhiTranslate="senPaieApp.statut.detail.NbFemmes" >Nb Femmes</span></u></b></td>
-                            <td>{{bulletin?.nbFemmes}}</td>
+                            <td >{{bulletin?.nbFemmes}}</td>
                         </tr>
                         <tr>
                             <td><b><u><span jhiTranslate="senPaieApp.statut.detail.NbEnf">Nb Enfants</span></u></b></td>
@@ -120,9 +120,9 @@
             <tr>
                 <td></td>
                 <td><span jhiTranslate="senPaieApp.statut.detail.salBase">Salaire de base</span></td>
-                <td>{{bulletin?.collaborateur?.tauxHoraire}}</td>
+                <td align="right">{{bulletin?.collaborateur?.tauxHoraire}}</td>
                 <td></td>
-                <td>{{bulletin.collaborateur?.salaireDeBase|number:'1.0'}}</td>
+                <td align="right">{{bulletin.collaborateur?.salaireDeBase|number:'1.0'}}</td>
                 <td></td>
             </tr>
             <tr>
@@ -130,7 +130,7 @@
                 <td><span jhiTranslate="senPaieApp.collaborateur.surSalaire">Sursalaire</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin?.collaborateur?.surSalaire|number:'1.0'}}</td>
+                <td align="right">{{bulletin?.collaborateur?.surSalaire|number:'1.0'}}</td>
                 <td></td>
             </tr>
             <tr>
@@ -142,12 +142,14 @@
                 <td></td>
             </tr>
             <div style="height: 20px"></div>
+            <div style="height: 20px"></div>
+            <div style="height: 20px"></div>
             <tr>
                 <td></td>
                 <td><b><span jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</span></b></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.brutFiscal|number :'1.0'}}</td>
+                <td align="right">{{bulletin.brutFiscal|number :'1.0'}}</td>
                 <td></td>
             </tr>
             <div style="height: 20px"></div>
@@ -156,7 +158,7 @@
                 <td><span jhiTranslate="senPaieApp.bulletin.primeTransport">Prime Transport</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.collaborateur.primeTransport|number :'1.0'}}</td>
+                <td align="right">{{bulletin.collaborateur.primeTransport|number :'1.0'}}</td>
                 <td></td>
             </tr>
             <div style="height: 20px"></div>
@@ -165,9 +167,10 @@
                 <td><b><span jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel">Salaire Brut Mensuel</span></b></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.salaireBrutMensuel|number:'1.0'}}</td>
+                <td align="right">{{bulletin.salaireBrutMensuel|number:'1.0'}}</td>
                 <td></td>
             </tr>
+            <div style="height: 20px"></div>
             <div style="height: 20px"></div>
             <tr>
                 <td></td>
@@ -175,7 +178,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.impotSurRevenu|number :'1.0'}}</td>
+                <td align="right">{{bulletin.impotSurRevenu|number :'1.0'}}</td>
             </tr>
             <tr>
                 <td></td>
@@ -183,7 +186,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.trimf|number :'1.0'}}</td>
+                <td align="right">{{bulletin.trimf|number :'1.0'}}</td>
             </tr>
             <tr>
                 <td></td>
@@ -191,7 +194,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.ipresPartSalariale|number :'1.0'}}</td>
+                <td align="right">{{bulletin.ipresPartSalariale|number :'1.0'}}</td>
             </tr>
             <tr>
                 <td></td>
@@ -199,7 +202,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.ipmPatronale|number :'1.0'}}</td>
+                <td align="right">{{bulletin.ipmPatronale|number :'1.0'}}</td>
             </tr>
             <div style="height: 20px"></div>
             <tr>
@@ -208,7 +211,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.retenueIpm|number :'1.0'}}</td>
+                <td align="right">{{bulletin.retenueIpm|number :'1.0'}}</td>
             </tr>
             <tr>
                 <td></td>
@@ -216,7 +219,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.retenuePharmacie|number :'1.0'}}</td>
+                <td align="right">{{bulletin.retenuePharmacie|number :'1.0'}}</td>
             </tr>
             <tr>
                 <td></td>
@@ -224,7 +227,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin?.collaborateur?.retenueRepas|number:'1.0'}}</td>
+                <td align="right">{{bulletin?.collaborateur?.retenueRepas|number:'1.0'}}</td>
             </tr>
             <tr>
                 <td></td>
@@ -241,15 +244,16 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.totRetenue|number :'1.0'}}</td>
+                <td align="right">{{bulletin.totRetenue|number :'1.0'}}</td>
             </tr>
+            <div style="height: 20px"></div>
             <div style="height: 20px"></div>
             <tr>
                 <td></td>
                 <td><span jhiTranslate="senPaieApp.bulletin.netAPayer">Net A Payer</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.netAPayer|number:'1.0'}}</td>
+                <td align="right"><b>{{bulletin.netAPayer|number:'1.0'}}</b></td>
                 <td></td>
             </tr>
             <div style="height: 20px"></div>
@@ -261,12 +265,13 @@
                 <td></td>
                 <td></td>
             </tr>
+            <div style="height: 20px"></div>
             <tr>
                 <td></td>
                 <td><span jhiTranslate="senPaieApp.bulletin.cssAccidentDeTravail">Css Accident De Travail</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.cssAccidentDeTravail|number :'1.0'}}</td>
+                <td align="right">{{bulletin.cssAccidentDeTravail|number :'1.0'}}</td>
                 <td></td>
             </tr>
             <tr>
@@ -274,7 +279,7 @@
                 <td><span jhiTranslate="senPaieApp.bulletin.cssPrestationFamiliale">Css Prestation Familiale</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.cssPrestationFamiliale|number :'1.0'}}</td>
+                <td align="right">{{bulletin.cssPrestationFamiliale|number :'1.0'}}</td>
                 <td></td>
             </tr>
             <tr>
@@ -282,7 +287,7 @@
                 <td><span jhiTranslate="senPaieApp.bulletin.ipresRG">Ipres Régime Général</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.ipresPartPatronales|number :'1.0'}}</td>
+                <td align="right">{{bulletin.ipresPartPatronales|number :'1.0'}}</td>
                 <td></td>
             </tr>
             <tr>
@@ -290,7 +295,7 @@
                 <td><span jhiTranslate="senPaieApp.bulletin.ipmPatronale">Ipm Patronale</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.ipmPatronale|number :'1.0'}}</td>
+                <td align="right">{{bulletin.ipmPatronale|number :'1.0'}}</td>
                 <td></td>
             </tr>
             <tr>
@@ -298,7 +303,7 @@
                 <td><span jhiTranslate="senPaieApp.bulletin.contributionForfaitaire">Contribution Forfaitaire</span></td>
                 <td></td>
                 <td></td>
-                <td>{{bulletin.contributionForfaitaire|number :'1.0'}}</td>
+                <td align="right">{{bulletin.contributionForfaitaire|number :'1.0'}}</td>
                 <td></td>
             </tr>
             </tbody>
@@ -311,11 +316,10 @@
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
-    <button type="button" (click)="downLoadPdf()" > PDF...</button>
     <button type="submit"
             (click)="downLoadPdf()"
-            class="btn btn-info">
-        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="entity.action"> Imprimer</span>
+            class="btn btn-primary">
+        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="global.imprimer"> Imprimer</span>
     </button>
 
     <!--<button type="button"

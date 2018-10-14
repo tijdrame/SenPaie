@@ -1,8 +1,6 @@
 package com.emard.repository;
 
-import com.emard.domain.Absence;
-import com.emard.domain.Collaborateur;
-import com.emard.domain.Exercice;
+import com.emard.domain.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -28,5 +26,5 @@ public interface AbsenceRepository extends JpaRepository<Absence, Long> {
 
     Page<Absence> findByDeletedFalseOrderByDateAbsence(Pageable pageable);
 
-    Page<Absence> findByCollaborateurAndExerciceAndDeletedFalse(Collaborateur collaborateur, Exercice exo, Pageable pageable);
+    Page<Absence> findByCollaborateurAndExerciceAndMotifAndDeletedFalse(Collaborateur collaborateur, Exercice exo, Motif motif, Pageable pageable);
 }

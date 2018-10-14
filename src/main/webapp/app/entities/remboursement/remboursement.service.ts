@@ -9,6 +9,7 @@ import { Remboursement } from './remboursement.model';
 import { createRequestOption } from '../../shared';
 import {Collaborateur} from "../collaborateur";
 import {MembreFamille} from "../membre-famille/membre-famille.model";
+import {Bulletin} from "../bulletin/bulletin.model";
 
 export type EntityResponseType = HttpResponse<Remboursement>;
 
@@ -34,6 +35,11 @@ export class RemboursementService {
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<Remboursement>(`${this.resourceUrl}/${id}`, { observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    search(prenom?: string, nom?: string, matricule?:string): Observable<HttpResponse<Remboursement[]>>{
+        return this.http.get<Remboursement[]>(`${this.resourceUrl+"Ter"}/${prenom}/${nom}/${matricule}/`, { observe: 'response'})
+            .map((res: HttpResponse<Remboursement[]>) => this.convertArrayResponse(res));
     }
 
     findByCollab(id: Collaborateur): Observable<HttpResponse<Remboursement[]>> {

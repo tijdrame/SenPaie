@@ -56,6 +56,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="telephone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="collaborateur_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -73,6 +77,10 @@
             </column>
 
             <column name="type_relation_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sexe_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

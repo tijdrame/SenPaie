@@ -7,8 +7,9 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'n
 import { MembreFamille } from './membre-famille.model';
 import { MembreFamilleService } from './membre-famille.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
-import {Collaborateur} from "../collaborateur/collaborateur.model";
 import {isUndefined} from "util";
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
     selector: 'jhi-membre-famille',
@@ -69,6 +70,20 @@ currentAccount: any;
             this.transition();
         }
     }
+
+    downLoadPdf(){
+        if(!this.membreFamilles)return;
+        let data = document.getElementById ('myAbs');
+        html2canvas(data).then(canvas =>{
+            let imgWidth = 208;
+            let imgHeight = canvas.height * imgWidth / canvas.width;
+            const contentDataURL = canvas.toDataURL('image/png');
+            let pdf = new jsPDF('p', 'mm', 'a4');
+            pdf.addImage(contentDataURL, 'PNG', 5, 20, imgWidth, imgHeight);
+            pdf.save('listGrappesFamiliale.pdf');
+        });
+    }
+
     transition() {
         this.router.navigate(['/membre-famille'], {queryParams:
             {
@@ -81,9 +96,9 @@ currentAccount: any;
     }
 
     search(){
-        if(isUndefined(this.prenom))this.prenom=" ";
-        if(isUndefined(this.nom))this.nom=" ";
-        if(isUndefined(this.telephone))this.telephone=" ";
+        if(this.prenom===""||isUndefined(this.prenom))this.prenom=" ";
+        if(this.nom===""||isUndefined(this.nom))this.nom=" ";
+        if(this.telephone===""||isUndefined(this.telephone))this.telephone=" ";
         console.log("dans search collab..2"+this.prenom+"a"+isUndefined(this.prenom));
         this.membreFamilleService.search(this.prenom, this.nom, this.telephone, this.deleted )
             .subscribe((res: HttpResponse<MembreFamille[]>) => { this.membreFamilles = res.body;

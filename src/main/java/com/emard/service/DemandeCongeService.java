@@ -71,7 +71,10 @@ public class DemandeCongeService {
         demandeConge.userUpdated(userService.getUserWithAuthorities().get());
         if(demandeConge.getStatutDG()!=null && demandeConge.getStatutDG().getCode().equals("VALIDE")&&
             demandeConge.getStatutRH()!=null && demandeConge.getStatutRH().getCode().equals("VALIDE")){
-            Motif motif = motifService.findByCode("C");
+            Motif motif = null;
+            if(demandeConge.getTypeAbsence().getCode().equals("CONGE"))
+                motif = motifService.findByCode("C");
+            else motif = motifService.findByCode("P");
             log.debug("dans if isert ABS<===>"+demandeConge.getDateDebut()+" "+demandeConge.getDateFin()+" "+
             demandeConge.getDateDebut().isEqual(demandeConge.getDateFin()));
             Optional<Exercice> exo = exerciceService.findByDebutExercice(demandeConge.getDateDebut().getYear());

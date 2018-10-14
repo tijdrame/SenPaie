@@ -7,6 +7,9 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Bulletin } from './bulletin.model';
 import { BulletinService } from './bulletin.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import {Pieces} from "../pieces/pieces.model";
+import {isUndefined} from "util";
+import {isBlank} from "ngx-cookie";
 
 
 
@@ -30,6 +33,11 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    prenom: string;
+    nom: string;
+    matricule: string;
+    theDate: any;
+    deleted: boolean = false;
 
     constructor(
         private bulletinService: BulletinService,
@@ -50,14 +58,33 @@ currentAccount: any;
     }
 
     loadAll() {
-        this.bulletinService.query({
+       /* this.bulletinService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
                 (res: HttpResponse<Bulletin[]>) => this.onSuccess(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        );*/
     }
+
+    search(){
+        console.log("prenom="+this.prenom);
+        //if(this.prenom=="")this.prenom=" ";
+        if(this.prenom===""||isUndefined(this.prenom))this.prenom=" ";
+        if(this.nom===""||isUndefined(this.nom))this.nom=" ";
+        if(this.matricule===""||isUndefined(this.matricule))this.matricule=" ";
+        console.log("date form=====>"+new Date().toLocaleString());
+        //{"year":2018,"month":10,"day":3}
+        //console.log("date form=====>"+this.theDate['year']);
+        //let dateBi =this.theDate['day']+"-"+this.theDate['month']+"-"+this.theDate['year'];
+
+        console.log("dans search collab..2"+this.prenom+"a"+isUndefined(this.deleted)+" "+this.deleted);
+        this.bulletinService.search(this.prenom, this.nom, this.matricule, this.deleted )
+            .subscribe((res: HttpResponse<Bulletin[]>) => { this.bulletins = res.body;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message));
+    }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;

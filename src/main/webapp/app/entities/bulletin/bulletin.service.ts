@@ -7,6 +7,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { Bulletin } from './bulletin.model';
 import { createRequestOption } from '../../shared';
+import {Pieces} from "../pieces/pieces.model";
 
 export type EntityResponseType = HttpResponse<Bulletin>;
 
@@ -37,6 +38,12 @@ export class BulletinService {
     query(req?: any): Observable<HttpResponse<Bulletin[]>> {
         const options = createRequestOption(req);
         return this.http.get<Bulletin[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .map((res: HttpResponse<Bulletin[]>) => this.convertArrayResponse(res));
+    }
+
+    search(prenom?: string, nom?: string, matricule?:string, deleted?:boolean): Observable<HttpResponse<Bulletin[]>>{
+        return this.http.get<Bulletin[]>(`${this.resourceUrl+"Ter"}/${prenom}/${nom}/${matricule}/${deleted}`, { observe: 'response'})
+        //return this.http.get<Bulletin[]>(`${this.resourceUrl+"Ter"}`, { observe: 'response'})
             .map((res: HttpResponse<Bulletin[]>) => this.convertArrayResponse(res));
     }
 

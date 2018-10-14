@@ -1,6 +1,47 @@
 <div>
     <h2>
-        <span jhiTranslate="senPaieApp.remboursement.home.title">Remboursements</span>
+        <span jhiTranslate="senPaieApp.absence.home.critere">Critéres de recherche</span>
+    </h2>
+    <div class="row">
+        <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+            <table class="table">
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.prenom" for="field_prenom">Prénom</label></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="prenom" name="prenom" id="field_prenom">
+                        </div>
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nom" for="field_nom">Nom</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="nom" name="nom" id="field_nom">
+                    </td>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.matricule" for="field_matri">Matricule</label></td>
+                    <td>
+                        <input type="text" [(ngModel)]="matricule" name="matricule" id="field_matri">
+                    </td>
+                    <!--<td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.date" for="field_dateNaissance">Date</label></td>
+                    <td>
+                        <div class="input-group">
+                            <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker
+                                   #dateNaissanceDp="ngbDatepicker" [minDate]="1960" [maxDate]="2018" [(ngModel)]="theDate"/>
+                            <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+                        </div>
+                    </td>-->
+                    <td>
+                        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
+                            <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <h2>
+
         <!--<button class="btn btn-primary float-right jh-create-entity create-remboursement" [routerLink]="['/', { outlets: { popup: ['remboursement-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="senPaieApp.remboursement.home.createLabel">
@@ -9,9 +50,11 @@
         </button>-->
     </h2>
     <jhi-alert></jhi-alert>
-    <div class="row">
-    </div>
-    <br/>
+    <div id="myAbs">
+        <div class="row">
+            <div style="width: 70px"></div><h2><span jhiTranslate="senPaieApp.remboursement.home.title">Remboursements</span></h2>
+        </div>
+        <br/>
     <div class="table-responsive" *ngIf="remboursements">
         <table class="table table-striped">
             <thead>
@@ -21,7 +64,7 @@
             <th jhiSortBy="montant"><span jhiTranslate="senPaieApp.remboursement.montant">Montant</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="isRembourse"><span jhiTranslate="senPaieApp.remboursement.isRembourse">Is Rembourse</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="detailPret.id"><span jhiTranslate="senPaieApp.remboursement.detailPret">Detail Pret</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+            <th data-html2canvas-ignore="true"></th>
             </tr>
             </thead>
             <tbody>
@@ -41,7 +84,7 @@
                     </div>
                 </td>
 
-                <td class="text-right">
+                <td class="text-right" data-html2canvas-ignore="true">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['../remboursement', remboursement.id ]"
@@ -72,6 +115,12 @@
             </tbody>
         </table>
     </div>
+    </div>
+    <button type="submit"
+            (click)="downLoadPdf()"
+            class="btn btn-primary">
+        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="global.imprimer"> Imprimer</span>
+    </button>
     <div *ngIf="remboursements && remboursements.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>

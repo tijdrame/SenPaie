@@ -23,6 +23,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -148,5 +149,21 @@ public class RemboursementResource {
         List<Remboursement> list = remboursementService.getRemboursementByCollaborateur(id);
         //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(list, "/api/remboursements");
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/remboursementsTer/{prenom}/{nom}/{matricule}")
+    @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH, AuthoritiesConstants.DG})
+    public ResponseEntity<List<Remboursement>> search(
+        @PathVariable Optional<String> prenom,
+        @PathVariable Optional<String> nom,
+        @PathVariable Optional<String> matricule,
+        //@RequestParam(name="pages", defaultValue="0")int pages,
+        //@RequestParam(name="size", defaultValue="5") int size,
+        Pageable pageable) {
+        Page<Remboursement> page = remboursementService.findByCriteres(prenom.isPresent()?"%"+prenom.get().trim()+"%":"",
+            nom.isPresent()?"%"+nom.get().trim()+"%":"", matricule.isPresent()?"%"+matricule.get().trim()+"%":"", pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/remboursements");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 }

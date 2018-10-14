@@ -7,6 +7,9 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Remboursement } from './remboursement.model';
 import { RemboursementService } from './remboursement.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import {isUndefined} from "util";
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
     selector: 'jhi-remboursement',
@@ -28,6 +31,9 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    prenom: string;
+    nom: string;
+    matricule: string;
 
     constructor(
         private remboursementService: RemboursementService,
@@ -47,14 +53,27 @@ currentAccount: any;
         });
     }
 
+    downLoadPdf(){
+        if(!this.remboursements)return;
+        let data = document.getElementById ('myAbs');
+        html2canvas(data).then(canvas =>{
+            let imgWidth = 208;
+            let imgHeight = canvas.height * imgWidth / canvas.width;
+            const contentDataURL = canvas.toDataURL('image/png');
+            let pdf = new jsPDF('p', 'mm', 'a4');
+            pdf.addImage(contentDataURL, 'PNG', 5, 20, imgWidth, imgHeight);
+            pdf.save('listRemboursements.pdf');
+        });
+    }
+
     loadAll() {
-        this.remboursementService.query({
+        /*this.remboursementService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
                 (res: HttpResponse<Remboursement[]>) => this.onSuccess(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        );*/
     }
     loadPage(page: number) {
         if (page !== this.previousPage) {
@@ -62,6 +81,19 @@ currentAccount: any;
             this.transition();
         }
     }
+
+    search(){
+        if(this.prenom===""||isUndefined(this.prenom))this.prenom=" ";
+        if(this.nom===""||isUndefined(this.nom))this.nom=" ";
+        if(this.matricule===""||isUndefined(this.matricule))this.matricule=" ";
+        this.remboursementService.search(this.prenom, this.nom, this.matricule )
+            .subscribe((res: HttpResponse<Remboursement[]>) => {
+
+                this.remboursements = res.body;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message));
+    }
+
     transition() {
         this.router.navigate(['/remboursement'], {queryParams:
             {

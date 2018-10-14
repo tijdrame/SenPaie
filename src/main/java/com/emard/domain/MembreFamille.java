@@ -71,6 +71,9 @@ public class MembreFamille implements Serializable {
     @ManyToOne
     private TypeRelation typeRelation;
 
+    @ManyToOne
+    private Sexe sexe;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -273,6 +276,19 @@ public class MembreFamille implements Serializable {
 
     public void setTypeRelation(TypeRelation typeRelation) {
         this.typeRelation = typeRelation;
+    }
+
+    public Sexe getSexe() {
+        return sexe;
+    }
+
+    public MembreFamille sexe(Sexe sexe) {
+        this.sexe = sexe;
+        return this;
+    }
+
+    public void setSexe(Sexe sexe) {
+        this.sexe = sexe;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

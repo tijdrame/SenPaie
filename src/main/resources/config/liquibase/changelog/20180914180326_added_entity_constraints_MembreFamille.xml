@@ -38,5 +38,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="type_relation"/>
 
+        <addForeignKeyConstraint baseColumnNames="sexe_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_sexe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sexe"/>
+
     </changeSet>
 </databaseChangeLog>

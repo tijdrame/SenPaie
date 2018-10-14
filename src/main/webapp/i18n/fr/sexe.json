@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "sexe" : {
+            "home": {
+                "title": "Sexes",
+                "createLabel": "Créer un Sexe",
+                "createOrEditLabel": "Créer ou éditer un Sexe"
+            },
+            "created": "Un nouveau Sexe a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Sexe avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Sexe avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Sexe {{ id }} ?"
+            },
+            "detail": {
+                "title": "Sexe"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

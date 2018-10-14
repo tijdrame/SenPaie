@@ -27,7 +27,8 @@ public interface CollaborateurRepository extends JpaRepository<Collaborateur, Lo
 
     Page<Collaborateur> findByDeletedFalseOrderByNomAscPrenomAsc(Pageable pageable);
 
-    Page<Collaborateur> findByPrenomLikeIgnoreCaseAndNomLikeIgnoreCaseAndTelephoneLikeIgnoreCaseAndDeleted(String prenom, String nom, String tel, Boolean deleted, Pageable pageable);
+    Page<Collaborateur> findByPrenomLikeIgnoreCaseAndNomLikeIgnoreCaseAndTelephoneLikeIgnoreCaseAndDeleted(
+        String prenom, String nom, String tel, Boolean deleted, Pageable pageable);
 
     List<Collaborateur> findByDeletedFalseOrderByNomAscPrenomAsc();
 

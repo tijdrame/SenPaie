@@ -3,7 +3,7 @@
     "senPaieApp": {
         "absence" : {
             "home": {
-                "title": "Liste Absences",
+                "title": "    Liste Absences",
                 "critere": "Critéres de recherche",
                 "createLabel": "Créer  Absence",
                 "nbAbs": "Nb Absence: ",

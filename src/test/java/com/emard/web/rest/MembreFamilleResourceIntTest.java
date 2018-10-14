@@ -68,6 +68,9 @@ public class MembreFamilleResourceIntTest {
     private static final String DEFAULT_PHOTO_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PHOTO_CONTENT_TYPE = "image/png";
 
+    private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
+
     @Autowired
     private MembreFamilleRepository membreFamilleRepository;
 
@@ -117,7 +120,8 @@ public class MembreFamilleResourceIntTest {
             .dateNaissance(DEFAULT_DATE_NAISSANCE)
             .dateMariage(DEFAULT_DATE_MARIAGE)
             .photo(DEFAULT_PHOTO)
-            .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE);
+            .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE)
+            .telephone(DEFAULT_TELEPHONE);
         return membreFamille;
     }
 
@@ -150,6 +154,7 @@ public class MembreFamilleResourceIntTest {
         assertThat(testMembreFamille.getDateMariage()).isEqualTo(DEFAULT_DATE_MARIAGE);
         assertThat(testMembreFamille.getPhoto()).isEqualTo(DEFAULT_PHOTO);
         assertThat(testMembreFamille.getPhotoContentType()).isEqualTo(DEFAULT_PHOTO_CONTENT_TYPE);
+        assertThat(testMembreFamille.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
     }
 
     @Test
@@ -244,7 +249,8 @@ public class MembreFamilleResourceIntTest {
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
             .andExpect(jsonPath("$.[*].dateMariage").value(hasItem(DEFAULT_DATE_MARIAGE.toString())))
             .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))));
+            .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))))
+            .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE.toString())));
     }
 
     @Test
@@ -266,7 +272,8 @@ public class MembreFamilleResourceIntTest {
             .andExpect(jsonPath("$.dateNaissance").value(DEFAULT_DATE_NAISSANCE.toString()))
             .andExpect(jsonPath("$.dateMariage").value(DEFAULT_DATE_MARIAGE.toString()))
             .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
-            .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)));
+            .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)))
+            .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE.toString()));
     }
 
     @Test
@@ -298,7 +305,8 @@ public class MembreFamilleResourceIntTest {
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .dateMariage(UPDATED_DATE_MARIAGE)
             .photo(UPDATED_PHOTO)
-            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE);
+            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE)
+            .telephone(UPDATED_TELEPHONE);
 
         restMembreFamilleMockMvc.perform(put("/api/membre-familles")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -318,6 +326,7 @@ public class MembreFamilleResourceIntTest {
         assertThat(testMembreFamille.getDateMariage()).isEqualTo(UPDATED_DATE_MARIAGE);
         assertThat(testMembreFamille.getPhoto()).isEqualTo(UPDATED_PHOTO);
         assertThat(testMembreFamille.getPhotoContentType()).isEqualTo(UPDATED_PHOTO_CONTENT_TYPE);
+        assertThat(testMembreFamille.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
     }
 
     @Test

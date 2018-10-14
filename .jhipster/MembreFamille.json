@@ -36,6 +36,12 @@
             "otherEntityName": "typeRelation",
             "relationshipType": "many-to-one",
             "otherEntityField": "libelle"
+        },
+        {
+            "relationshipName": "sexe",
+            "otherEntityName": "sexe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "libelle"
         }
     ],
     "fields": [

@@ -11,7 +11,7 @@
                     <dd>
                         <div *ngIf="collaborateur.photo">
                             <a (click)="openFile(collaborateur.photoContentType, collaborateur.photo)">
-                                <img [src]="'data:' + collaborateur.photoContentType + ';base64,' + collaborateur.photo" style="max-width: 10%;" alt="collaborateur image"/>
+                                <img [src]="'data:' + collaborateur.photoContentType + ';base64,' + collaborateur.photo" style="max-width: 150px;" alt="collaborateur image"/>
                             </a>
                             <!--{{collaborateur.photoContentType}}, {{byteSize(collaborateur.photo)}}-->
                         </div>
@@ -209,6 +209,16 @@
                 <td>
                     <dd>
                         <span>{{collaborateur.telephone}}</span>
+                    </dd>
+                </td>
+                <td>
+                    <dt><span jhiTranslate="senPaieApp.sexe.detail.title">Sexe</span></dt>
+                </td>
+                <td>
+                    <dd>
+                        <div *ngIf="collaborateur.sexe">
+                            <a [routerLink]="['/sexe', collaborateur?.sexe?.id]">{{collaborateur?.sexe?.libelle}}</a>
+                        </div>
                     </dd>
                 </td>
             </tr>

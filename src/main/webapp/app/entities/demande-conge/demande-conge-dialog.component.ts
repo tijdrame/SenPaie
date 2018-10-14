@@ -12,6 +12,8 @@ import { DemandeCongeService } from './demande-conge.service';
 import { StatutDemande, StatutDemandeService } from '../statut-demande';
 import { Collaborateur, CollaborateurService } from '../collaborateur';
 import { User, UserService } from '../../shared';
+import {TypeAbsence, TypeAbsenceService} from "../type-absence";
+import {Categorie} from "../categorie";
 
 @Component({
     selector: 'jhi-demande-conge-dialog',
@@ -30,6 +32,7 @@ export class DemandeCongeDialogComponent implements OnInit {
     dateCreatedDp: any;
     dateDebutDp: any;
     dateFinDp: any;
+    typeAbsences: TypeAbsence[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -37,6 +40,7 @@ export class DemandeCongeDialogComponent implements OnInit {
         private demandeCongeService: DemandeCongeService,
         private statutDemandeService: StatutDemandeService,
         private collaborateurService: CollaborateurService,
+        private typeAbsenceService: TypeAbsenceService,
         private userService: UserService,
         private eventManager: JhiEventManager
     ) {
@@ -50,6 +54,8 @@ export class DemandeCongeDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Collaborateur[]>) => { this.collaborateurs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.typeAbsenceService.query()
+            .subscribe((res: HttpResponse<TypeAbsence[]>) => { this.typeAbsences = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -87,6 +93,10 @@ export class DemandeCongeDialogComponent implements OnInit {
     }
 
     trackStatutDemandeById(index: number, item: StatutDemande) {
+        return item.id;
+    }
+
+    trackCategorieById(index: number, item: Categorie) {
         return item.id;
     }
 

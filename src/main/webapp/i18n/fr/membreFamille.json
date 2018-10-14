@@ -3,7 +3,7 @@
     "senPaieApp": {
         "membreFamille" : {
             "home": {
-                "title": "MembreFamilles",
+                "title": "Liste membres Famille",
                 "createLabel": "Créer un nouveau Membre Famille",
                 "createOrEditLabel": "Créer ou éditer un Membre Famille"
             },

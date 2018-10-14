@@ -1,0 +1,46 @@
+
+<div *ngIf="pieces" class="row">
+
+        <div class="col-md-4">
+            <h2><span jhiTranslate="senPaieApp.pieces.detail.title">Pieces</span> {{pieces.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <div>
+                <dt><span jhiTranslate="senPaieApp.pieces.libelle">Libelle</span></dt>
+                <span>{{pieces.libelle}}</span>
+            </div>
+            <div>
+                <dt><span jhiTranslate="senPaieApp.pieces.dateDebut">Date Debut</span></dt>
+                <span>{{pieces.dateDebut | date:'mediumDate'}}</span>
+            </div>
+            <div>
+                <dt><span jhiTranslate="senPaieApp.pieces.dateExpiration">Date Expiration</span></dt>
+                <span>{{pieces.dateExpiration | date:'mediumDate'}}</span>
+            </div>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/', { outlets: { popup: 'pieces/'+ pieces.id + '/edit'} }]"
+                    replaceUrl="true"
+                    queryParamsHandling="merge"
+                    class="btn btn-primary">
+                <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+            <button type="submit"
+                    (click)="downLoadPdf()"
+                    class="btn btn-secondary">
+                <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="global.imprimer"> Imprimer</span>
+            </button>
+        </div>
+        <div class="col-md-8" id="myPiece">
+            <div *ngIf="pieces.image">
+                <a (click)="openFile(pieces.imageContentType, pieces.image)">
+                    <img [src]="'data:' + pieces.imageContentType + ';base64,' + pieces.image"  style="max-width: 70%;" alt="pieces image"/>
+                </a>
+            </div>
+        </div>
+</div>

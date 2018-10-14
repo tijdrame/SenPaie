@@ -25,7 +25,7 @@
                         <input type="checkbox" [(ngModel)]="deleted" name="deleted" id="field_del">
                     </td>
                     <td>
-                        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
                             <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
                         </button>
                     </td>
@@ -41,7 +41,7 @@
 
 
     <h2>
-        <span jhiTranslate="senPaieApp.collaborateur.home.title">Collaborateurs</span>
+
         <button class="btn btn-primary float-right jh-create-entity create-collaborateur" [routerLink]="['/', { outlets: { popup: ['collaborateur-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="senPaieApp.collaborateur.home.createLabel">
@@ -50,10 +50,13 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
+    <br/>
+    <div id="myAbs">
     <div class="row">
+        <div style="width: 70px"></div><h2><span jhiTranslate="senPaieApp.collaborateur.home.title">Collaborateurs</span></h2>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="collaborateurs">
+    <div class="table-responsive" *ngIf="collaborateurs" >
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -65,7 +68,7 @@
             <th jhiSortBy="fonction.libelle"><span jhiTranslate="senPaieApp.collaborateur.fonction">Fonction</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="situationMatrimoniale.libelle"><span jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale">Situation Matrimoniale</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="typeContrat.libelle"><span jhiTranslate="senPaieApp.collaborateur.typeContrat">Type Contrat</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+            <th data-html2canvas-ignore="true"></th>
             </tr>
             </thead>
             <tbody>
@@ -93,7 +96,7 @@
                     </div>
                 </td>
 
-                <td class="text-right">
+                <td class="text-right" data-html2canvas-ignore="true">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['../collaborateur', collaborateur.id ]"
@@ -123,6 +126,12 @@
             </tbody>
         </table>
     </div>
+    </div>
+    <button type="submit"
+            (click)="downLoadPdf()"
+            class="btn btn-primary">
+        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="global.imprimer"> Imprimer</span>
+    </button>
     <div *ngIf="collaborateurs && collaborateurs.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>

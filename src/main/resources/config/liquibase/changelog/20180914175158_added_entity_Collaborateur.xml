@@ -80,6 +80,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="telephone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="fonction_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -121,6 +125,10 @@
             </column>
 
             <column name="user_collab_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sexe_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

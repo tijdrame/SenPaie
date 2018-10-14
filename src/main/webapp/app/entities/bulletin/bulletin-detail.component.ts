@@ -8,6 +8,7 @@ import { Bulletin } from './bulletin.model';
 import { BulletinService } from './bulletin.service';
 import {Structure, StructureService} from "../structure";
 import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
     selector: 'jhi-bulletin-detail',
@@ -66,18 +67,20 @@ export class BulletinDetailComponent implements OnInit, OnDestroy {
     }
 
     downLoadPdf(){
-        let doc = new jsPDF();
-        const elementToPrint = document.getElementById ('myBulletin');
-        console.log(elementToPrint);
-        //doc.text('Liste des Types de produit', 10, 10);
-        doc.fromHTML($('#myBulletin').get(0), 20, 20, {
-            'width':1000});
+        let data = document.getElementById ('myBulletin');
+        html2canvas(data).then(canvas =>{
+            console.log('innnnnnn');
+            let imgWidth = 208;
+            //let pageHeight = 295;
+            let imgHeight = canvas.height * imgWidth / canvas.width;
+            //let heightLeft = imgHeight;
 
-        doc.save('senPaieBulletin.pdf');
-        /*doc.addHTML(elementToPrint, ()=>{
-            doc.save('senPaieBulletin.pdf');
+            const contentDataURL = canvas.toDataURL('image/png');
+            let pdf = new jsPDF('p', 'mm', 'a4');
+            pdf.addImage(contentDataURL, 'PNG', 10, 20, imgWidth, imgHeight);
+            console.log(this.bulletin);
+            console.log(this.bulletin.dateCreated['__proto__']['year']);
+            pdf.save(this.bulletin.collaborateur['nom']+this.bulletin.collaborateur['prenom']+this.bulletin.dateCreated+'.pdf');
         });
-        */
-
     }
 }

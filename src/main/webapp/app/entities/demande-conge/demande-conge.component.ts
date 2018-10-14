@@ -84,9 +84,9 @@ currentAccount: any;
 
         let dateDeb:string;
         //new Date(this.dateDebut['year'], this.dateDebut['month'], this.dateDebut['day']);
-        if(isUndefined(this.prenom))this.prenom=" ";
-        if(isUndefined(this.nom))this.nom=" ";
-        if(isUndefined(this.telephone))this.telephone=" ";
+        if(this.prenom===""||isUndefined(this.prenom))this.prenom=" ";
+        if(this.nom===""||isUndefined(this.nom))this.nom=" ";
+        if(this.telephone===""||isUndefined(this.telephone))this.telephone=" ";
         /*if(isUndefined(this.dateDebut)){
             this.dateDebut="";
              dateDeb="";

@@ -114,6 +114,9 @@ public class Collaborateur implements Serializable {
     @ManyToOne
     private User userCollab;
 
+    @ManyToOne
+    private Sexe sexe;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -472,6 +475,19 @@ public class Collaborateur implements Serializable {
 
     public void setUserCollab(User user) {
         this.userCollab = user;
+    }
+
+    public Sexe getSexe() {
+        return sexe;
+    }
+
+    public Collaborateur sexe(Sexe sexe) {
+        this.sexe = sexe;
+        return this;
+    }
+
+    public void setSexe(Sexe sexe) {
+        this.sexe = sexe;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

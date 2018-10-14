@@ -6,6 +6,7 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { DemandeConge } from './demande-conge.model';
 import { DemandeCongeService } from './demande-conge.service';
+import {TypeAbsence, TypeAbsenceService} from "../type-absence";
 
 @Component({
     selector: 'jhi-demande-conge-detail',

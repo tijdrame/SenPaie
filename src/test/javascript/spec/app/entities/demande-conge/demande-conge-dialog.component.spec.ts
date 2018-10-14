@@ -12,6 +12,7 @@ import { DemandeConge } from '../../../../../../main/webapp/app/entities/demande
 import { StatutDemandeService } from '../../../../../../main/webapp/app/entities/statut-demande';
 import { CollaborateurService } from '../../../../../../main/webapp/app/entities/collaborateur';
 import { UserService } from '../../../../../../main/webapp/app/shared';
+import { TypeAbsenceService } from '../../../../../../main/webapp/app/entities/type-absence';
 
 describe('Component Tests', () => {
 
@@ -30,6 +31,7 @@ describe('Component Tests', () => {
                     StatutDemandeService,
                     CollaborateurService,
                     UserService,
+                    TypeAbsenceService,
                     DemandeCongeService
                 ]
             })

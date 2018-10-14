@@ -7,9 +7,9 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'n
 import { Collaborateur } from './collaborateur.model';
 import { CollaborateurService } from './collaborateur.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
-import {Absence} from "../absence/absence.model";
 import {isUndefined} from "util";
-import {isBlank} from "ngx-cookie";
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
     selector: 'jhi-collaborateur',
@@ -55,6 +55,19 @@ currentAccount: any;
         });
     }
 
+    downLoadPdf(){
+        if(!this.collaborateurs)return;
+        let data = document.getElementById ('myAbs');
+        html2canvas(data).then(canvas =>{
+            let imgWidth = 208;
+            let imgHeight = canvas.height * imgWidth / canvas.width;
+            const contentDataURL = canvas.toDataURL('image/png');
+            let pdf = new jsPDF('p', 'mm', 'a4');
+            pdf.addImage(contentDataURL, 'PNG', 5, 20, imgWidth, imgHeight);
+            pdf.save('listCollaborateurs.pdf');
+        });
+    }
+
     loadAll() {
         /*this.collaborateurService.query({
             page: this.page - 1,
@@ -82,9 +95,9 @@ currentAccount: any;
     }
     search(){
         //console.log("dans search collab.. "+this.prenom);
-        if(isUndefined(this.prenom))this.prenom=" ";
-        if(isUndefined(this.nom))this.nom=" ";
-        if(isUndefined(this.telephone))this.telephone=" ";
+        if(this.prenom===""||isUndefined(this.prenom))this.prenom=" ";
+        if(this.nom===""||isUndefined(this.nom))this.nom=" ";
+        if(this.telephone===""||isUndefined(this.telephone))this.telephone=" ";
         console.log("dans search collab..2"+this.prenom+"a"+isUndefined(this.prenom));
         this.collaborateurService.search(this.prenom, this.nom, this.telephone, this.deleted )
             .subscribe((res: HttpResponse<Collaborateur[]>) => { this.collaborateurs = res.body;

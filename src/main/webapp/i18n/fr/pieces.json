@@ -1,0 +1,33 @@
+
+{
+    "senPaieApp": {
+        "pieces" : {
+            "home": {
+                "title": "Pieces",
+                "createLabel": "Créer un nouveau Pieces",
+                "createOrEditLabel": "Créer ou éditer un Pieces"
+            },
+            "created": "Un nouveau Pieces a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Pieces avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Pieces avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Pieces {{ id }} ?"
+            },
+            "detail": {
+                "title": "Pieces"
+            },
+            "libelle": "Libelle",
+            "dateDebut": "Date Debut",
+            "dateExpiration": "Date Expiration",
+            "image": "Image",
+            "dateCreated": "Date Created",
+            "deleted": "Deleted",
+            "dateDeleted": "Date Deleted",
+            "dateUpdated": "Date Updated",
+            "collaborateur": "Collaborateur",
+            "user": "User",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted"
+        }
+    }
+}

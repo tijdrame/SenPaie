@@ -18,6 +18,7 @@ export class MembreFamille implements BaseEntity {
         public userUpdate?: User,
         public userDeleted?: User,
         public typeRelation?: BaseEntity,
+        public sexe?: BaseEntity,
     ) {
         this.isActif = false;
         this.deleted = false;

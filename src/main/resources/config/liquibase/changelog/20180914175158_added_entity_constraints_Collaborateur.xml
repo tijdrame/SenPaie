@@ -74,5 +74,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="sexe_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_sexe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sexe"/>
+
     </changeSet>
 </databaseChangeLog>

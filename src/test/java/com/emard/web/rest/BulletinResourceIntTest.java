@@ -153,7 +153,7 @@ public class BulletinResourceIntTest {
             .dateUpdated(DEFAULT_DATE_UPDATED)
             .dateDeleted(DEFAULT_DATE_DELETED)
             .brutFiscal(DEFAULT_BRUT_FISCAL)
-            .primeTransport(DEFAULT_PRIME_TRANSPORT)
+            //.primeTransport(DEFAULT_PRIME_TRANSPORT)
             .netAPayer(DEFAULT_NET_A_PAYER)
             .salaireBrutMensuel(DEFAULT_SALAIRE_BRUT_MENSUEL)
             .impotSurRevenu(DEFAULT_IMPOT_SUR_REVENU)
@@ -211,7 +211,7 @@ public class BulletinResourceIntTest {
         assertThat(testBulletin.getDateUpdated()).isEqualTo(DEFAULT_DATE_UPDATED);
         assertThat(testBulletin.getDateDeleted()).isEqualTo(DEFAULT_DATE_DELETED);
         assertThat(testBulletin.getBrutFiscal()).isEqualTo(DEFAULT_BRUT_FISCAL);
-        assertThat(testBulletin.getPrimeTransport()).isEqualTo(DEFAULT_PRIME_TRANSPORT);
+        //assertThat(testBulletin.getPrimeTransport()).isEqualTo(DEFAULT_PRIME_TRANSPORT);
         assertThat(testBulletin.getNetAPayer()).isEqualTo(DEFAULT_NET_A_PAYER);
         assertThat(testBulletin.getSalaireBrutMensuel()).isEqualTo(DEFAULT_SALAIRE_BRUT_MENSUEL);
         assertThat(testBulletin.getImpotSurRevenu()).isEqualTo(DEFAULT_IMPOT_SUR_REVENU);
@@ -357,7 +357,7 @@ public class BulletinResourceIntTest {
             .dateUpdated(UPDATED_DATE_UPDATED)
             .dateDeleted(UPDATED_DATE_DELETED)
             .brutFiscal(UPDATED_BRUT_FISCAL)
-            .primeTransport(UPDATED_PRIME_TRANSPORT)
+            //.primeTransport(UPDATED_PRIME_TRANSPORT)
             .netAPayer(UPDATED_NET_A_PAYER)
             .salaireBrutMensuel(UPDATED_SALAIRE_BRUT_MENSUEL)
             .impotSurRevenu(UPDATED_IMPOT_SUR_REVENU)
@@ -387,7 +387,7 @@ public class BulletinResourceIntTest {
         assertThat(testBulletin.getDateUpdated()).isEqualTo(UPDATED_DATE_UPDATED);
         assertThat(testBulletin.getDateDeleted()).isEqualTo(UPDATED_DATE_DELETED);
         assertThat(testBulletin.getBrutFiscal()).isEqualTo(UPDATED_BRUT_FISCAL);
-        assertThat(testBulletin.getPrimeTransport()).isEqualTo(UPDATED_PRIME_TRANSPORT);
+        //assertThat(testBulletin.getPrimeTransport()).isEqualTo(UPDATED_PRIME_TRANSPORT);
         assertThat(testBulletin.getNetAPayer()).isEqualTo(UPDATED_NET_A_PAYER);
         assertThat(testBulletin.getSalaireBrutMensuel()).isEqualTo(UPDATED_SALAIRE_BRUT_MENSUEL);
         assertThat(testBulletin.getImpotSurRevenu()).isEqualTo(UPDATED_IMPOT_SUR_REVENU);

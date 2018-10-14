@@ -143,12 +143,12 @@ public class AbsenceResource {
      * @param exo le critére de recherche
      * @return the ResponseEntity with status 200 (OK) and the list of produits in body
      */
-    @GetMapping("/absences/{collaborateur}/{exo}")
+    @GetMapping("/absences/{collaborateur}/{exo}/{motif}")
     @Timed
     @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH, AuthoritiesConstants.DG})
-    public ResponseEntity<List<Absence>> search(@PathVariable Long collaborateur, @PathVariable Long exo,Pageable pageable) {
+    public ResponseEntity<List<Absence>> search(@PathVariable Long collaborateur, @PathVariable Long exo, @PathVariable Long motif,Pageable pageable) {
         log.debug("REST request to get a page of Produits: ");
-        Page<Absence> page = absenceService.search(collaborateur, exo, pageable);
+        Page<Absence> page = absenceService.search(collaborateur, exo, motif, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/absences");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

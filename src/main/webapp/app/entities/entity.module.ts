@@ -23,6 +23,9 @@ import { SenPaieMotifModule } from './motif/motif.module';
 import { SenPaieAbsenceModule } from './absence/absence.module';
 import { SenPaieStatutDemandeModule } from './statut-demande/statut-demande.module';
 import { SenPaieDemandeCongeModule } from './demande-conge/demande-conge.module';
+import { SenPaiePiecesModule } from './pieces/pieces.module';
+import { SenPaieTypeAbsenceModule } from './type-absence/type-absence.module';
+import { SenPaieSexeModule } from './sexe/sexe.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -50,6 +53,9 @@ import { SenPaieDemandeCongeModule } from './demande-conge/demande-conge.module'
         SenPaieAbsenceModule,
         SenPaieStatutDemandeModule,
         SenPaieDemandeCongeModule,
+        SenPaiePiecesModule,
+        SenPaieTypeAbsenceModule,
+        SenPaieSexeModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

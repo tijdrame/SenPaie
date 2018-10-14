@@ -283,6 +283,18 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="senPaieApp.sexe.detail.title" for="field_sexe">Sexe </label>
+                        <select class="form-control" id="field_sexe" name="sexe" [(ngModel)]="collaborateur.sexe" required>
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="sexeOption.id === collaborateur.sexe?.id ? collaborateur.sexe : sexeOption"
+                                    *ngFor="let sexeOption of sexes; trackBy: trackTypeContratById">{{sexeOption.libelle}}</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
         </table>
     </div>
     <div class="modal-footer">

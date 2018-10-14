@@ -17,6 +17,7 @@ import { SituationMatrimoniale, SituationMatrimonialeService } from '../situatio
 import { TypeContrat, TypeContratService } from '../type-contrat';
 import { User, UserService } from '../../shared';
 import {Regime, RegimeService} from "../regime";
+import {Sexe, SexeService} from "../sexe";
 
 @Component({
     selector: 'jhi-collaborateur-dialog',
@@ -40,6 +41,7 @@ export class CollaborateurDialogComponent implements OnInit {
     typecontrats: TypeContrat[];
 
     regimes: Regime[];
+    sexes: Sexe[];
 
     users: User[];
     dateNaissanceDp: any;
@@ -56,6 +58,7 @@ export class CollaborateurDialogComponent implements OnInit {
         private situationMatrimonialeService: SituationMatrimonialeService,
         private typeContratService: TypeContratService,
         private regimeService: RegimeService,
+        private sexeService: SexeService,
         private userService: UserService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
@@ -79,6 +82,8 @@ export class CollaborateurDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<TypeContrat[]>) => { this.typecontrats = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.regimeService.query()
             .subscribe((res: HttpResponse<Regime[]>) => { this.regimes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.sexeService.query()
+            .subscribe((res: HttpResponse<Sexe[]>) => { this.sexes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }

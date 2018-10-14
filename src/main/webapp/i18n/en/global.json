@@ -31,6 +31,9 @@
                 "absence": "Absence",
                 "statutDemande": "Statut Demande",
                 "demandeConge": "Demande Conge",
+                "pieces": "Pieces",
+                "typeAbsence": "Type Absence",
+                "sexe": "Sexe",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

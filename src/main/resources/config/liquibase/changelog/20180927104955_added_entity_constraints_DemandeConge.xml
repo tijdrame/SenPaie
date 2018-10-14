@@ -44,5 +44,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="type_absence_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_type_absence_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_absence"/>
+
     </changeSet>
 </databaseChangeLog>

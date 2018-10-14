@@ -1,8 +1,6 @@
 package com.emard.service;
 
-import com.emard.domain.Absence;
-import com.emard.domain.Collaborateur;
-import com.emard.domain.Exercice;
+import com.emard.domain.*;
 import com.emard.repository.AbsenceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +25,16 @@ public class AbsenceService {
     private final UserService userService;
     private final ExerciceService exerciceService;
     private final CollaborateurService collaborateurService;
+    private final MotifService motifService;
 
 
-    public AbsenceService(AbsenceRepository absenceRepository, UserService userService,
+    public AbsenceService(AbsenceRepository absenceRepository, UserService userService, MotifService motifService,
                           ExerciceService exerciceService, CollaborateurService collaborateurService) {
         this.absenceRepository = absenceRepository;
         this.userService = userService;
         this.collaborateurService = collaborateurService;
         this.exerciceService = exerciceService;
+        this.motifService = motifService;
     }
 
     /**
@@ -98,9 +98,10 @@ public class AbsenceService {
     }
 
 
-    public Page<Absence> search(Long idCollab, Long idExercice, Pageable pageable) {
+    public Page<Absence> search(Long idCollab, Long idExercice, Long idMotif, Pageable pageable) {
         Collaborateur collaborateur = collaborateurService.findOne(idCollab);
-            Exercice exercice = exerciceService.findOne(idExercice);
-        return absenceRepository.findByCollaborateurAndExerciceAndDeletedFalse(collaborateur, exercice, pageable);
+        Exercice exercice = exerciceService.findOne(idExercice);
+        Motif motif = motifService.findOne(idMotif);
+        return absenceRepository.findByCollaborateurAndExerciceAndMotifAndDeletedFalse(collaborateur, exercice, motif, pageable);
     }
 }

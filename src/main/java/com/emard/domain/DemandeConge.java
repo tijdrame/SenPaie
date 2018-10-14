@@ -39,6 +39,9 @@ public class DemandeConge implements Serializable {
     @Column(name = "deleted")
     private Boolean deleted;
 
+    @Column(name = "libelle")
+    private String libelle;
+
     @ManyToOne
     private StatutDemande statutRH;
 
@@ -56,6 +59,9 @@ public class DemandeConge implements Serializable {
 
     @ManyToOne
     private User userDeleted;
+
+    @ManyToOne
+    private TypeAbsence typeAbsence;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -129,6 +135,19 @@ public class DemandeConge implements Serializable {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public DemandeConge libelle(String libelle) {
+        this.libelle = libelle;
+        return this;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public StatutDemande getStatutRH() {
@@ -208,6 +227,19 @@ public class DemandeConge implements Serializable {
     public void setUserDeleted(User user) {
         this.userDeleted = user;
     }
+
+    public TypeAbsence getTypeAbsence() {
+        return typeAbsence;
+    }
+
+    public DemandeConge typeAbsence(TypeAbsence typeAbsence) {
+        this.typeAbsence = typeAbsence;
+        return this;
+    }
+
+    public void setTypeAbsence(TypeAbsence typeAbsence) {
+        this.typeAbsence = typeAbsence;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -239,6 +271,7 @@ public class DemandeConge implements Serializable {
             ", dateFin='" + getDateFin() + "'" +
             ", motifRejet='" + getMotifRejet() + "'" +
             ", deleted='" + isDeleted() + "'" +
+            ", libelle='" + getLibelle() + "'" +
             "}";
     }
 }

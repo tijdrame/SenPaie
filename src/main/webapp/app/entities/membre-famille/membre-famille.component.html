@@ -25,7 +25,7 @@
                         <input type="checkbox" [(ngModel)]="deleted" name="deleted" id="field_del">
                     </td>
                     <td>
-                        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
                             <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
                         </button>
                     </td>
@@ -39,7 +39,7 @@
 
     </div>
     <h2>
-        <span jhiTranslate="senPaieApp.membreFamille.home.title">Membre Familles</span>
+
         <button class="btn btn-primary float-right jh-create-entity create-membre-famille" [routerLink]="['/', { outlets: { popup: ['membre-famille-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="senPaieApp.membreFamille.home.createLabel">
@@ -48,9 +48,11 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <div class="row">
-    </div>
-    <br/>
+    <div id="myAbs">
+        <div class="row">
+            <div style="width: 70px"></div><h2><span jhiTranslate="senPaieApp.membreFamille.home.title">Membre Familles</span></h2>
+        </div>
+        <br/>
     <div class="table-responsive" *ngIf="membreFamilles">
         <table class="table table-striped">
             <thead>
@@ -62,7 +64,7 @@
             <th jhiSortBy="dateMariage"><span jhiTranslate="senPaieApp.membreFamille.dateMariage">Date Mariage</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.membreFamille.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="typeRelation.libelle"><span jhiTranslate="senPaieApp.membreFamille.typeRelation">Type Relation</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+            <th data-html2canvas-ignore="true"></th>
             </tr>
             </thead>
             <tbody>
@@ -83,7 +85,7 @@
                         <a [routerLink]="['../type-relation', membreFamille.typeRelation?.id ]" >{{membreFamille.typeRelation?.libelle}}</a>
                     </div>
                 </td>
-                <td class="text-right">
+                <td class="text-right" data-html2canvas-ignore="true">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['../membre-famille', membreFamille.id ]"
@@ -113,6 +115,12 @@
             </tbody>
         </table>
     </div>
+    </div>
+    <button type="submit"
+            (click)="downLoadPdf()"
+            class="btn btn-primary">
+        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="global.imprimer"> Imprimer</span>
+    </button>
     <div *ngIf="membreFamilles && membreFamilles.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>

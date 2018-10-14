@@ -13,6 +13,8 @@ import { User, UserService } from '../../shared';
 import { Collaborateur, CollaborateurService } from '../collaborateur';
 import { Motif, MotifService } from '../motif';
 import { Exercice, ExerciceService } from '../exercice';
+import {Nationalite} from "../nationalite";
+import {TypeAbsence, TypeAbsenceService} from "../type-absence";
 
 @Component({
     selector: 'jhi-absence-dialog',
@@ -24,6 +26,8 @@ export class AbsenceDialogComponent implements OnInit {
     isSaving: boolean;
 
     users: User[];
+
+
 
     collaborateurs: Collaborateur[];
 
@@ -55,6 +59,7 @@ export class AbsenceDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Motif[]>) => { this.motifs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.exerciceService.query()
             .subscribe((res: HttpResponse<Exercice[]>) => { this.exercices = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+
     }
 
     clear() {

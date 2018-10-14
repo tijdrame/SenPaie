@@ -77,6 +77,12 @@
             "otherEntityField": "login",
             "ownerSide": true,
             "otherEntityRelationshipName": "collaborateur"
+        },
+        {
+            "relationshipName": "sexe",
+            "otherEntityName": "sexe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "libelle"
         }
     ],
     "fields": [

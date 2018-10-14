@@ -1,6 +1,7 @@
 package com.emard.service;
 
 import com.emard.domain.Bulletin;
+import com.emard.domain.DetailPret;
 import com.emard.domain.Remboursement;
 import com.emard.repository.BulletinRepository;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -25,11 +28,14 @@ public class BulletinService {
     private final BulletinRepository bulletinRepository;
     private final UserService userService;
     private final RemboursementService remboursementService;
+    private final DetailPretService detailPretService;
 
-    public BulletinService(BulletinRepository bulletinRepository, UserService userService, RemboursementService remboursementService) {
+    public BulletinService(BulletinRepository bulletinRepository, UserService userService, RemboursementService remboursementService,
+                           DetailPretService detailPretService) {
         this.bulletinRepository = bulletinRepository;
         this.userService = userService;
         this.remboursementService = remboursementService;
+        this.detailPretService = detailPretService;
     }
 
     /**
@@ -44,11 +50,27 @@ public class BulletinService {
             for (Remboursement remboursement: bulletin.getRemboursements()) {
                 remboursement.isRembourse(true).userUpdated(userService.getUserWithAuthorities().get());
                 this.remboursementService.update(remboursement);
+                if(!this.pretRembourse(remboursement.getDetailPret())){
+                    remboursement.getDetailPret().isRembourse(true).userUpdated(userService.getUserWithAuthorities().get());
+                    detailPretService.save(remboursement.getDetailPret());
+                }
 
             }
+
         }
         bulletin.userCreated(userService.getUserWithAuthorities().get()).dateCreated(LocalDate.now()).deleted(false);
         return bulletinRepository.save(bulletin);
+    }
+
+    private Boolean pretRembourse(DetailPret detailPret){
+        List<Remboursement> list = remboursementService.findByRemboursement(detailPret);
+        Boolean flag = false;
+        if (!list.isEmpty()){
+            for (Remboursement remboursement: list){
+                if(!remboursement.isIsRembourse()) return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -78,10 +100,27 @@ public class BulletinService {
     /**
      * Delete the bulletin by id.
      *
-     * @param id the id of the entity
+     * @param bulletin the id of the entity
      */
-    public void delete(Long id) {
-        log.debug("Request to delete Bulletin : {}", id);
-        bulletinRepository.delete(id);
+    public void delete(Bulletin bulletin) {
+        log.debug("Request to delete Bulletin : {}", bulletin);
+        bulletin.deleted(true).userDeleted(userService.getUserWithAuthorities().get());
+        if(bulletin.getRemboursements()!=null){
+            for (Remboursement remboursement: bulletin.getRemboursements()) {
+                remboursement.isRembourse(false).userUpdated(userService.getUserWithAuthorities().get());
+                remboursement.getDetailPret().isRembourse(false).userUpdated(userService.getUserWithAuthorities().get());
+                remboursementService.update(remboursement);
+                detailPretService.Update(remboursement.getDetailPret());
+            }
+        }
+        bulletinRepository.save(bulletin);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Bulletin> findByCriteres(String prenom, String nom, String matricule,
+                                          Boolean deleted, Pageable pageable) {
+        log.debug("dans search bull service prenom="+prenom+" nom="+nom+" mat="+matricule+" del="+deleted);
+        return bulletinRepository.findByCollaborateur_PrenomLikeIgnoreCaseAndCollaborateur_NomLikeIgnoreCaseAndCollaborateur_MatriculeLikeIgnoreCaseAndDeletedOrderByDateCreatedDesc
+            (prenom, nom, matricule, deleted, pageable);
     }
 }

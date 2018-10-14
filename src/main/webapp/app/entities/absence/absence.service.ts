@@ -37,8 +37,8 @@ export class AbsenceService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    search(id: number, exo: number): Observable<HttpResponse<Absence[]>>{
-        return this.http.get<Absence[]>(`${this.resourceUrl}/${id}/${exo}`, { observe: 'response'})
+    search(id: number, exo: number, motif:number): Observable<HttpResponse<Absence[]>>{
+        return this.http.get<Absence[]>(`${this.resourceUrl}/${id}/${exo}/${motif}`, { observe: 'response'})
             .map((res: HttpResponse<Absence[]>) => this.convertArrayResponse(res));
     }
 

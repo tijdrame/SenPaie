@@ -32,7 +32,7 @@
                         </div>
                     </td>-->
                     <td>
-                        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
                             <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
                         </button>
                     </td>
@@ -63,7 +63,8 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)"><th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.demandeConge.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.demandeConge.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.demandeConge.type">Type Demande</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.demandeConge.libelle">Libellé</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dateDebut"><span jhiTranslate="senPaieApp.demandeConge.dateDebut">Date Debut</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dateFin"><span jhiTranslate="senPaieApp.demandeConge.dateFin">Date Fin</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="motifRejet"><span jhiTranslate="senPaieApp.demandeConge.motifRejet">Motif Rejet</span> <span class="fa fa-sort"></span></th>
@@ -80,9 +81,15 @@
                             {{demandeConge.collaborateur?.prenom}} {{demandeConge.collaborateur?.nom}}</a>
                     </div>
                 </td>
-                <td>{{demandeConge.dateCreated | date:'mediumDate'}}</td>
-                <td>{{demandeConge.dateDebut | date:'mediumDate'}}</td>
-                <td>{{demandeConge.dateFin | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="demandeConge.typeAbsence">
+                        <a [routerLink]="['../type-absence', demandeConge.typeAbsence?.id ]" >
+                            {{demandeConge.typeAbsence?.libelle}}</a>
+                    </div>
+                </td>
+                <td>{{demandeConge.libelle}}</td>
+                <td>{{demandeConge.dateCreated | date:'dd/MM/yyyy'}}</td>
+                <td>{{demandeConge.dateFin | date:'dd/MM/yyyy'}}</td>
                 <td>{{demandeConge.motifRejet}}</td>
                 <td>
                     <div *ngIf="demandeConge.statutRH">
@@ -103,7 +110,8 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" *ngIf="(demandeConge?.statutRH?.code!=='VALIDE' || demandeConge?.statutDG?.code!=='VALIDE')&&
+                            (demandeConge?.statutRH?.code!=='REJETE' && demandeConge?.statutDG?.code!=='REJETE')"
                                 [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
@@ -111,7 +119,8 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" *ngIf="(demandeConge?.statutRH?.code!=='VALIDE' || demandeConge?.statutDG?.code!=='VALIDE')&&
+                            (demandeConge?.statutRH?.code!=='REJETE' && demandeConge?.statutDG?.code!=='REJETE')"
                                 [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

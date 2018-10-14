@@ -22,6 +22,10 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -128,7 +132,30 @@ public class BulletinResource {
     @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH})
     public ResponseEntity<Void> deleteBulletin(@PathVariable Long id) {
         log.debug("REST request to delete Bulletin : {}", id);
-        bulletinService.delete(id);
+        Bulletin bulletin = bulletinService.findOne(id);
+        bulletinService.delete(bulletin);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/bulletinsTer/{prenom}/{nom}/{matricule}/{deleted}")
+//  @GetMapping("/collaborateursTer/{prenom}/{nom}/{tel}/{deleted}")
+    @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH, AuthoritiesConstants.DG})
+    public ResponseEntity<List<Bulletin>> search(@PathVariable Optional<String> prenom  , @PathVariable Optional<String> nom,
+                                                 @PathVariable Optional<String> matricule,
+                                                 @PathVariable Boolean deleted, Pageable pageable) {
+        //log.debug("REST request to get a page of Collab====>: "+prenom.isPresent()+" val"+prenom.get());
+        log.debug("dans serch bull ressource");
+        //SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        //LocalDate ld = format.parse(theDate);
+        //Next parse the date from the @RequestParam, specifying the TO type as a TemporalQuery:
+        //LocalDateTime date = dateTimeFormat.parse(start, LocalDateTime::from);
+
+        //LocalDate dateBi = new LocalDate(theDate);
+        Page<Bulletin> page = bulletinService.findByCriteres(prenom.isPresent()?"%"+prenom.get().trim()+"%":"",
+            nom.isPresent()?"%"+nom.get().trim()+"%":"", matricule.isPresent()?"%"+matricule.get().trim()+"%":"",
+             deleted, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/bulletins");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 }

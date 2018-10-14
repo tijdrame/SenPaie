@@ -9,8 +9,9 @@ import { AbsenceService } from './absence.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import {Collaborateur, CollaborateurService} from "../collaborateur";
 import {Exercice, ExerciceService} from "../exercice";
-import {Fonction} from "../fonction";
-import {Remboursement} from "../remboursement";
+import {Motif, MotifService} from "../motif";
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
     selector: 'jhi-absence',
@@ -36,6 +37,8 @@ currentAccount: any;
     collaborateur: Collaborateur;
     exercices: Exercice[];
     exercice: Exercice;
+    motif: Motif;
+    motifs: Motif[];
     nbAbsence: number = 0;
 
     constructor(
@@ -47,6 +50,7 @@ currentAccount: any;
         private router: Router,
         private eventManager: JhiEventManager,
         private collaborateurService: CollaborateurService,
+        private motifService: MotifService,
         private exerciceService: ExerciceService
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -59,13 +63,13 @@ currentAccount: any;
     }
 
     loadAll() {
-        this.absenceService.query({
+        /*this.absenceService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
                 (res: HttpResponse<Absence[]>) => this.onSuccess(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        );*/
     }
     loadPage(page: number) {
         if (page !== this.previousPage) {
@@ -104,18 +108,31 @@ currentAccount: any;
         this.exerciceService.query()
             .subscribe((res: HttpResponse<Exercice[]>) => { this.exercices = res.body; },
                 (res: HttpErrorResponse) => this.onError(res.message));
+        this.motifService.query()
+            .subscribe((res: HttpResponse<Motif[]>) => { this.motifs = res.body; },
+                (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     search(){
-        console.log("coll"+JSON.stringify(this.collaborateur));
-        console.log("exo"+JSON.stringify(this.exercice));
-        this.absenceService.search(this.collaborateur.id, this.exercice.id)
+        this.absenceService.search(this.collaborateur.id, this.exercice.id, this.motif.id)
             .subscribe((res: HttpResponse<Absence[]>) => { this.absences = res.body;
             this.nbAbsence = this.absences.length;
                 },
                 (res: HttpErrorResponse) => this.onError(res.message));
 
 
+    }
+
+    downLoadPdf(){
+        let data = document.getElementById ('myAbs');
+        html2canvas(data).then(canvas =>{
+            let imgWidth = 208;
+            let imgHeight = canvas.height * imgWidth / canvas.width;
+            const contentDataURL = canvas.toDataURL('image/png');
+            let pdf = new jsPDF('p', 'mm', 'a4');
+            pdf.addImage(contentDataURL, 'PNG', 10, 20, imgWidth, imgHeight);
+            pdf.save('listAbsences.pdf');
+        });
     }
 
     ngOnDestroy() {

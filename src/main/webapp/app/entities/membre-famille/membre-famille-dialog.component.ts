@@ -12,6 +12,8 @@ import { MembreFamilleService } from './membre-famille.service';
 import { Collaborateur, CollaborateurService } from '../collaborateur';
 import { User, UserService } from '../../shared';
 import { TypeRelation, TypeRelationService } from '../type-relation';
+import {Sexe, SexeService} from "../sexe";
+import {TypeContrat} from "../type-contrat";
 
 @Component({
     selector: 'jhi-membre-famille-dialog',
@@ -25,6 +27,7 @@ export class MembreFamilleDialogComponent implements OnInit {
     collaborateurs: Collaborateur[];
 
     users: User[];
+    sexes: Sexe[];
 
     typerelations: TypeRelation[];
     dateNaissanceDp: any;
@@ -37,6 +40,7 @@ export class MembreFamilleDialogComponent implements OnInit {
         private membreFamilleService: MembreFamilleService,
         private collaborateurService: CollaborateurService,
         private userService: UserService,
+        private sexeService: SexeService,
         private typeRelationService: TypeRelationService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
@@ -49,6 +53,8 @@ export class MembreFamilleDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Collaborateur[]>) => { this.collaborateurs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.sexeService.query()
+            .subscribe((res: HttpResponse<Sexe[]>) => { this.sexes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.typeRelationService.query()
             .subscribe((res: HttpResponse<TypeRelation[]>) => { this.typerelations = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -104,6 +110,9 @@ export class MembreFamilleDialogComponent implements OnInit {
     }
 
     trackCollaborateurById(index: number, item: Collaborateur) {
+        return item.id;
+    }
+    trackTypeContratById(index: number, item: TypeContrat) {
         return item.id;
     }
 
