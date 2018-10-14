@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Collaborateur.
+    -->
+    <changeSet id="20180914175158-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="fonction_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_fonction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fonction"/>
+
+        <addForeignKeyConstraint baseColumnNames="categorie_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_categorie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categorie"/>
+
+        <addForeignKeyConstraint baseColumnNames="nationalite_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_nationalite_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="nationalite"/>
+
+        <addForeignKeyConstraint baseColumnNames="statut_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_statut_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="statut"/>
+
+        <addForeignKeyConstraint baseColumnNames="situation_matrimoniale_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_situation_matrimoniale_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="situation_matrimoniale"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_contrat_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_type_contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_contrat"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_created_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_user_created_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_updated_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_user_updated_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_user_deleted_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="regime_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_regime_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="regime"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_collab_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_user_collab_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="sexe_id"
+                                 baseTableName="collaborateur"
+                                 constraintName="fk_collaborateur_sexe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sexe"/>
+
+    </changeSet>
+</databaseChangeLog>

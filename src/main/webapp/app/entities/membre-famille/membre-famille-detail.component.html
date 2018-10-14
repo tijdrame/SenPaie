@@ -1,0 +1,93 @@
+
+<div *ngIf="membreFamille">
+    <h2><span jhiTranslate="senPaieApp.membreFamille.detail.title">Membre Famille</span> {{membreFamille.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.membreFamille.prenom">Prenom</span></dt>
+        <dd>
+            <span>{{membreFamille.prenom}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.nom">Nom</span></dt>
+        <dd>
+            <span>{{membreFamille.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{membreFamille.adresse}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.isActif">Is Actif</span></dt>
+        <dd>
+            <span>{{membreFamille.isActif}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{membreFamille.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.dateNaissance">Date Naissance</span></dt>
+        <dd>
+            <span>{{membreFamille.dateNaissance | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.dateMariage">Date Mariage</span></dt>
+        <dd>
+            <span>{{membreFamille.dateMariage | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.photo">Photo</span></dt>
+        <dd>
+            <div *ngIf="membreFamille.photo">
+                <a (click)="openFile(membreFamille.photoContentType, membreFamille.photo)">
+                    <img [src]="'data:' + membreFamille.photoContentType + ';base64,' + membreFamille.photo" style="max-width: 100%;" alt="membreFamille image"/>
+                </a>
+                {{membreFamille.photoContentType}}, {{byteSize(membreFamille.photo)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{membreFamille.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.collaborateur">Collaborateur</span></dt>
+        <dd>
+            <div *ngIf="membreFamille.collaborateur">
+                <a [routerLink]="['/collaborateur', membreFamille.collaborateur?.id]">{{membreFamille.collaborateur?.prenom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.user">User</span></dt>
+        <dd>
+            {{membreFamille.user?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.userUpdate">User Update</span></dt>
+        <dd>
+            {{membreFamille.userUpdate?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.userDeleted">User Deleted</span></dt>
+        <dd>
+            {{membreFamille.userDeleted?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.typeRelation">Type Relation</span></dt>
+        <dd>
+            <div *ngIf="membreFamille.typeRelation">
+                <a [routerLink]="['/type-relation', membreFamille.typeRelation?.id]">{{membreFamille.typeRelation?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.membreFamille.sexe">Sexe</span></dt>
+        <dd>
+            <div *ngIf="membreFamille.sexe">
+                <a [routerLink]="['/sexe', membreFamille.sexe?.id]">{{membreFamille.sexe?.libelle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'membre-famille/'+ membreFamille.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,34 @@
+
+<div *ngIf="sexe">
+    <h2><span jhiTranslate="senPaieApp.sexe.detail.title">Sexe</span> {{sexe.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.sexe.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{sexe.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.sexe.code">Code</span></dt>
+        <dd>
+            <span>{{sexe.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.sexe.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{sexe.deleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sexe/'+ sexe.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

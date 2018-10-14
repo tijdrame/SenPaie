@@ -1,0 +1,52 @@
+
+<div *ngIf="remboursement">
+    <h2><span jhiTranslate="senPaieApp.remboursement.detail.title">Remboursement</span> {{remboursement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.remboursement.dateRemboursement">Date Remboursement</span></dt>
+        <dd>
+            <span>{{remboursement.dateRemboursement | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.remboursement.montant">Montant</span></dt>
+        <dd>
+            <span>{{remboursement.montant}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.remboursement.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{remboursement.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.remboursement.isRembourse">Is Rembourse</span></dt>
+        <dd>
+            <span>{{remboursement.isRembourse}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.remboursement.detailPret">Detail Pret</span></dt>
+        <dd>
+            <div *ngIf="remboursement.detailPret">
+                <a [routerLink]="['/detail-pret', remboursement.detailPret?.id]">{{remboursement.detailPret?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.remboursement.userCreated">User Created</span></dt>
+        <dd>
+            {{remboursement.userCreated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.remboursement.userUpdated">User Updated</span></dt>
+        <dd>
+            {{remboursement.userUpdated?.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'remboursement/'+ remboursement.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

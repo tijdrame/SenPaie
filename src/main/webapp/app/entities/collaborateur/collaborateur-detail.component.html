@@ -1,0 +1,151 @@
+
+<div *ngIf="collaborateur">
+    <h2><span jhiTranslate="senPaieApp.collaborateur.detail.title">Collaborateur</span> {{collaborateur.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.collaborateur.prenom">Prenom</span></dt>
+        <dd>
+            <span>{{collaborateur.prenom}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.nom">Nom</span></dt>
+        <dd>
+            <span>{{collaborateur.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.matricule">Matricule</span></dt>
+        <dd>
+            <span>{{collaborateur.matricule}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{collaborateur.adresse}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.tauxHoraire">Taux Horaire</span></dt>
+        <dd>
+            <span>{{collaborateur.tauxHoraire}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.salaireDeBase">Salaire De Base</span></dt>
+        <dd>
+            <span>{{collaborateur.salaireDeBase}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.surSalaire">Sur Salaire</span></dt>
+        <dd>
+            <span>{{collaborateur.surSalaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.retenueRepas">Retenue Repas</span></dt>
+        <dd>
+            <span>{{collaborateur.retenueRepas}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{collaborateur.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.dateNaissance">Date Naissance</span></dt>
+        <dd>
+            <span>{{collaborateur.dateNaissance | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.photo">Photo</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.photo">
+                <a (click)="openFile(collaborateur.photoContentType, collaborateur.photo)">
+                    <img [src]="'data:' + collaborateur.photoContentType + ';base64,' + collaborateur.photo" style="max-width: 100%;" alt="collaborateur image"/>
+                </a>
+                {{collaborateur.photoContentType}}, {{byteSize(collaborateur.photo)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.login">Login</span></dt>
+        <dd>
+            <span>{{collaborateur.login}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.email">Email</span></dt>
+        <dd>
+            <span>{{collaborateur.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.primeTransport">Prime Transport</span></dt>
+        <dd>
+            <span>{{collaborateur.primeTransport}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{collaborateur.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.fonction">Fonction</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.fonction">
+                <a [routerLink]="['/fonction', collaborateur.fonction?.id]">{{collaborateur.fonction?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.categorie">Categorie</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.categorie">
+                <a [routerLink]="['/categorie', collaborateur.categorie?.id]">{{collaborateur.categorie?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.nationalite">Nationalite</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.nationalite">
+                <a [routerLink]="['/nationalite', collaborateur.nationalite?.id]">{{collaborateur.nationalite?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.statut">Statut</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.statut">
+                <a [routerLink]="['/statut', collaborateur.statut?.id]">{{collaborateur.statut?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale">Situation Matrimoniale</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.situationMatrimoniale">
+                <a [routerLink]="['/situation-matrimoniale', collaborateur.situationMatrimoniale?.id]">{{collaborateur.situationMatrimoniale?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.typeContrat">Type Contrat</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.typeContrat">
+                <a [routerLink]="['/type-contrat', collaborateur.typeContrat?.id]">{{collaborateur.typeContrat?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.userCreated">User Created</span></dt>
+        <dd>
+            {{collaborateur.userCreated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.userUpdated">User Updated</span></dt>
+        <dd>
+            {{collaborateur.userUpdated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.userDeleted">User Deleted</span></dt>
+        <dd>
+            {{collaborateur.userDeleted?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.regime">Regime</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.regime">
+                <a [routerLink]="['/regime', collaborateur.regime?.id]">{{collaborateur.regime?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.userCollab">User Collab</span></dt>
+        <dd>
+            {{collaborateur.userCollab?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.collaborateur.sexe">Sexe</span></dt>
+        <dd>
+            <div *ngIf="collaborateur.sexe">
+                <a [routerLink]="['/sexe', collaborateur.sexe?.id]">{{collaborateur.sexe?.libelle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'collaborateur/'+ collaborateur.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

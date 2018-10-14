@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "convention" : {
+            "home": {
+                "title": "Conventions",
+                "createLabel": "Créer un nouveau Convention",
+                "createOrEditLabel": "Créer ou éditer un Convention"
+            },
+            "created": "Un nouveau Convention a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Convention avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Convention avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Convention {{ id }} ?"
+            },
+            "detail": {
+                "title": "Convention"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

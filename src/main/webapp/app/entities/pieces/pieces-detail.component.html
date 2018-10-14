@@ -1,0 +1,77 @@
+
+<div *ngIf="pieces">
+    <h2><span jhiTranslate="senPaieApp.pieces.detail.title">Pieces</span> {{pieces.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.pieces.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{pieces.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.dateDebut">Date Debut</span></dt>
+        <dd>
+            <span>{{pieces.dateDebut | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.dateExpiration">Date Expiration</span></dt>
+        <dd>
+            <span>{{pieces.dateExpiration | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.image">Image</span></dt>
+        <dd>
+            <div *ngIf="pieces.image">
+                <a (click)="openFile(pieces.imageContentType, pieces.image)">
+                    <img [src]="'data:' + pieces.imageContentType + ';base64,' + pieces.image" style="max-width: 100%;" alt="pieces image"/>
+                </a>
+                {{pieces.imageContentType}}, {{byteSize(pieces.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.dateCreated">Date Created</span></dt>
+        <dd>
+            <span>{{pieces.dateCreated | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{pieces.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.dateDeleted">Date Deleted</span></dt>
+        <dd>
+            <span>{{pieces.dateDeleted | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.dateUpdated">Date Updated</span></dt>
+        <dd>
+            <span>{{pieces.dateUpdated | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.collaborateur">Collaborateur</span></dt>
+        <dd>
+            <div *ngIf="pieces.collaborateur">
+                <a [routerLink]="['/collaborateur', pieces.collaborateur?.id]">{{pieces.collaborateur?.prenom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.user">User</span></dt>
+        <dd>
+            {{pieces.user?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.userUpdated">User Updated</span></dt>
+        <dd>
+            {{pieces.userUpdated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.pieces.userDeleted">User Deleted</span></dt>
+        <dd>
+            {{pieces.userDeleted?.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pieces/'+ pieces.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

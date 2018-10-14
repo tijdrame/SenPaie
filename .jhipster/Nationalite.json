@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180914162419",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "nationalite",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,94 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.detailPret.home.title">Detail Prets</span>
+        <button class="btn btn-primary float-right jh-create-entity create-detail-pret" [routerLink]="['/', { outlets: { popup: ['detail-pret-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.detailPret.home.createLabel">
+            Create new Detail Pret
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="detailPrets">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montant"><span jhiTranslate="senPaieApp.detailPret.montant">Montant</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isRembourse"><span jhiTranslate="senPaieApp.detailPret.isRembourse">Is Rembourse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.detailPret.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.detailPret.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pret.libelle"><span jhiTranslate="senPaieApp.detailPret.pret">Pret</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userCreated.login"><span jhiTranslate="senPaieApp.detailPret.userCreated">User Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userUpdated.login"><span jhiTranslate="senPaieApp.detailPret.userUpdated">User Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDeleted.login"><span jhiTranslate="senPaieApp.detailPret.userDeleted">User Deleted</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let detailPret of detailPrets ;trackBy: trackId">
+                <td><a [routerLink]="['../detail-pret', detailPret.id ]">{{detailPret.id}}</a></td>
+                <td>{{detailPret.montant}}</td>
+                <td>{{detailPret.isRembourse}}</td>
+                <td>{{detailPret.deleted}}</td>
+                <td>
+                    <div *ngIf="detailPret.collaborateur">
+                        <a [routerLink]="['../collaborateur', detailPret.collaborateur?.id ]" >{{detailPret.collaborateur?.prenom}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detailPret.pret">
+                        <a [routerLink]="['../pret', detailPret.pret?.id ]" >{{detailPret.pret?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{detailPret.userCreated?.login}}
+                </td>
+                <td>
+                    {{detailPret.userUpdated?.login}}
+                </td>
+                <td>
+                    {{detailPret.userDeleted?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../detail-pret', detailPret.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'detail-pret/'+ detailPret.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'detail-pret/'+ detailPret.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="detailPrets && detailPrets.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

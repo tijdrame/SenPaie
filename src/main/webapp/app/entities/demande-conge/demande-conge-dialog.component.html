@@ -1,0 +1,131 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDemandeCongeLabel" jhiTranslate="senPaieApp.demandeConge.home.createOrEditLabel">Create or edit a Demande Conge</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!demandeConge.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="demandeConge.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.dateCreated" for="field_dateCreated">Date Created</label>
+            <div class="input-group">
+                <input id="field_dateCreated" type="text" class="form-control" name="dateCreated" ngbDatepicker  #dateCreatedDp="ngbDatepicker" [(ngModel)]="demandeConge.dateCreated"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateCreatedDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.dateDebut" for="field_dateDebut">Date Debut</label>
+            <div class="input-group">
+                <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker" [(ngModel)]="demandeConge.dateDebut"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateDebut?.dirty && editForm.controls.dateDebut?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateDebut?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.dateFin" for="field_dateFin">Date Fin</label>
+            <div class="input-group">
+                <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker  #dateFinDp="ngbDatepicker" [(ngModel)]="demandeConge.dateFin"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateFin?.dirty && editForm.controls.dateFin?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateFin?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.motifRejet" for="field_motifRejet">Motif Rejet</label>
+            <input type="text" class="form-control" name="motifRejet" id="field_motifRejet"
+                [(ngModel)]="demandeConge.motifRejet" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="demandeConge.deleted" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.libelle" for="field_libelle">Libelle</label>
+            <input type="text" class="form-control" name="libelle" id="field_libelle"
+                [(ngModel)]="demandeConge.libelle" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.statutRH" for="field_statutRH">Statut RH</label>
+            <select class="form-control" id="field_statutRH" name="statutRH" [(ngModel)]="demandeConge.statutRH" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="statutDemandeOption.id === demandeConge.statutRH?.id ? demandeConge.statutRH : statutDemandeOption" *ngFor="let statutDemandeOption of statutdemandes; trackBy: trackStatutDemandeById">{{statutDemandeOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.statutDG" for="field_statutDG">Statut DG</label>
+            <select class="form-control" id="field_statutDG" name="statutDG" [(ngModel)]="demandeConge.statutDG" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="statutDemandeOption.id === demandeConge.statutDG?.id ? demandeConge.statutDG : statutDemandeOption" *ngFor="let statutDemandeOption of statutdemandes; trackBy: trackStatutDemandeById">{{statutDemandeOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.collaborateur" for="field_collaborateur">Collaborateur</label>
+            <select class="form-control" id="field_collaborateur" name="collaborateur" [(ngModel)]="demandeConge.collaborateur" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="collaborateurOption.id === demandeConge.collaborateur?.id ? demandeConge.collaborateur : collaborateurOption" *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">{{collaborateurOption.prenom}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.userCreated" for="field_userCreated">User Created</label>
+            <select class="form-control" id="field_userCreated" name="userCreated" [(ngModel)]="demandeConge.userCreated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === demandeConge.userCreated?.id ? demandeConge.userCreated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.userUpdated" for="field_userUpdated">User Updated</label>
+            <select class="form-control" id="field_userUpdated" name="userUpdated" [(ngModel)]="demandeConge.userUpdated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === demandeConge.userUpdated?.id ? demandeConge.userUpdated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.userDeleted" for="field_userDeleted">User Deleted</label>
+            <select class="form-control" id="field_userDeleted" name="userDeleted" [(ngModel)]="demandeConge.userDeleted" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === demandeConge.userDeleted?.id ? demandeConge.userDeleted : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.demandeConge.typeAbsence" for="field_typeAbsence">Type Absence</label>
+            <select class="form-control" id="field_typeAbsence" name="typeAbsence" [(ngModel)]="demandeConge.typeAbsence" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="typeAbsenceOption.id === demandeConge.typeAbsence?.id ? demandeConge.typeAbsence : typeAbsenceOption" *ngFor="let typeAbsenceOption of typeabsences; trackBy: trackTypeAbsenceById">{{typeAbsenceOption.libelle}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,48 @@
+
+{
+    "senPaieApp": {
+        "collaborateur" : {
+            "home": {
+                "title": "Collaborateurs",
+                "createLabel": "Créer un nouveau Collaborateur",
+                "createOrEditLabel": "Créer ou éditer un Collaborateur"
+            },
+            "created": "Un nouveau Collaborateur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Collaborateur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Collaborateur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Collaborateur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Collaborateur"
+            },
+            "prenom": "Prenom",
+            "nom": "Nom",
+            "matricule": "Matricule",
+            "adresse": "Adresse",
+            "tauxHoraire": "Taux Horaire",
+            "salaireDeBase": "Salaire De Base",
+            "surSalaire": "Sur Salaire",
+            "retenueRepas": "Retenue Repas",
+            "deleted": "Deleted",
+            "dateNaissance": "Date Naissance",
+            "photo": "Photo",
+            "login": "Login",
+            "email": "Email",
+            "primeTransport": "Prime Transport",
+            "telephone": "Telephone",
+            "fonction": "Fonction",
+            "categorie": "Categorie",
+            "nationalite": "Nationalite",
+            "statut": "Statut",
+            "situationMatrimoniale": "Situation Matrimoniale",
+            "typeContrat": "Type Contrat",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted",
+            "regime": "Regime",
+            "userCollab": "User Collab",
+            "sexe": "Sexe"
+        }
+    }
+}

@@ -1,0 +1,163 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.collaborateur.home.title">Collaborateurs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-collaborateur" [routerLink]="['/', { outlets: { popup: ['collaborateur-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.collaborateur.home.createLabel">
+            Create new Collaborateur
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="collaborateurs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prenom"><span jhiTranslate="senPaieApp.collaborateur.prenom">Prenom</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nom"><span jhiTranslate="senPaieApp.collaborateur.nom">Nom</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="matricule"><span jhiTranslate="senPaieApp.collaborateur.matricule">Matricule</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="adresse"><span jhiTranslate="senPaieApp.collaborateur.adresse">Adresse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauxHoraire"><span jhiTranslate="senPaieApp.collaborateur.tauxHoraire">Taux Horaire</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="salaireDeBase"><span jhiTranslate="senPaieApp.collaborateur.salaireDeBase">Salaire De Base</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="surSalaire"><span jhiTranslate="senPaieApp.collaborateur.surSalaire">Sur Salaire</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="retenueRepas"><span jhiTranslate="senPaieApp.collaborateur.retenueRepas">Retenue Repas</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.collaborateur.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateNaissance"><span jhiTranslate="senPaieApp.collaborateur.dateNaissance">Date Naissance</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="photo"><span jhiTranslate="senPaieApp.collaborateur.photo">Photo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="login"><span jhiTranslate="senPaieApp.collaborateur.login">Login</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span jhiTranslate="senPaieApp.collaborateur.email">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="primeTransport"><span jhiTranslate="senPaieApp.collaborateur.primeTransport">Prime Transport</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="telephone"><span jhiTranslate="senPaieApp.collaborateur.telephone">Telephone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fonction.libelle"><span jhiTranslate="senPaieApp.collaborateur.fonction">Fonction</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="categorie.libelle"><span jhiTranslate="senPaieApp.collaborateur.categorie">Categorie</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nationalite.libelle"><span jhiTranslate="senPaieApp.collaborateur.nationalite">Nationalite</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="statut.libelle"><span jhiTranslate="senPaieApp.collaborateur.statut">Statut</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="situationMatrimoniale.libelle"><span jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale">Situation Matrimoniale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeContrat.libelle"><span jhiTranslate="senPaieApp.collaborateur.typeContrat">Type Contrat</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userCreated.login"><span jhiTranslate="senPaieApp.collaborateur.userCreated">User Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userUpdated.login"><span jhiTranslate="senPaieApp.collaborateur.userUpdated">User Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDeleted.login"><span jhiTranslate="senPaieApp.collaborateur.userDeleted">User Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="regime.libelle"><span jhiTranslate="senPaieApp.collaborateur.regime">Regime</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userCollab.login"><span jhiTranslate="senPaieApp.collaborateur.userCollab">User Collab</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sexe.libelle"><span jhiTranslate="senPaieApp.collaborateur.sexe">Sexe</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let collaborateur of collaborateurs ;trackBy: trackId">
+                <td><a [routerLink]="['../collaborateur', collaborateur.id ]">{{collaborateur.id}}</a></td>
+                <td>{{collaborateur.prenom}}</td>
+                <td>{{collaborateur.nom}}</td>
+                <td>{{collaborateur.matricule}}</td>
+                <td>{{collaborateur.adresse}}</td>
+                <td>{{collaborateur.tauxHoraire}}</td>
+                <td>{{collaborateur.salaireDeBase}}</td>
+                <td>{{collaborateur.surSalaire}}</td>
+                <td>{{collaborateur.retenueRepas}}</td>
+                <td>{{collaborateur.deleted}}</td>
+                <td>{{collaborateur.dateNaissance | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="collaborateur.photo" (click)="openFile(collaborateur.photoContentType, collaborateur.photo)">
+                        <img [src]="'data:' + collaborateur.photoContentType + ';base64,' + collaborateur.photo" style="max-height: 30px;" alt="collaborateur image"/>
+                    </a>
+                    <span *ngIf="collaborateur.photo">{{collaborateur.photoContentType}}, {{byteSize(collaborateur.photo)}}</span>
+                </td>
+                <td>{{collaborateur.login}}</td>
+                <td>{{collaborateur.email}}</td>
+                <td>{{collaborateur.primeTransport}}</td>
+                <td>{{collaborateur.telephone}}</td>
+                <td>
+                    <div *ngIf="collaborateur.fonction">
+                        <a [routerLink]="['../fonction', collaborateur.fonction?.id ]" >{{collaborateur.fonction?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.categorie">
+                        <a [routerLink]="['../categorie', collaborateur.categorie?.id ]" >{{collaborateur.categorie?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.nationalite">
+                        <a [routerLink]="['../nationalite', collaborateur.nationalite?.id ]" >{{collaborateur.nationalite?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.statut">
+                        <a [routerLink]="['../statut', collaborateur.statut?.id ]" >{{collaborateur.statut?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.situationMatrimoniale">
+                        <a [routerLink]="['../situation-matrimoniale', collaborateur.situationMatrimoniale?.id ]" >{{collaborateur.situationMatrimoniale?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.typeContrat">
+                        <a [routerLink]="['../type-contrat', collaborateur.typeContrat?.id ]" >{{collaborateur.typeContrat?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{collaborateur.userCreated?.login}}
+                </td>
+                <td>
+                    {{collaborateur.userUpdated?.login}}
+                </td>
+                <td>
+                    {{collaborateur.userDeleted?.login}}
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.regime">
+                        <a [routerLink]="['../regime', collaborateur.regime?.id ]" >{{collaborateur.regime?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{collaborateur.userCollab?.login}}
+                </td>
+                <td>
+                    <div *ngIf="collaborateur.sexe">
+                        <a [routerLink]="['../sexe', collaborateur.sexe?.id ]" >{{collaborateur.sexe?.libelle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../collaborateur', collaborateur.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'collaborateur/'+ collaborateur.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'collaborateur/'+ collaborateur.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="collaborateurs && collaborateurs.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "motif" : {
+            "home": {
+                "title": "Motifs",
+                "createLabel": "Créer un nouveau Motif",
+                "createOrEditLabel": "Créer ou éditer un Motif"
+            },
+            "created": "Un nouveau Motif a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Motif avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Motif avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Motif {{ id }} ?"
+            },
+            "detail": {
+                "title": "Motif"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

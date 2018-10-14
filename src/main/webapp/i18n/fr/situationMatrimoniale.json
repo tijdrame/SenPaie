@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "situationMatrimoniale" : {
+            "home": {
+                "title": "SituationMatrimoniales",
+                "createLabel": "Créer un nouveau Situation Matrimoniale",
+                "createOrEditLabel": "Créer ou éditer un Situation Matrimoniale"
+            },
+            "created": "Un nouveau Situation Matrimoniale a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Situation Matrimoniale avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Situation Matrimoniale avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Situation Matrimoniale {{ id }} ?"
+            },
+            "detail": {
+                "title": "Situation Matrimoniale"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted",
+            "nbParts": "Nb Parts"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+
+{
+    "senPaieApp": {
+        "absence" : {
+            "home": {
+                "title": "Absences",
+                "createLabel": "Créer un nouveau Absence",
+                "createOrEditLabel": "Créer ou éditer un Absence"
+            },
+            "created": "Un nouveau Absence a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Absence avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Absence avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Absence {{ id }} ?"
+            },
+            "detail": {
+                "title": "Absence"
+            },
+            "dateAbsence": "Date Absence",
+            "deleted": "Deleted",
+            "dateCreated": "Date Created",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted",
+            "collaborateur": "Collaborateur",
+            "motif": "Motif",
+            "exercice": "Exercice"
+        }
+    }
+}

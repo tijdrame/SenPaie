@@ -1,0 +1,140 @@
+
+<div *ngIf="bulletin">
+    <h2><span jhiTranslate="senPaieApp.bulletin.detail.title">Bulletin</span> {{bulletin.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.bulletin.retenueIpm">Retenue Ipm</span></dt>
+        <dd>
+            <span>{{bulletin.retenueIpm}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.retenuePharmacie">Retenue Pharmacie</span></dt>
+        <dd>
+            <span>{{bulletin.retenuePharmacie}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.autreRetenue">Autre Retenue</span></dt>
+        <dd>
+            <span>{{bulletin.autreRetenue}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{bulletin.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.dateCreated">Date Created</span></dt>
+        <dd>
+            <span>{{bulletin.dateCreated | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.dateUpdated">Date Updated</span></dt>
+        <dd>
+            <span>{{bulletin.dateUpdated | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.dateDeleted">Date Deleted</span></dt>
+        <dd>
+            <span>{{bulletin.dateDeleted | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</span></dt>
+        <dd>
+            <span>{{bulletin.brutFiscal}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.netAPayer">Net A Payer</span></dt>
+        <dd>
+            <span>{{bulletin.netAPayer}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel">Salaire Brut Mensuel</span></dt>
+        <dd>
+            <span>{{bulletin.salaireBrutMensuel}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.impotSurRevenu">Impot Sur Revenu</span></dt>
+        <dd>
+            <span>{{bulletin.impotSurRevenu}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.trimf">Trimf</span></dt>
+        <dd>
+            <span>{{bulletin.trimf}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.ipresPartSalariale">Ipres Part Salariale</span></dt>
+        <dd>
+            <span>{{bulletin.ipresPartSalariale}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.totRetenue">Tot Retenue</span></dt>
+        <dd>
+            <span>{{bulletin.totRetenue}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.ipresPartPatronales">Ipres Part Patronales</span></dt>
+        <dd>
+            <span>{{bulletin.ipresPartPatronales}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.cssAccidentDeTravail">Css Accident De Travail</span></dt>
+        <dd>
+            <span>{{bulletin.cssAccidentDeTravail}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.cssPrestationFamiliale">Css Prestation Familiale</span></dt>
+        <dd>
+            <span>{{bulletin.cssPrestationFamiliale}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.ipmPatronale">Ipm Patronale</span></dt>
+        <dd>
+            <span>{{bulletin.ipmPatronale}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.contributionForfaitaire">Contribution Forfaitaire</span></dt>
+        <dd>
+            <span>{{bulletin.contributionForfaitaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.nbPart">Nb Part</span></dt>
+        <dd>
+            <span>{{bulletin.nbPart}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.nbFemmes">Nb Femmes</span></dt>
+        <dd>
+            <span>{{bulletin.nbFemmes}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.nbEnfants">Nb Enfants</span></dt>
+        <dd>
+            <span>{{bulletin.nbEnfants}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.collaborateur">Collaborateur</span></dt>
+        <dd>
+            <div *ngIf="bulletin.collaborateur">
+                <a [routerLink]="['/collaborateur', bulletin.collaborateur?.id]">{{bulletin.collaborateur?.prenom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.typePaiement">Type Paiement</span></dt>
+        <dd>
+            <div *ngIf="bulletin.typePaiement">
+                <a [routerLink]="['/type-paiement', bulletin.typePaiement?.id]">{{bulletin.typePaiement?.libelle}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.userCreated">User Created</span></dt>
+        <dd>
+            {{bulletin.userCreated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.userUpdated">User Updated</span></dt>
+        <dd>
+            {{bulletin.userUpdated?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.userDeleted">User Deleted</span></dt>
+        <dd>
+            {{bulletin.userDeleted?.login}}
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bulletin.remboursement">Remboursement</span></dt>
+        <dd>
+            <span *ngFor="let remboursement of bulletin.remboursements; let last = last">
+                <a [routerLink]="['/remboursement', remboursement?.id ]">{{remboursement.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,29 @@
+
+{
+    "senPaieApp": {
+        "remboursement" : {
+            "home": {
+                "title": "Remboursements",
+                "createLabel": "Create a new Remboursement",
+                "createOrEditLabel": "Create or edit a Remboursement"
+            },
+            "created": "A new Remboursement is created with identifier {{ param }}",
+            "updated": "A Remboursement is updated with identifier {{ param }}",
+            "deleted": "A Remboursement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Remboursement {{ id }}?"
+            },
+            "detail": {
+                "title": "Remboursement"
+            },
+            "dateRemboursement": "Date Remboursement",
+            "montant": "Montant",
+            "deleted": "Deleted",
+            "isRembourse": "Is Rembourse",
+            "detailPret": "Detail Pret",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "bulletins": "Bulletins"
+        }
+    }
+}

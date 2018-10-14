@@ -1,0 +1,112 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.demandeConge.home.title">Demande Conges</span>
+        <button class="btn btn-primary float-right jh-create-entity create-demande-conge" [routerLink]="['/', { outlets: { popup: ['demande-conge-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.demandeConge.home.createLabel">
+            Create new Demande Conge
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="demandeConges">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.demandeConge.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateDebut"><span jhiTranslate="senPaieApp.demandeConge.dateDebut">Date Debut</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateFin"><span jhiTranslate="senPaieApp.demandeConge.dateFin">Date Fin</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="motifRejet"><span jhiTranslate="senPaieApp.demandeConge.motifRejet">Motif Rejet</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.demandeConge.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="libelle"><span jhiTranslate="senPaieApp.demandeConge.libelle">Libelle</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="statutRH.libelle"><span jhiTranslate="senPaieApp.demandeConge.statutRH">Statut RH</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="statutDG.libelle"><span jhiTranslate="senPaieApp.demandeConge.statutDG">Statut DG</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.demandeConge.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userCreated.login"><span jhiTranslate="senPaieApp.demandeConge.userCreated">User Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userUpdated.login"><span jhiTranslate="senPaieApp.demandeConge.userUpdated">User Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDeleted.login"><span jhiTranslate="senPaieApp.demandeConge.userDeleted">User Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeAbsence.libelle"><span jhiTranslate="senPaieApp.demandeConge.typeAbsence">Type Absence</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let demandeConge of demandeConges ;trackBy: trackId">
+                <td><a [routerLink]="['../demande-conge', demandeConge.id ]">{{demandeConge.id}}</a></td>
+                <td>{{demandeConge.dateCreated | date:'mediumDate'}}</td>
+                <td>{{demandeConge.dateDebut | date:'mediumDate'}}</td>
+                <td>{{demandeConge.dateFin | date:'mediumDate'}}</td>
+                <td>{{demandeConge.motifRejet}}</td>
+                <td>{{demandeConge.deleted}}</td>
+                <td>{{demandeConge.libelle}}</td>
+                <td>
+                    <div *ngIf="demandeConge.statutRH">
+                        <a [routerLink]="['../statut-demande', demandeConge.statutRH?.id ]" >{{demandeConge.statutRH?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="demandeConge.statutDG">
+                        <a [routerLink]="['../statut-demande', demandeConge.statutDG?.id ]" >{{demandeConge.statutDG?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="demandeConge.collaborateur">
+                        <a [routerLink]="['../collaborateur', demandeConge.collaborateur?.id ]" >{{demandeConge.collaborateur?.prenom}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{demandeConge.userCreated?.login}}
+                </td>
+                <td>
+                    {{demandeConge.userUpdated?.login}}
+                </td>
+                <td>
+                    {{demandeConge.userDeleted?.login}}
+                </td>
+                <td>
+                    <div *ngIf="demandeConge.typeAbsence">
+                        <a [routerLink]="['../type-absence', demandeConge.typeAbsence?.id ]" >{{demandeConge.typeAbsence?.libelle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../demande-conge', demandeConge.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'demande-conge/'+ demandeConge.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="demandeConges && demandeConges.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

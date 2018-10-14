@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity MembreFamille.
+    -->
+    <changeSet id="20180914180326-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_collaborateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collaborateur"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_update_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_user_update_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_user_deleted_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_relation_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_type_relation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_relation"/>
+
+        <addForeignKeyConstraint baseColumnNames="sexe_id"
+                                 baseTableName="membre_famille"
+                                 constraintName="fk_membre_famille_sexe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sexe"/>
+
+    </changeSet>
+</databaseChangeLog>

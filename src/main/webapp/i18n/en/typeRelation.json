@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "typeRelation" : {
+            "home": {
+                "title": "Type Relations",
+                "createLabel": "Create a new Type Relation",
+                "createOrEditLabel": "Create or edit a Type Relation"
+            },
+            "created": "A new Type Relation is created with identifier {{ param }}",
+            "updated": "A Type Relation is updated with identifier {{ param }}",
+            "deleted": "A Type Relation is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Type Relation {{ id }}?"
+            },
+            "detail": {
+                "title": "Type Relation"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted",
+            "nbParts": "Nb Parts"
+        }
+    }
+}

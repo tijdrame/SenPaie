@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Bulletin.
+    -->
+    <changeSet id="20180920111537-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id"
+                                 baseTableName="bulletin"
+                                 constraintName="fk_bulletin_collaborateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collaborateur"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_paiement_id"
+                                 baseTableName="bulletin"
+                                 constraintName="fk_bulletin_type_paiement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_paiement"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_created_id"
+                                 baseTableName="bulletin"
+                                 constraintName="fk_bulletin_user_created_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_updated_id"
+                                 baseTableName="bulletin"
+                                 constraintName="fk_bulletin_user_updated_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id"
+                                 baseTableName="bulletin"
+                                 constraintName="fk_bulletin_user_deleted_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="bulletins_id"
+                                 baseTableName="bulletin_remboursement"
+                                 constraintName="fk_bulletin_remboursement_bulletins_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bulletin"/>
+        <addForeignKeyConstraint baseColumnNames="remboursements_id"
+                                 baseTableName="bulletin_remboursement"
+                                 constraintName="fk_bulletin_remboursement_remboursements_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="remboursement"/>
+        
+    </changeSet>
+</databaseChangeLog>

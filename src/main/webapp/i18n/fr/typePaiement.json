@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "typePaiement" : {
+            "home": {
+                "title": "TypePaiements",
+                "createLabel": "Créer un nouveau Type Paiement",
+                "createOrEditLabel": "Créer ou éditer un Type Paiement"
+            },
+            "created": "Un nouveau Type Paiement a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Type Paiement avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Type Paiement avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Type Paiement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Type Paiement"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

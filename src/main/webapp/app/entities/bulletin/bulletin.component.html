@@ -1,0 +1,132 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.bulletin.home.title">Bulletins</span>
+        <button class="btn btn-primary float-right jh-create-entity create-bulletin" [routerLink]="['/', { outlets: { popup: ['bulletin-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.bulletin.home.createLabel">
+            Create new Bulletin
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="bulletins">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="retenueIpm"><span jhiTranslate="senPaieApp.bulletin.retenueIpm">Retenue Ipm</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="retenuePharmacie"><span jhiTranslate="senPaieApp.bulletin.retenuePharmacie">Retenue Pharmacie</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="autreRetenue"><span jhiTranslate="senPaieApp.bulletin.autreRetenue">Autre Retenue</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.bulletin.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.bulletin.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateUpdated"><span jhiTranslate="senPaieApp.bulletin.dateUpdated">Date Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateDeleted"><span jhiTranslate="senPaieApp.bulletin.dateDeleted">Date Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="brutFiscal"><span jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="netAPayer"><span jhiTranslate="senPaieApp.bulletin.netAPayer">Net A Payer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="salaireBrutMensuel"><span jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel">Salaire Brut Mensuel</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="impotSurRevenu"><span jhiTranslate="senPaieApp.bulletin.impotSurRevenu">Impot Sur Revenu</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="trimf"><span jhiTranslate="senPaieApp.bulletin.trimf">Trimf</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipresPartSalariale"><span jhiTranslate="senPaieApp.bulletin.ipresPartSalariale">Ipres Part Salariale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totRetenue"><span jhiTranslate="senPaieApp.bulletin.totRetenue">Tot Retenue</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipresPartPatronales"><span jhiTranslate="senPaieApp.bulletin.ipresPartPatronales">Ipres Part Patronales</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cssAccidentDeTravail"><span jhiTranslate="senPaieApp.bulletin.cssAccidentDeTravail">Css Accident De Travail</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cssPrestationFamiliale"><span jhiTranslate="senPaieApp.bulletin.cssPrestationFamiliale">Css Prestation Familiale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipmPatronale"><span jhiTranslate="senPaieApp.bulletin.ipmPatronale">Ipm Patronale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contributionForfaitaire"><span jhiTranslate="senPaieApp.bulletin.contributionForfaitaire">Contribution Forfaitaire</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nbPart"><span jhiTranslate="senPaieApp.bulletin.nbPart">Nb Part</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nbFemmes"><span jhiTranslate="senPaieApp.bulletin.nbFemmes">Nb Femmes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nbEnfants"><span jhiTranslate="senPaieApp.bulletin.nbEnfants">Nb Enfants</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.bulletin.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typePaiement.libelle"><span jhiTranslate="senPaieApp.bulletin.typePaiement">Type Paiement</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userCreated.login"><span jhiTranslate="senPaieApp.bulletin.userCreated">User Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userUpdated.login"><span jhiTranslate="senPaieApp.bulletin.userUpdated">User Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDeleted.login"><span jhiTranslate="senPaieApp.bulletin.userDeleted">User Deleted</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bulletin of bulletins ;trackBy: trackId">
+                <td><a [routerLink]="['../bulletin', bulletin.id ]">{{bulletin.id}}</a></td>
+                <td>{{bulletin.retenueIpm}}</td>
+                <td>{{bulletin.retenuePharmacie}}</td>
+                <td>{{bulletin.autreRetenue}}</td>
+                <td>{{bulletin.deleted}}</td>
+                <td>{{bulletin.dateCreated | date:'mediumDate'}}</td>
+                <td>{{bulletin.dateUpdated | date:'mediumDate'}}</td>
+                <td>{{bulletin.dateDeleted | date:'mediumDate'}}</td>
+                <td>{{bulletin.brutFiscal}}</td>
+                <td>{{bulletin.netAPayer}}</td>
+                <td>{{bulletin.salaireBrutMensuel}}</td>
+                <td>{{bulletin.impotSurRevenu}}</td>
+                <td>{{bulletin.trimf}}</td>
+                <td>{{bulletin.ipresPartSalariale}}</td>
+                <td>{{bulletin.totRetenue}}</td>
+                <td>{{bulletin.ipresPartPatronales}}</td>
+                <td>{{bulletin.cssAccidentDeTravail}}</td>
+                <td>{{bulletin.cssPrestationFamiliale}}</td>
+                <td>{{bulletin.ipmPatronale}}</td>
+                <td>{{bulletin.contributionForfaitaire}}</td>
+                <td>{{bulletin.nbPart}}</td>
+                <td>{{bulletin.nbFemmes}}</td>
+                <td>{{bulletin.nbEnfants}}</td>
+                <td>
+                    <div *ngIf="bulletin.collaborateur">
+                        <a [routerLink]="['../collaborateur', bulletin.collaborateur?.id ]" >{{bulletin.collaborateur?.prenom}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="bulletin.typePaiement">
+                        <a [routerLink]="['../type-paiement', bulletin.typePaiement?.id ]" >{{bulletin.typePaiement?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{bulletin.userCreated?.login}}
+                </td>
+                <td>
+                    {{bulletin.userUpdated?.login}}
+                </td>
+                <td>
+                    {{bulletin.userDeleted?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../bulletin', bulletin.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bulletin/'+ bulletin.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="bulletins && bulletins.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

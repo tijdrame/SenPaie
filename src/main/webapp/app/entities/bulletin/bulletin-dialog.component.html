@@ -1,0 +1,203 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBulletinLabel" jhiTranslate="senPaieApp.bulletin.home.createOrEditLabel">Create or edit a Bulletin</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!bulletin.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="bulletin.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.retenueIpm" for="field_retenueIpm">Retenue Ipm</label>
+            <input type="number" class="form-control" name="retenueIpm" id="field_retenueIpm"
+                [(ngModel)]="bulletin.retenueIpm" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.retenuePharmacie" for="field_retenuePharmacie">Retenue Pharmacie</label>
+            <input type="number" class="form-control" name="retenuePharmacie" id="field_retenuePharmacie"
+                [(ngModel)]="bulletin.retenuePharmacie" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.autreRetenue" for="field_autreRetenue">Autre Retenue</label>
+            <input type="number" class="form-control" name="autreRetenue" id="field_autreRetenue"
+                [(ngModel)]="bulletin.autreRetenue" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="bulletin.deleted" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.dateCreated" for="field_dateCreated">Date Created</label>
+            <div class="input-group">
+                <input id="field_dateCreated" type="text" class="form-control" name="dateCreated" ngbDatepicker  #dateCreatedDp="ngbDatepicker" [(ngModel)]="bulletin.dateCreated"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateCreatedDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.dateUpdated" for="field_dateUpdated">Date Updated</label>
+            <div class="input-group">
+                <input id="field_dateUpdated" type="text" class="form-control" name="dateUpdated" ngbDatepicker  #dateUpdatedDp="ngbDatepicker" [(ngModel)]="bulletin.dateUpdated"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateUpdatedDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.dateDeleted" for="field_dateDeleted">Date Deleted</label>
+            <div class="input-group">
+                <input id="field_dateDeleted" type="text" class="form-control" name="dateDeleted" ngbDatepicker  #dateDeletedDp="ngbDatepicker" [(ngModel)]="bulletin.dateDeleted"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateDeletedDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.brutFiscal" for="field_brutFiscal">Brut Fiscal</label>
+            <input type="number" class="form-control" name="brutFiscal" id="field_brutFiscal"
+                [(ngModel)]="bulletin.brutFiscal" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.netAPayer" for="field_netAPayer">Net A Payer</label>
+            <input type="number" class="form-control" name="netAPayer" id="field_netAPayer"
+                [(ngModel)]="bulletin.netAPayer" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.salaireBrutMensuel" for="field_salaireBrutMensuel">Salaire Brut Mensuel</label>
+            <input type="number" class="form-control" name="salaireBrutMensuel" id="field_salaireBrutMensuel"
+                [(ngModel)]="bulletin.salaireBrutMensuel" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.impotSurRevenu" for="field_impotSurRevenu">Impot Sur Revenu</label>
+            <input type="number" class="form-control" name="impotSurRevenu" id="field_impotSurRevenu"
+                [(ngModel)]="bulletin.impotSurRevenu" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.trimf" for="field_trimf">Trimf</label>
+            <input type="number" class="form-control" name="trimf" id="field_trimf"
+                [(ngModel)]="bulletin.trimf" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipresPartSalariale" for="field_ipresPartSalariale">Ipres Part Salariale</label>
+            <input type="number" class="form-control" name="ipresPartSalariale" id="field_ipresPartSalariale"
+                [(ngModel)]="bulletin.ipresPartSalariale" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.totRetenue" for="field_totRetenue">Tot Retenue</label>
+            <input type="number" class="form-control" name="totRetenue" id="field_totRetenue"
+                [(ngModel)]="bulletin.totRetenue" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipresPartPatronales" for="field_ipresPartPatronales">Ipres Part Patronales</label>
+            <input type="number" class="form-control" name="ipresPartPatronales" id="field_ipresPartPatronales"
+                [(ngModel)]="bulletin.ipresPartPatronales" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.cssAccidentDeTravail" for="field_cssAccidentDeTravail">Css Accident De Travail</label>
+            <input type="number" class="form-control" name="cssAccidentDeTravail" id="field_cssAccidentDeTravail"
+                [(ngModel)]="bulletin.cssAccidentDeTravail" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.cssPrestationFamiliale" for="field_cssPrestationFamiliale">Css Prestation Familiale</label>
+            <input type="number" class="form-control" name="cssPrestationFamiliale" id="field_cssPrestationFamiliale"
+                [(ngModel)]="bulletin.cssPrestationFamiliale" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.ipmPatronale" for="field_ipmPatronale">Ipm Patronale</label>
+            <input type="number" class="form-control" name="ipmPatronale" id="field_ipmPatronale"
+                [(ngModel)]="bulletin.ipmPatronale" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.contributionForfaitaire" for="field_contributionForfaitaire">Contribution Forfaitaire</label>
+            <input type="number" class="form-control" name="contributionForfaitaire" id="field_contributionForfaitaire"
+                [(ngModel)]="bulletin.contributionForfaitaire" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.nbPart" for="field_nbPart">Nb Part</label>
+            <input type="number" class="form-control" name="nbPart" id="field_nbPart"
+                [(ngModel)]="bulletin.nbPart" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.nbFemmes" for="field_nbFemmes">Nb Femmes</label>
+            <input type="number" class="form-control" name="nbFemmes" id="field_nbFemmes"
+                [(ngModel)]="bulletin.nbFemmes" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.nbEnfants" for="field_nbEnfants">Nb Enfants</label>
+            <input type="number" class="form-control" name="nbEnfants" id="field_nbEnfants"
+                [(ngModel)]="bulletin.nbEnfants" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.collaborateur" for="field_collaborateur">Collaborateur</label>
+            <select class="form-control" id="field_collaborateur" name="collaborateur" [(ngModel)]="bulletin.collaborateur"  required>
+                <option *ngIf="!editForm.value.collaborateur" [ngValue]="null" selected></option>
+                <option [ngValue]="collaborateurOption.id === bulletin.collaborateur?.id ? bulletin.collaborateur : collaborateurOption" *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">{{collaborateurOption.prenom}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.collaborateur?.dirty && editForm.controls.collaborateur?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.collaborateur?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.typePaiement" for="field_typePaiement">Type Paiement</label>
+            <select class="form-control" id="field_typePaiement" name="typePaiement" [(ngModel)]="bulletin.typePaiement"  required>
+                <option *ngIf="!editForm.value.typePaiement" [ngValue]="null" selected></option>
+                <option [ngValue]="typePaiementOption.id === bulletin.typePaiement?.id ? bulletin.typePaiement : typePaiementOption" *ngFor="let typePaiementOption of typepaiements; trackBy: trackTypePaiementById">{{typePaiementOption.libelle}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.typePaiement?.dirty && editForm.controls.typePaiement?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.typePaiement?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.userCreated" for="field_userCreated">User Created</label>
+            <select class="form-control" id="field_userCreated" name="userCreated" [(ngModel)]="bulletin.userCreated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === bulletin.userCreated?.id ? bulletin.userCreated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.userUpdated" for="field_userUpdated">User Updated</label>
+            <select class="form-control" id="field_userUpdated" name="userUpdated" [(ngModel)]="bulletin.userUpdated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === bulletin.userUpdated?.id ? bulletin.userUpdated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bulletin.userDeleted" for="field_userDeleted">User Deleted</label>
+            <select class="form-control" id="field_userDeleted" name="userDeleted" [(ngModel)]="bulletin.userDeleted" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === bulletin.userDeleted?.id ? bulletin.userDeleted : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="senPaieApp.bulletin.remboursement" for="field_remboursement">Remboursement</label>
+            <select class="form-control" id="field_remboursement" multiple name="remboursement" [(ngModel)]="bulletin.remboursements">
+                <option [ngValue]="getSelected(bulletin.remboursements, remboursementOption)" *ngFor="let remboursementOption of remboursements; trackBy: trackRemboursementById">{{remboursementOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "sexe" : {
+            "home": {
+                "title": "Sexes",
+                "createLabel": "Create a new Sexe",
+                "createOrEditLabel": "Create or edit a Sexe"
+            },
+            "created": "A new Sexe is created with identifier {{ param }}",
+            "updated": "A Sexe is updated with identifier {{ param }}",
+            "deleted": "A Sexe is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sexe {{ id }}?"
+            },
+            "detail": {
+                "title": "Sexe"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "fonction" : {
+            "home": {
+                "title": "Fonctions",
+                "createLabel": "Créer un nouveau Fonction",
+                "createOrEditLabel": "Créer ou éditer un Fonction"
+            },
+            "created": "Un nouveau Fonction a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Fonction avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Fonction avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Fonction {{ id }} ?"
+            },
+            "detail": {
+                "title": "Fonction"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

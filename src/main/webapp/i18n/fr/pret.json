@@ -1,0 +1,29 @@
+
+{
+    "senPaieApp": {
+        "pret" : {
+            "home": {
+                "title": "Prets",
+                "createLabel": "Créer un nouveau Pret",
+                "createOrEditLabel": "Créer ou éditer un Pret"
+            },
+            "created": "Un nouveau Pret a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Pret avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Pret avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Pret {{ id }} ?"
+            },
+            "detail": {
+                "title": "Pret"
+            },
+            "libelle": "Libelle",
+            "nbRemboursement": "Nb Remboursement",
+            "datePret": "Date Pret",
+            "dateDebutRemboursement": "Date Debut Remboursement",
+            "deleted": "Deleted",
+            "userCreate": "User Create",
+            "userUpdate": "User Update",
+            "userDeleted": "User Deleted"
+        }
+    }
+}

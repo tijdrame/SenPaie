@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity DetailPret.
+    -->
+    <changeSet id="20180918161630-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id"
+                                 baseTableName="detail_pret"
+                                 constraintName="fk_detail_pret_collaborateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collaborateur"/>
+
+        <addForeignKeyConstraint baseColumnNames="pret_id"
+                                 baseTableName="detail_pret"
+                                 constraintName="fk_detail_pret_pret_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pret"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_created_id"
+                                 baseTableName="detail_pret"
+                                 constraintName="fk_detail_pret_user_created_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_updated_id"
+                                 baseTableName="detail_pret"
+                                 constraintName="fk_detail_pret_user_updated_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id"
+                                 baseTableName="detail_pret"
+                                 constraintName="fk_detail_pret_user_deleted_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>

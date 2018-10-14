@@ -1,0 +1,277 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCollaborateurLabel" jhiTranslate="senPaieApp.collaborateur.home.createOrEditLabel">Create or edit a Collaborateur</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!collaborateur.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="collaborateur.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                [(ngModel)]="collaborateur.prenom" required/>
+            <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="collaborateur.nom" required/>
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.matricule" for="field_matricule">Matricule</label>
+            <input type="text" class="form-control" name="matricule" id="field_matricule"
+                [(ngModel)]="collaborateur.matricule" required/>
+            <div [hidden]="!(editForm.controls.matricule?.dirty && editForm.controls.matricule?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.matricule?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="collaborateur.adresse" required/>
+            <div [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.adresse?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.tauxHoraire" for="field_tauxHoraire">Taux Horaire</label>
+            <input type="number" class="form-control" name="tauxHoraire" id="field_tauxHoraire"
+                [(ngModel)]="collaborateur.tauxHoraire" required/>
+            <div [hidden]="!(editForm.controls.tauxHoraire?.dirty && editForm.controls.tauxHoraire?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.tauxHoraire?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.tauxHoraire?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.salaireDeBase" for="field_salaireDeBase">Salaire De Base</label>
+            <input type="number" class="form-control" name="salaireDeBase" id="field_salaireDeBase"
+                [(ngModel)]="collaborateur.salaireDeBase" required/>
+            <div [hidden]="!(editForm.controls.salaireDeBase?.dirty && editForm.controls.salaireDeBase?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.salaireDeBase?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.salaireDeBase?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.surSalaire" for="field_surSalaire">Sur Salaire</label>
+            <input type="number" class="form-control" name="surSalaire" id="field_surSalaire"
+                [(ngModel)]="collaborateur.surSalaire" required/>
+            <div [hidden]="!(editForm.controls.surSalaire?.dirty && editForm.controls.surSalaire?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.surSalaire?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.surSalaire?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.retenueRepas" for="field_retenueRepas">Retenue Repas</label>
+            <input type="number" class="form-control" name="retenueRepas" id="field_retenueRepas"
+                [(ngModel)]="collaborateur.retenueRepas" required/>
+            <div [hidden]="!(editForm.controls.retenueRepas?.dirty && editForm.controls.retenueRepas?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.retenueRepas?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.retenueRepas?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="collaborateur.deleted" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+            <div class="input-group">
+                <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker  #dateNaissanceDp="ngbDatepicker" [(ngModel)]="collaborateur.dateNaissance"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateNaissance?.dirty && editForm.controls.dateNaissance?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateNaissance?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.photo" for="field_photo">Photo</label>
+            <div>
+                <img [src]="'data:' + collaborateur.photoContentType + ';base64,' + collaborateur.photo" style="max-height: 100px;" *ngIf="collaborateur.photo" alt="collaborateur image"/>
+                <div *ngIf="collaborateur.photo" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{collaborateur.photoContentType}}, {{byteSize(collaborateur.photo)}}</span>
+                    <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_photo" (change)="setFileData($event, collaborateur, 'photo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                [(ngModel)]="collaborateur.photo" />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                [(ngModel)]="collaborateur.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.login" for="field_login">Login</label>
+            <input type="text" class="form-control" name="login" id="field_login"
+                [(ngModel)]="collaborateur.login" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="collaborateur.email" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.primeTransport" for="field_primeTransport">Prime Transport</label>
+            <input type="number" class="form-control" name="primeTransport" id="field_primeTransport"
+                [(ngModel)]="collaborateur.primeTransport" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.telephone" for="field_telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="field_telephone"
+                [(ngModel)]="collaborateur.telephone" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.fonction" for="field_fonction">Fonction</label>
+            <select class="form-control" id="field_fonction" name="fonction" [(ngModel)]="collaborateur.fonction" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="fonctionOption.id === collaborateur.fonction?.id ? collaborateur.fonction : fonctionOption" *ngFor="let fonctionOption of fonctions; trackBy: trackFonctionById">{{fonctionOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.categorie" for="field_categorie">Categorie</label>
+            <select class="form-control" id="field_categorie" name="categorie" [(ngModel)]="collaborateur.categorie" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="categorieOption.id === collaborateur.categorie?.id ? collaborateur.categorie : categorieOption" *ngFor="let categorieOption of categories; trackBy: trackCategorieById">{{categorieOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.nationalite" for="field_nationalite">Nationalite</label>
+            <select class="form-control" id="field_nationalite" name="nationalite" [(ngModel)]="collaborateur.nationalite" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="nationaliteOption.id === collaborateur.nationalite?.id ? collaborateur.nationalite : nationaliteOption" *ngFor="let nationaliteOption of nationalites; trackBy: trackNationaliteById">{{nationaliteOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.statut" for="field_statut">Statut</label>
+            <select class="form-control" id="field_statut" name="statut" [(ngModel)]="collaborateur.statut" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="statutOption.id === collaborateur.statut?.id ? collaborateur.statut : statutOption" *ngFor="let statutOption of statuts; trackBy: trackStatutById">{{statutOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale" for="field_situationMatrimoniale">Situation Matrimoniale</label>
+            <select class="form-control" id="field_situationMatrimoniale" name="situationMatrimoniale" [(ngModel)]="collaborateur.situationMatrimoniale" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="situationMatrimonialeOption.id === collaborateur.situationMatrimoniale?.id ? collaborateur.situationMatrimoniale : situationMatrimonialeOption" *ngFor="let situationMatrimonialeOption of situationmatrimoniales; trackBy: trackSituationMatrimonialeById">{{situationMatrimonialeOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.typeContrat" for="field_typeContrat">Type Contrat</label>
+            <select class="form-control" id="field_typeContrat" name="typeContrat" [(ngModel)]="collaborateur.typeContrat" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="typeContratOption.id === collaborateur.typeContrat?.id ? collaborateur.typeContrat : typeContratOption" *ngFor="let typeContratOption of typecontrats; trackBy: trackTypeContratById">{{typeContratOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.userCreated" for="field_userCreated">User Created</label>
+            <select class="form-control" id="field_userCreated" name="userCreated" [(ngModel)]="collaborateur.userCreated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === collaborateur.userCreated?.id ? collaborateur.userCreated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.userUpdated" for="field_userUpdated">User Updated</label>
+            <select class="form-control" id="field_userUpdated" name="userUpdated" [(ngModel)]="collaborateur.userUpdated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === collaborateur.userUpdated?.id ? collaborateur.userUpdated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.userDeleted" for="field_userDeleted">User Deleted</label>
+            <select class="form-control" id="field_userDeleted" name="userDeleted" [(ngModel)]="collaborateur.userDeleted" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === collaborateur.userDeleted?.id ? collaborateur.userDeleted : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.regime" for="field_regime">Regime</label>
+            <select class="form-control" id="field_regime" name="regime" [(ngModel)]="collaborateur.regime"  required>
+                <option *ngIf="!editForm.value.regime" [ngValue]="null" selected></option>
+                <option [ngValue]="regimeOption.id === collaborateur.regime?.id ? collaborateur.regime : regimeOption" *ngFor="let regimeOption of regimes; trackBy: trackRegimeById">{{regimeOption.libelle}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.regime?.dirty && editForm.controls.regime?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.regime?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.userCollab" for="field_userCollab">User Collab</label>
+            <select class="form-control" id="field_userCollab" name="userCollab" [(ngModel)]="collaborateur.userCollab" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === collaborateur.userCollab?.id ? collaborateur.userCollab : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.sexe" for="field_sexe">Sexe</label>
+            <select class="form-control" id="field_sexe" name="sexe" [(ngModel)]="collaborateur.sexe" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="sexeOption.id === collaborateur.sexe?.id ? collaborateur.sexe : sexeOption" *ngFor="let sexeOption of sexes; trackBy: trackSexeById">{{sexeOption.libelle}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

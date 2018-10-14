@@ -1,0 +1,70 @@
+
+<div *ngIf="bareme">
+    <h2><span jhiTranslate="senPaieApp.bareme.detail.title">Bareme</span> {{bareme.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.bareme.revenuBrut">Revenu Brut</span></dt>
+        <dd>
+            <span>{{bareme.revenuBrut}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.trimF">Trim F</span></dt>
+        <dd>
+            <span>{{bareme.trimF}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.unePart">Une Part</span></dt>
+        <dd>
+            <span>{{bareme.unePart}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.unePartEtDemi">Une Part Et Demi</span></dt>
+        <dd>
+            <span>{{bareme.unePartEtDemi}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.deuxParts">Deux Parts</span></dt>
+        <dd>
+            <span>{{bareme.deuxParts}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.deuxPartsEtDemi">Deux Parts Et Demi</span></dt>
+        <dd>
+            <span>{{bareme.deuxPartsEtDemi}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.troisParts">Trois Parts</span></dt>
+        <dd>
+            <span>{{bareme.troisParts}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.troisPartsEtDemi">Trois Parts Et Demi</span></dt>
+        <dd>
+            <span>{{bareme.troisPartsEtDemi}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.quatreParts">Quatre Parts</span></dt>
+        <dd>
+            <span>{{bareme.quatreParts}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.quatrePartsEtDemi">Quatre Parts Et Demi</span></dt>
+        <dd>
+            <span>{{bareme.quatrePartsEtDemi}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.cinqParts">Cinq Parts</span></dt>
+        <dd>
+            <span>{{bareme.cinqParts}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.bareme.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{bareme.deleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bareme/'+ bareme.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

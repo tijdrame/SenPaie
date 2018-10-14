@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity DemandeConge.
+    -->
+    <changeSet id="20180927104955-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="statutrh_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_statutrh_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="statut_demande"/>
+
+        <addForeignKeyConstraint baseColumnNames="statutdg_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_statutdg_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="statut_demande"/>
+
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_collaborateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collaborateur"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_created_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_user_created_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_updated_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_user_updated_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_deleted_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_user_deleted_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_absence_id"
+                                 baseTableName="demande_conge"
+                                 constraintName="fk_demande_conge_type_absence_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_absence"/>
+
+    </changeSet>
+</databaseChangeLog>

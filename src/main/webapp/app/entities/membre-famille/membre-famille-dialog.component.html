@@ -1,0 +1,152 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMembreFamilleLabel" jhiTranslate="senPaieApp.membreFamille.home.createOrEditLabel">Create or edit a Membre Famille</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!membreFamille.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="membreFamille.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                [(ngModel)]="membreFamille.prenom" required/>
+            <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="membreFamille.nom" required/>
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="membreFamille.adresse" required/>
+            <div [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.adresse?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.isActif" for="field_isActif">Is Actif</label>
+            <input type="checkbox" class="form-control" name="isActif" id="field_isActif"
+                [(ngModel)]="membreFamille.isActif" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="membreFamille.deleted" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+            <div class="input-group">
+                <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker  #dateNaissanceDp="ngbDatepicker" [(ngModel)]="membreFamille.dateNaissance"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.dateMariage" for="field_dateMariage">Date Mariage</label>
+            <div class="input-group">
+                <input id="field_dateMariage" type="text" class="form-control" name="dateMariage" ngbDatepicker  #dateMariageDp="ngbDatepicker" [(ngModel)]="membreFamille.dateMariage"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateMariageDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.photo" for="field_photo">Photo</label>
+            <div>
+                <img [src]="'data:' + membreFamille.photoContentType + ';base64,' + membreFamille.photo" style="max-height: 100px;" *ngIf="membreFamille.photo" alt="membreFamille image"/>
+                <div *ngIf="membreFamille.photo" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{membreFamille.photoContentType}}, {{byteSize(membreFamille.photo)}}</span>
+                    <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_photo" (change)="setFileData($event, membreFamille, 'photo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                [(ngModel)]="membreFamille.photo" />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                [(ngModel)]="membreFamille.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.telephone" for="field_telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="field_telephone"
+                [(ngModel)]="membreFamille.telephone" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.collaborateur" for="field_collaborateur">Collaborateur</label>
+            <select class="form-control" id="field_collaborateur" name="collaborateur" [(ngModel)]="membreFamille.collaborateur" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="collaborateurOption.id === membreFamille.collaborateur?.id ? membreFamille.collaborateur : collaborateurOption" *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">{{collaborateurOption.prenom}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="membreFamille.user" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === membreFamille.user?.id ? membreFamille.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.userUpdate" for="field_userUpdate">User Update</label>
+            <select class="form-control" id="field_userUpdate" name="userUpdate" [(ngModel)]="membreFamille.userUpdate" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === membreFamille.userUpdate?.id ? membreFamille.userUpdate : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.userDeleted" for="field_userDeleted">User Deleted</label>
+            <select class="form-control" id="field_userDeleted" name="userDeleted" [(ngModel)]="membreFamille.userDeleted" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === membreFamille.userDeleted?.id ? membreFamille.userDeleted : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.typeRelation" for="field_typeRelation">Type Relation</label>
+            <select class="form-control" id="field_typeRelation" name="typeRelation" [(ngModel)]="membreFamille.typeRelation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="typeRelationOption.id === membreFamille.typeRelation?.id ? membreFamille.typeRelation : typeRelationOption" *ngFor="let typeRelationOption of typerelations; trackBy: trackTypeRelationById">{{typeRelationOption.libelle}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.membreFamille.sexe" for="field_sexe">Sexe</label>
+            <select class="form-control" id="field_sexe" name="sexe" [(ngModel)]="membreFamille.sexe" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="sexeOption.id === membreFamille.sexe?.id ? membreFamille.sexe : sexeOption" *ngFor="let sexeOption of sexes; trackBy: trackSexeById">{{sexeOption.libelle}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

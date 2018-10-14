@@ -1,0 +1,46 @@
+
+<div *ngIf="regime">
+    <h2><span jhiTranslate="senPaieApp.regime.detail.title">Regime</span> {{regime.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.regime.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{regime.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.regime.code">Code</span></dt>
+        <dd>
+            <span>{{regime.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.regime.tauxPatronal">Taux Patronal</span></dt>
+        <dd>
+            <span>{{regime.tauxPatronal}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.regime.tauxSalarial">Taux Salarial</span></dt>
+        <dd>
+            <span>{{regime.tauxSalarial}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.regime.plafond">Plafond</span></dt>
+        <dd>
+            <span>{{regime.plafond}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.regime.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{regime.deleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'regime/'+ regime.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

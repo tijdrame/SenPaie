@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "situationMatrimoniale" : {
+            "home": {
+                "title": "Situation Matrimoniales",
+                "createLabel": "Create a new Situation Matrimoniale",
+                "createOrEditLabel": "Create or edit a Situation Matrimoniale"
+            },
+            "created": "A new Situation Matrimoniale is created with identifier {{ param }}",
+            "updated": "A Situation Matrimoniale is updated with identifier {{ param }}",
+            "deleted": "A Situation Matrimoniale is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Situation Matrimoniale {{ id }}?"
+            },
+            "detail": {
+                "title": "Situation Matrimoniale"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted",
+            "nbParts": "Nb Parts"
+        }
+    }
+}

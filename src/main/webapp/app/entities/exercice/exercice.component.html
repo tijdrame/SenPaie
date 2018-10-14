@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.exercice.home.title">Exercices</span>
+        <button class="btn btn-primary float-right jh-create-entity create-exercice" [routerLink]="['/', { outlets: { popup: ['exercice-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.exercice.home.createLabel">
+            Create new Exercice
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="exercices">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="debutExercice"><span jhiTranslate="senPaieApp.exercice.debutExercice">Debut Exercice</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="finExercice"><span jhiTranslate="senPaieApp.exercice.finExercice">Fin Exercice</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="actif"><span jhiTranslate="senPaieApp.exercice.actif">Actif</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.exercice.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let exercice of exercices ;trackBy: trackId">
+                <td><a [routerLink]="['../exercice', exercice.id ]">{{exercice.id}}</a></td>
+                <td>{{exercice.debutExercice}}</td>
+                <td>{{exercice.finExercice}}</td>
+                <td>{{exercice.actif}}</td>
+                <td>{{exercice.deleted}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../exercice', exercice.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'exercice/'+ exercice.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'exercice/'+ exercice.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="exercices && exercices.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

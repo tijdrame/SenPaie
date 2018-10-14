@@ -1,0 +1,100 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.absence.home.title">Absences</span>
+        <button class="btn btn-primary float-right jh-create-entity create-absence" [routerLink]="['/', { outlets: { popup: ['absence-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.absence.home.createLabel">
+            Create new Absence
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="absences">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateAbsence"><span jhiTranslate="senPaieApp.absence.dateAbsence">Date Absence</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.absence.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.absence.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userCreated.login"><span jhiTranslate="senPaieApp.absence.userCreated">User Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userUpdated.login"><span jhiTranslate="senPaieApp.absence.userUpdated">User Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDeleted.login"><span jhiTranslate="senPaieApp.absence.userDeleted">User Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.absence.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="motif.libelle"><span jhiTranslate="senPaieApp.absence.motif">Motif</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="exercice.debutExercice"><span jhiTranslate="senPaieApp.absence.exercice">Exercice</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let absence of absences ;trackBy: trackId">
+                <td><a [routerLink]="['../absence', absence.id ]">{{absence.id}}</a></td>
+                <td>{{absence.dateAbsence | date:'mediumDate'}}</td>
+                <td>{{absence.deleted}}</td>
+                <td>{{absence.dateCreated | date:'mediumDate'}}</td>
+                <td>
+                    {{absence.userCreated?.login}}
+                </td>
+                <td>
+                    {{absence.userUpdated?.login}}
+                </td>
+                <td>
+                    {{absence.userDeleted?.login}}
+                </td>
+                <td>
+                    <div *ngIf="absence.collaborateur">
+                        <a [routerLink]="['../collaborateur', absence.collaborateur?.id ]" >{{absence.collaborateur?.prenom}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="absence.motif">
+                        <a [routerLink]="['../motif', absence.motif?.id ]" >{{absence.motif?.libelle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="absence.exercice">
+                        <a [routerLink]="['../exercice', absence.exercice?.id ]" >{{absence.exercice?.debutExercice}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../absence', absence.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'absence/'+ absence.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'absence/'+ absence.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="absences && absences.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

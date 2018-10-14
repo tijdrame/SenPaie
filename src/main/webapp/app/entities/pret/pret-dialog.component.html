@@ -1,0 +1,109 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPretLabel" jhiTranslate="senPaieApp.pret.home.createOrEditLabel">Create or edit a Pret</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pret.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pret.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.libelle" for="field_libelle">Libelle</label>
+            <input type="text" class="form-control" name="libelle" id="field_libelle"
+                [(ngModel)]="pret.libelle" required/>
+            <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.nbRemboursement" for="field_nbRemboursement">Nb Remboursement</label>
+            <input type="number" class="form-control" name="nbRemboursement" id="field_nbRemboursement"
+                [(ngModel)]="pret.nbRemboursement" required/>
+            <div [hidden]="!(editForm.controls.nbRemboursement?.dirty && editForm.controls.nbRemboursement?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nbRemboursement?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.nbRemboursement?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.datePret" for="field_datePret">Date Pret</label>
+            <div class="input-group">
+                <input id="field_datePret" type="text" class="form-control" name="datePret" ngbDatepicker  #datePretDp="ngbDatepicker" [(ngModel)]="pret.datePret"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="datePretDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.datePret?.dirty && editForm.controls.datePret?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.datePret?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.dateDebutRemboursement" for="field_dateDebutRemboursement">Date Debut Remboursement</label>
+            <div class="input-group">
+                <input id="field_dateDebutRemboursement" type="text" class="form-control" name="dateDebutRemboursement" ngbDatepicker  #dateDebutRemboursementDp="ngbDatepicker" [(ngModel)]="pret.dateDebutRemboursement"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateDebutRemboursementDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateDebutRemboursement?.dirty && editForm.controls.dateDebutRemboursement?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateDebutRemboursement?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="pret.deleted" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.userCreate" for="field_userCreate">User Create</label>
+            <select class="form-control" id="field_userCreate" name="userCreate" [(ngModel)]="pret.userCreate" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === pret.userCreate?.id ? pret.userCreate : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.userUpdate" for="field_userUpdate">User Update</label>
+            <select class="form-control" id="field_userUpdate" name="userUpdate" [(ngModel)]="pret.userUpdate" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === pret.userUpdate?.id ? pret.userUpdate : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.pret.userDeleted" for="field_userDeleted">User Deleted</label>
+            <select class="form-control" id="field_userDeleted" name="userDeleted" [(ngModel)]="pret.userDeleted" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === pret.userDeleted?.id ? pret.userDeleted : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

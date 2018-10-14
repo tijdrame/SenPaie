@@ -1,0 +1,38 @@
+
+<div *ngIf="situationMatrimoniale">
+    <h2><span jhiTranslate="senPaieApp.situationMatrimoniale.detail.title">Situation Matrimoniale</span> {{situationMatrimoniale.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.situationMatrimoniale.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{situationMatrimoniale.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.situationMatrimoniale.code">Code</span></dt>
+        <dd>
+            <span>{{situationMatrimoniale.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.situationMatrimoniale.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{situationMatrimoniale.deleted}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.situationMatrimoniale.nbParts">Nb Parts</span></dt>
+        <dd>
+            <span>{{situationMatrimoniale.nbParts}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'situation-matrimoniale/'+ situationMatrimoniale.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

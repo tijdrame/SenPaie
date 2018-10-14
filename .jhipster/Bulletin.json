@@ -1,0 +1,151 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "collaborateur",
+            "otherEntityName": "collaborateur",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "prenom"
+        },
+        {
+            "relationshipName": "typePaiement",
+            "otherEntityName": "typePaiement",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "libelle"
+        },
+        {
+            "relationshipName": "userCreated",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bulletin"
+        },
+        {
+            "relationshipName": "userUpdated",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bulletin"
+        },
+        {
+            "relationshipName": "userDeleted",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bulletin"
+        },
+        {
+            "relationshipName": "remboursement",
+            "otherEntityName": "remboursement",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bulletin"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "retenueIpm",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "retenuePharmacie",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "autreRetenue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "dateCreated",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateUpdated",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateDeleted",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "brutFiscal",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "netAPayer",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "salaireBrutMensuel",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "impotSurRevenu",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "trimf",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ipresPartSalariale",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "totRetenue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ipresPartPatronales",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cssAccidentDeTravail",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cssPrestationFamiliale",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ipmPatronale",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "contributionForfaitaire",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "nbPart",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "nbFemmes",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nbEnfants",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180920111537",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "bulletin",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

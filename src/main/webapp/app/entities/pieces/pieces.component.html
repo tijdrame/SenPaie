@@ -1,0 +1,103 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.pieces.home.title">Pieces</span>
+        <button class="btn btn-primary float-right jh-create-entity create-pieces" [routerLink]="['/', { outlets: { popup: ['pieces-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.pieces.home.createLabel">
+            Create new Pieces
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pieces">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="libelle"><span jhiTranslate="senPaieApp.pieces.libelle">Libelle</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateDebut"><span jhiTranslate="senPaieApp.pieces.dateDebut">Date Debut</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateExpiration"><span jhiTranslate="senPaieApp.pieces.dateExpiration">Date Expiration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="image"><span jhiTranslate="senPaieApp.pieces.image">Image</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateCreated"><span jhiTranslate="senPaieApp.pieces.dateCreated">Date Created</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="senPaieApp.pieces.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateDeleted"><span jhiTranslate="senPaieApp.pieces.dateDeleted">Date Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateUpdated"><span jhiTranslate="senPaieApp.pieces.dateUpdated">Date Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.pieces.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="senPaieApp.pieces.user">User</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userUpdated.login"><span jhiTranslate="senPaieApp.pieces.userUpdated">User Updated</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDeleted.login"><span jhiTranslate="senPaieApp.pieces.userDeleted">User Deleted</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pieces of pieces ;trackBy: trackId">
+                <td><a [routerLink]="['../pieces', pieces.id ]">{{pieces.id}}</a></td>
+                <td>{{pieces.libelle}}</td>
+                <td>{{pieces.dateDebut | date:'mediumDate'}}</td>
+                <td>{{pieces.dateExpiration | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="pieces.image" (click)="openFile(pieces.imageContentType, pieces.image)">
+                        <img [src]="'data:' + pieces.imageContentType + ';base64,' + pieces.image" style="max-height: 30px;" alt="pieces image"/>
+                    </a>
+                    <span *ngIf="pieces.image">{{pieces.imageContentType}}, {{byteSize(pieces.image)}}</span>
+                </td>
+                <td>{{pieces.dateCreated | date:'mediumDate'}}</td>
+                <td>{{pieces.deleted}}</td>
+                <td>{{pieces.dateDeleted | date:'mediumDate'}}</td>
+                <td>{{pieces.dateUpdated | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="pieces.collaborateur">
+                        <a [routerLink]="['../collaborateur', pieces.collaborateur?.id ]" >{{pieces.collaborateur?.prenom}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{pieces.user?.login}}
+                </td>
+                <td>
+                    {{pieces.userUpdated?.login}}
+                </td>
+                <td>
+                    {{pieces.userDeleted?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pieces', pieces.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pieces/'+ pieces.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pieces/'+ pieces.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="pieces && pieces.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

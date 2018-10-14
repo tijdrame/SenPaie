@@ -1,0 +1,49 @@
+
+{
+    "senPaieApp": {
+        "bulletin" : {
+            "home": {
+                "title": "Bulletins",
+                "createLabel": "Create a new Bulletin",
+                "createOrEditLabel": "Create or edit a Bulletin"
+            },
+            "created": "A new Bulletin is created with identifier {{ param }}",
+            "updated": "A Bulletin is updated with identifier {{ param }}",
+            "deleted": "A Bulletin is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Bulletin {{ id }}?"
+            },
+            "detail": {
+                "title": "Bulletin"
+            },
+            "retenueIpm": "Retenue Ipm",
+            "retenuePharmacie": "Retenue Pharmacie",
+            "autreRetenue": "Autre Retenue",
+            "deleted": "Deleted",
+            "dateCreated": "Date Created",
+            "dateUpdated": "Date Updated",
+            "dateDeleted": "Date Deleted",
+            "brutFiscal": "Brut Fiscal",
+            "netAPayer": "Net A Payer",
+            "salaireBrutMensuel": "Salaire Brut Mensuel",
+            "impotSurRevenu": "Impot Sur Revenu",
+            "trimf": "Trimf",
+            "ipresPartSalariale": "Ipres Part Salariale",
+            "totRetenue": "Tot Retenue",
+            "ipresPartPatronales": "Ipres Part Patronales",
+            "cssAccidentDeTravail": "Css Accident De Travail",
+            "cssPrestationFamiliale": "Css Prestation Familiale",
+            "ipmPatronale": "Ipm Patronale",
+            "contributionForfaitaire": "Contribution Forfaitaire",
+            "nbPart": "Nb Part",
+            "nbFemmes": "Nb Femmes",
+            "nbEnfants": "Nb Enfants",
+            "collaborateur": "Collaborateur",
+            "typePaiement": "Type Paiement",
+            "userCreated": "User Created",
+            "userUpdated": "User Updated",
+            "userDeleted": "User Deleted",
+            "remboursement": "Remboursement"
+        }
+    }
+}

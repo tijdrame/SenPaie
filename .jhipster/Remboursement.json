@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "detailPret",
+            "otherEntityName": "detailPret",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "userCreated",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "remboursement"
+        },
+        {
+            "relationshipName": "userUpdated",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "remboursement"
+        },
+        {
+            "relationshipName": "bulletins",
+            "otherEntityName": "bulletin",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "remboursement"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateRemboursement",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "montant",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isRembourse",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180918162204",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "remboursement",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

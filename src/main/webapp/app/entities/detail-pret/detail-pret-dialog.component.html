@@ -1,0 +1,97 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDetailPretLabel" jhiTranslate="senPaieApp.detailPret.home.createOrEditLabel">Create or edit a Detail Pret</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!detailPret.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="detailPret.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.montant" for="field_montant">Montant</label>
+            <input type="number" class="form-control" name="montant" id="field_montant"
+                [(ngModel)]="detailPret.montant" required/>
+            <div [hidden]="!(editForm.controls.montant?.dirty && editForm.controls.montant?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.montant?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.montant?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.isRembourse" for="field_isRembourse">Is Rembourse</label>
+            <input type="checkbox" class="form-control" name="isRembourse" id="field_isRembourse"
+                [(ngModel)]="detailPret.isRembourse" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="detailPret.deleted" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.collaborateur" for="field_collaborateur">Collaborateur</label>
+            <select class="form-control" id="field_collaborateur" name="collaborateur" [(ngModel)]="detailPret.collaborateur"  required>
+                <option *ngIf="!editForm.value.collaborateur" [ngValue]="null" selected></option>
+                <option [ngValue]="collaborateurOption.id === detailPret.collaborateur?.id ? detailPret.collaborateur : collaborateurOption" *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">{{collaborateurOption.prenom}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.collaborateur?.dirty && editForm.controls.collaborateur?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.collaborateur?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.pret" for="field_pret">Pret</label>
+            <select class="form-control" id="field_pret" name="pret" [(ngModel)]="detailPret.pret"  required>
+                <option *ngIf="!editForm.value.pret" [ngValue]="null" selected></option>
+                <option [ngValue]="pretOption.id === detailPret.pret?.id ? detailPret.pret : pretOption" *ngFor="let pretOption of prets; trackBy: trackPretById">{{pretOption.libelle}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.pret?.dirty && editForm.controls.pret?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.pret?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.userCreated" for="field_userCreated">User Created</label>
+            <select class="form-control" id="field_userCreated" name="userCreated" [(ngModel)]="detailPret.userCreated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === detailPret.userCreated?.id ? detailPret.userCreated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.userUpdated" for="field_userUpdated">User Updated</label>
+            <select class="form-control" id="field_userUpdated" name="userUpdated" [(ngModel)]="detailPret.userUpdated" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === detailPret.userUpdated?.id ? detailPret.userUpdated : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.detailPret.userDeleted" for="field_userDeleted">User Deleted</label>
+            <select class="form-control" id="field_userDeleted" name="userDeleted" [(ngModel)]="detailPret.userDeleted" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === detailPret.userDeleted?.id ? detailPret.userDeleted : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

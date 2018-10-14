@@ -1,0 +1,36 @@
+
+{
+    "senPaieApp": {
+        "membreFamille" : {
+            "home": {
+                "title": "Membre Familles",
+                "createLabel": "Create a new Membre Famille",
+                "createOrEditLabel": "Create or edit a Membre Famille"
+            },
+            "created": "A new Membre Famille is created with identifier {{ param }}",
+            "updated": "A Membre Famille is updated with identifier {{ param }}",
+            "deleted": "A Membre Famille is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Membre Famille {{ id }}?"
+            },
+            "detail": {
+                "title": "Membre Famille"
+            },
+            "prenom": "Prenom",
+            "nom": "Nom",
+            "adresse": "Adresse",
+            "isActif": "Is Actif",
+            "deleted": "Deleted",
+            "dateNaissance": "Date Naissance",
+            "dateMariage": "Date Mariage",
+            "photo": "Photo",
+            "telephone": "Telephone",
+            "collaborateur": "Collaborateur",
+            "user": "User",
+            "userUpdate": "User Update",
+            "userDeleted": "User Deleted",
+            "typeRelation": "Type Relation",
+            "sexe": "Sexe"
+        }
+    }
+}

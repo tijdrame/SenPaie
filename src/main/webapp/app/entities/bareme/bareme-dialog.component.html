@@ -1,0 +1,195 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBaremeLabel" jhiTranslate="senPaieApp.bareme.home.createOrEditLabel">Create or edit a Bareme</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!bareme.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="bareme.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.revenuBrut" for="field_revenuBrut">Revenu Brut</label>
+            <input type="number" class="form-control" name="revenuBrut" id="field_revenuBrut"
+                [(ngModel)]="bareme.revenuBrut" required/>
+            <div [hidden]="!(editForm.controls.revenuBrut?.dirty && editForm.controls.revenuBrut?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.revenuBrut?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.revenuBrut?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.trimF" for="field_trimF">Trim F</label>
+            <input type="number" class="form-control" name="trimF" id="field_trimF"
+                [(ngModel)]="bareme.trimF" required/>
+            <div [hidden]="!(editForm.controls.trimF?.dirty && editForm.controls.trimF?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.trimF?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.trimF?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.unePart" for="field_unePart">Une Part</label>
+            <input type="number" class="form-control" name="unePart" id="field_unePart"
+                [(ngModel)]="bareme.unePart" required/>
+            <div [hidden]="!(editForm.controls.unePart?.dirty && editForm.controls.unePart?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.unePart?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.unePart?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.unePartEtDemi" for="field_unePartEtDemi">Une Part Et Demi</label>
+            <input type="number" class="form-control" name="unePartEtDemi" id="field_unePartEtDemi"
+                [(ngModel)]="bareme.unePartEtDemi" required/>
+            <div [hidden]="!(editForm.controls.unePartEtDemi?.dirty && editForm.controls.unePartEtDemi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.unePartEtDemi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.unePartEtDemi?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.deuxParts" for="field_deuxParts">Deux Parts</label>
+            <input type="number" class="form-control" name="deuxParts" id="field_deuxParts"
+                [(ngModel)]="bareme.deuxParts" required/>
+            <div [hidden]="!(editForm.controls.deuxParts?.dirty && editForm.controls.deuxParts?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.deuxParts?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.deuxParts?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.deuxPartsEtDemi" for="field_deuxPartsEtDemi">Deux Parts Et Demi</label>
+            <input type="number" class="form-control" name="deuxPartsEtDemi" id="field_deuxPartsEtDemi"
+                [(ngModel)]="bareme.deuxPartsEtDemi" required/>
+            <div [hidden]="!(editForm.controls.deuxPartsEtDemi?.dirty && editForm.controls.deuxPartsEtDemi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.deuxPartsEtDemi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.deuxPartsEtDemi?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.troisParts" for="field_troisParts">Trois Parts</label>
+            <input type="number" class="form-control" name="troisParts" id="field_troisParts"
+                [(ngModel)]="bareme.troisParts" required/>
+            <div [hidden]="!(editForm.controls.troisParts?.dirty && editForm.controls.troisParts?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.troisParts?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.troisParts?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.troisPartsEtDemi" for="field_troisPartsEtDemi">Trois Parts Et Demi</label>
+            <input type="number" class="form-control" name="troisPartsEtDemi" id="field_troisPartsEtDemi"
+                [(ngModel)]="bareme.troisPartsEtDemi" required/>
+            <div [hidden]="!(editForm.controls.troisPartsEtDemi?.dirty && editForm.controls.troisPartsEtDemi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.troisPartsEtDemi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.troisPartsEtDemi?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.quatreParts" for="field_quatreParts">Quatre Parts</label>
+            <input type="number" class="form-control" name="quatreParts" id="field_quatreParts"
+                [(ngModel)]="bareme.quatreParts" required/>
+            <div [hidden]="!(editForm.controls.quatreParts?.dirty && editForm.controls.quatreParts?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.quatreParts?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.quatreParts?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.quatrePartsEtDemi" for="field_quatrePartsEtDemi">Quatre Parts Et Demi</label>
+            <input type="number" class="form-control" name="quatrePartsEtDemi" id="field_quatrePartsEtDemi"
+                [(ngModel)]="bareme.quatrePartsEtDemi" required/>
+            <div [hidden]="!(editForm.controls.quatrePartsEtDemi?.dirty && editForm.controls.quatrePartsEtDemi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.quatrePartsEtDemi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.quatrePartsEtDemi?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.cinqParts" for="field_cinqParts">Cinq Parts</label>
+            <input type="number" class="form-control" name="cinqParts" id="field_cinqParts"
+                [(ngModel)]="bareme.cinqParts" required/>
+            <div [hidden]="!(editForm.controls.cinqParts?.dirty && editForm.controls.cinqParts?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cinqParts?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.cinqParts?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.bareme.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="bareme.deleted" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

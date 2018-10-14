@@ -1,0 +1,27 @@
+
+{
+    "senPaieApp": {
+        "regime" : {
+            "home": {
+                "title": "Regimes",
+                "createLabel": "Create a new Regime",
+                "createOrEditLabel": "Create or edit a Regime"
+            },
+            "created": "A new Regime is created with identifier {{ param }}",
+            "updated": "A Regime is updated with identifier {{ param }}",
+            "deleted": "A Regime is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Regime {{ id }}?"
+            },
+            "detail": {
+                "title": "Regime"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "tauxPatronal": "Taux Patronal",
+            "tauxSalarial": "Taux Salarial",
+            "plafond": "Plafond",
+            "deleted": "Deleted"
+        }
+    }
+}
