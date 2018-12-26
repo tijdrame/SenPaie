@@ -6,7 +6,6 @@ import com.emard.domain.PersistentToken;
 import com.emard.repository.PersistentTokenRepository;
 import com.emard.domain.User;
 import com.emard.repository.UserRepository;
-import com.emard.security.AuthoritiesConstants;
 import com.emard.security.SecurityUtils;
 import com.emard.service.MailService;
 import com.emard.service.UserService;
@@ -19,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +62,6 @@ public class AccountResource {
     @PostMapping("/register")
     @Timed
     @ResponseStatus(HttpStatus.CREATED)
-    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH})
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();

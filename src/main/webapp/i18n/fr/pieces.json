@@ -3,15 +3,15 @@
     "senPaieApp": {
         "pieces" : {
             "home": {
-                "title": "Pieces",
-                "createLabel": "Créer un nouveau Pieces",
-                "createOrEditLabel": "Créer ou éditer un Pieces"
+                "title": "Liste Piéces",
+                "createLabel": "Créer une Piéce",
+                "createOrEditLabel": "Créer ou éditer une Piéce"
             },
-            "created": "Un nouveau Pieces a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Pieces avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Pieces avec l'identifiant {{ param }} a été supprimé",
+            "created": "Une Piéce a été créé avec l'identifiant {{ param }}",
+            "updated": "La Piéce avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La Piéce avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Pieces {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer la Piéce {{ id }} ?"
             },
             "detail": {
                 "title": "Pieces"

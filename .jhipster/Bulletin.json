@@ -50,6 +50,18 @@
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "bulletin"
+        },
+        {
+            "relationshipName": "exercice",
+            "otherEntityName": "exercice",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "debutExercice"
+        },
+        {
+            "relationshipName": "moisConcerne",
+            "otherEntityName": "moisConcerne",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "libelle"
         }
     ],
     "fields": [
@@ -140,6 +152,18 @@
         {
             "fieldName": "nbEnfants",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "primeImposable",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "primeNonImposable",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "avantage",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20180920111537",

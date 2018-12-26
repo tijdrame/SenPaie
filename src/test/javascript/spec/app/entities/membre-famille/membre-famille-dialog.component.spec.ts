@@ -12,6 +12,7 @@ import { MembreFamille } from '../../../../../../main/webapp/app/entities/membre
 import { CollaborateurService } from '../../../../../../main/webapp/app/entities/collaborateur';
 import { UserService } from '../../../../../../main/webapp/app/shared';
 import { TypeRelationService } from '../../../../../../main/webapp/app/entities/type-relation';
+import { SexeService } from '../../../../../../main/webapp/app/entities/sexe';
 
 describe('Component Tests', () => {
 
@@ -30,6 +31,7 @@ describe('Component Tests', () => {
                     CollaborateurService,
                     UserService,
                     TypeRelationService,
+                    SexeService,
                     MembreFamilleService
                 ]
             })

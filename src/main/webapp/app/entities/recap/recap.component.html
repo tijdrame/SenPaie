@@ -1,0 +1,90 @@
+<div>
+    <div>
+    <h2>
+        <span jhiTranslate="senPaieApp.absence.home.critere">Critéres de recherche</span>
+    </h2>
+    <div class="row">
+        <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+            <table class="table">
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.exercice.debutExercice" for="field_exercice">Exercice</label></td>
+                    <td>
+                        <div class="form-group">
+
+                            <select class="form-control" id="field_exercice" name="exercice" [(ngModel)]="exercice"  required>
+                                <option *ngIf="!editForm.value.exercice" [ngValue]="null" selected></option>
+                                <option [ngValue]="exerciceOption.id === exercice?.id ? exercice : exerciceOption" *ngFor="let exerciceOption of exercices">{{exerciceOption.debutExercice}}</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
+                            <span class="fa fa-search"></span>&nbsp;<span jhiTranslate="entity.action.search">Rechercher</span>
+                        </button>
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+        </form>
+
+    </div>
+    </div>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="recaps" id="myPiece">
+        <h2>
+            <span jhiTranslate="global.menu.entities.gb">Gestion Budgetaire</span>
+        </h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="senPaieApp.bulletin.collaborateur">Collaborateur</span> </th>
+            <th><span jhiTranslate="senPaieApp.collaborateur.matricule">Matricule</span></th>
+            <th><span jhiTranslate="senPaieApp.bulletin.brutFiscal">Brut Fiscal</span></th>
+            <th><span jhiTranslate="senPaieApp.bulletin.ipresPartSalariale">Ipres Part Salariale</span></th>
+            <th><span jhiTranslate="senPaieApp.bulletin.ipresPartPatronales">Ipres Part Patronales</span></th>
+            <th><span jhiTranslate="senPaieApp.bulletin.total">Total</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recap of recaps ;trackBy: trackId">
+                <td>{{recap?.collaborateur?.prenom}} {{recap?.collaborateur?.nom}}</td>
+                <td>{{recap?.collaborateur?.matricule}}</td>
+                <td>{{recap?.brutFiscal|number:'1.0'}}</td>
+                <td>{{recap?.ipresPartSalariale|number:'1.0'}}</td>
+                <td>{{recap?.ipresPartPatronales|number:'1.0'}}</td>
+                <td>{{recap?.recapLigne|number:'1.0'}}</td>
+            </tr>
+            <!--impotSurRevenu-->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">TOTAL</th>
+                    <td>{{recapRsult?.brutFiscal|number:'1.0'}}</td>
+                    <td>{{recapRsult?.ipresPartSalariale|number:'1.0'}}</td>
+                    <td>{{recapRsult?.ipresPartPatronales|number:'1.0'}}</td>
+                    <td>{{recapRsult?.recapLigne|number:'1.0'}}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <button type="submit"
+            (click)="downLoadPdf()"
+            class="btn btn-primary">
+        <span class="fa fa-print"></span>&nbsp;<span jhiTranslate="global.imprimer"> Imprimer</span>
+    </button>
+    <div *ngIf="recaps && recaps.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

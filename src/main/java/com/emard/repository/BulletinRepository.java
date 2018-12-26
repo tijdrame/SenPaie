@@ -1,6 +1,8 @@
 package com.emard.repository;
 
 import com.emard.domain.Bulletin;
+import com.emard.domain.Exercice;
+import com.emard.domain.MoisConcerne;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -41,7 +43,9 @@ public interface BulletinRepository extends JpaRepository<Bulletin, Long> {
                                   @Param("deleted") Boolean deleted, Pageable pageable);*/
 
 
-    Page<Bulletin> findByCollaborateur_PrenomLikeIgnoreCaseAndCollaborateur_NomLikeIgnoreCaseAndCollaborateur_MatriculeLikeIgnoreCaseAndDeletedOrderByDateCreatedDesc(
-        String prenom, String nom, String matricule, Boolean deleted, Pageable pageable
-    );
+    Page<Bulletin> findByCollaborateur_PrenomLikeIgnoreCaseAndCollaborateur_NomLikeIgnoreCaseAndCollaborateur_MatriculeLikeIgnoreCaseAndDeletedAndMoisConcerneAndExerciceOrderByDateCreatedDesc(
+        String prenom, String nom, String matricule, Boolean deleted, MoisConcerne moisConcerne, Exercice exercice, Pageable pageable);
+
+    List<Bulletin> findByExerciceAndDeletedFalseAndCollaborateur_DeletedFalseOrderByCollaborateur_NomAscCollaborateur_PrenomAsc(Exercice exercice, Pageable pageable);
+
 }

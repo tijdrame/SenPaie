@@ -74,6 +74,12 @@ public class StructureResourceIntTest {
     private static final String DEFAULT_SIGNATURE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_SIGNATURE_CONTENT_TYPE = "image/png";
 
+    private static final Double DEFAULT_MONTANT_IPM = 1D;
+    private static final Double UPDATED_MONTANT_IPM = 2D;
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private StructureRepository structureRepository;
 
@@ -126,7 +132,9 @@ public class StructureResourceIntTest {
             .logoContentType(DEFAULT_LOGO_CONTENT_TYPE)
             .ipm(DEFAULT_IPM)
             .signature(DEFAULT_SIGNATURE)
-            .signatureContentType(DEFAULT_SIGNATURE_CONTENT_TYPE);
+            .signatureContentType(DEFAULT_SIGNATURE_CONTENT_TYPE)
+            .montantIpm(DEFAULT_MONTANT_IPM)
+            .deleted(DEFAULT_DELETED);
         return structure;
     }
 
@@ -162,6 +170,8 @@ public class StructureResourceIntTest {
         assertThat(testStructure.isIpm()).isEqualTo(DEFAULT_IPM);
         assertThat(testStructure.getSignature()).isEqualTo(DEFAULT_SIGNATURE);
         assertThat(testStructure.getSignatureContentType()).isEqualTo(DEFAULT_SIGNATURE_CONTENT_TYPE);
+        assertThat(testStructure.getMontantIpm()).isEqualTo(DEFAULT_MONTANT_IPM);
+        assertThat(testStructure.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -277,7 +287,9 @@ public class StructureResourceIntTest {
             .andExpect(jsonPath("$.[*].logo").value(hasItem(Base64Utils.encodeToString(DEFAULT_LOGO))))
             .andExpect(jsonPath("$.[*].ipm").value(hasItem(DEFAULT_IPM.booleanValue())))
             .andExpect(jsonPath("$.[*].signatureContentType").value(hasItem(DEFAULT_SIGNATURE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].signature").value(hasItem(Base64Utils.encodeToString(DEFAULT_SIGNATURE))));
+            .andExpect(jsonPath("$.[*].signature").value(hasItem(Base64Utils.encodeToString(DEFAULT_SIGNATURE))))
+            .andExpect(jsonPath("$.[*].montantIpm").value(hasItem(DEFAULT_MONTANT_IPM.doubleValue())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
 
     @Test
@@ -302,7 +314,9 @@ public class StructureResourceIntTest {
             .andExpect(jsonPath("$.logo").value(Base64Utils.encodeToString(DEFAULT_LOGO)))
             .andExpect(jsonPath("$.ipm").value(DEFAULT_IPM.booleanValue()))
             .andExpect(jsonPath("$.signatureContentType").value(DEFAULT_SIGNATURE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.signature").value(Base64Utils.encodeToString(DEFAULT_SIGNATURE)));
+            .andExpect(jsonPath("$.signature").value(Base64Utils.encodeToString(DEFAULT_SIGNATURE)))
+            .andExpect(jsonPath("$.montantIpm").value(DEFAULT_MONTANT_IPM.doubleValue()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -337,7 +351,9 @@ public class StructureResourceIntTest {
             .logoContentType(UPDATED_LOGO_CONTENT_TYPE)
             .ipm(UPDATED_IPM)
             .signature(UPDATED_SIGNATURE)
-            .signatureContentType(UPDATED_SIGNATURE_CONTENT_TYPE);
+            .signatureContentType(UPDATED_SIGNATURE_CONTENT_TYPE)
+            .montantIpm(UPDATED_MONTANT_IPM)
+            .deleted(UPDATED_DELETED);
 
         restStructureMockMvc.perform(put("/api/structures")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -360,6 +376,8 @@ public class StructureResourceIntTest {
         assertThat(testStructure.isIpm()).isEqualTo(UPDATED_IPM);
         assertThat(testStructure.getSignature()).isEqualTo(UPDATED_SIGNATURE);
         assertThat(testStructure.getSignatureContentType()).isEqualTo(UPDATED_SIGNATURE_CONTENT_TYPE);
+        assertThat(testStructure.getMontantIpm()).isEqualTo(UPDATED_MONTANT_IPM);
+        assertThat(testStructure.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

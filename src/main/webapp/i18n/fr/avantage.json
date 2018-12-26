@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "avantage" : {
+            "home": {
+                "title": "Avantages",
+                "createLabel": "Créer un nouveau Avantage",
+                "createOrEditLabel": "Créer ou éditer un Avantage"
+            },
+            "created": "Un nouveau Avantage a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Avantage avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Avantage avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Avantage {{ id }} ?"
+            },
+            "detail": {
+                "title": "Avantage"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

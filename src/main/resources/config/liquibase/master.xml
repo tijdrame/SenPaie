@@ -1,33 +1,30 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="MacintoshHD (generated)" id="1539435070798-1">
-        <createTable tableName="sexe">
+    <changeSet author="MacintoshHD (generated)" id="1542475652804-1">
+        <createTable tableName="mois_concerne">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="sexePK"/>
+                <constraints primaryKey="true" primaryKeyName="mois_concernePK"/>
             </column>
-            <column name="code" type="VARCHAR(20)">
+            <column name="code" type="VARCHAR(25)">
                 <constraints nullable="false"/>
             </column>
             <column name="deleted" type="BOOLEAN"/>
-            <column name="libelle" type="VARCHAR(20)">
+            <column name="libelle" type="VARCHAR(25)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="MacintoshHD (generated)" id="1539435070798-2">
+    <changeSet author="MacintoshHD (generated)" id="1542475652804-2">
+        <addColumn tableName="bulletin">
+            <column name="mois_concerne_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1542475652804-3">
         <addColumn tableName="collaborateur">
-            <column name="sexe_id" type="int8"/>
+            <column name="numero_rib" type="varchar(40)"/>
         </addColumn>
     </changeSet>
-    <changeSet author="MacintoshHD (generated)" id="1539435070798-3">
-        <addColumn tableName="membre_famille">
-            <column name="sexe_id" type="int8"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="MacintoshHD (generated)" id="1539435070798-4">
-        <addForeignKeyConstraint baseColumnNames="sexe_id" baseTableName="collaborateur" constraintName="FK9l8cbp1ud3ndtd1p2yx88u7d5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sexe"/>
-    </changeSet>
-    <changeSet author="MacintoshHD (generated)" id="1539435070798-5">
-        <addForeignKeyConstraint baseColumnNames="sexe_id" baseTableName="membre_famille" constraintName="FKe5e762b2rrqspnqu6bu59806b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sexe"/>
+    <changeSet author="MacintoshHD (generated)" id="1542475652804-4">
+        <addForeignKeyConstraint baseColumnNames="mois_concerne_id" baseTableName="bulletin" constraintName="FK2jj125gwxg14xf65ns1uohr9b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mois_concerne"/>
     </changeSet>
 </databaseChangeLog>

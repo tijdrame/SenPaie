@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1540823210654-1">
+        <createTable tableName="avantage_collab">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="avantage_collabPK"/>
+            </column>
+            <column name="deleted" type="BOOLEAN"/>
+            <column name="montant" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avantage_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="collaborateur_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1540823210654-2">
+        <createTable tableName="prime_collab">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="prime_collabPK"/>
+            </column>
+            <column name="deleted" type="BOOLEAN"/>
+            <column name="montant" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="collaborateur_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prime_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1540823210654-3">
+        <addForeignKeyConstraint baseColumnNames="avantage_id" baseTableName="avantage_collab" constraintName="FK8e2s9r6tb3erfjm6ch5150m1h" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="avantage"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1540823210654-4">
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id" baseTableName="prime_collab" constraintName="FK983pemi37tkyiot3g7urgr41c" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="collaborateur"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1540823210654-5">
+        <addForeignKeyConstraint baseColumnNames="collaborateur_id" baseTableName="avantage_collab" constraintName="FKan1xs54ys7nu8ykgsvj126m4o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="collaborateur"/>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1540823210654-6">
+        <addForeignKeyConstraint baseColumnNames="prime_id" baseTableName="prime_collab" constraintName="FKfiqh3xasifvfj5ov7n60ggaya" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="prime"/>
+    </changeSet>
+</databaseChangeLog>

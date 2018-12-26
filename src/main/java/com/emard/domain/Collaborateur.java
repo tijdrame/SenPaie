@@ -80,6 +80,9 @@ public class Collaborateur implements Serializable {
     @Column(name = "telephone")
     private String telephone;
 
+    @Column(name = "numero_rib")
+    private String numeroRib;
+
     @ManyToOne
     private Fonction fonction;
 
@@ -334,6 +337,19 @@ public class Collaborateur implements Serializable {
         this.telephone = telephone;
     }
 
+    public String getNumeroRib() {
+        return numeroRib;
+    }
+
+    public Collaborateur numeroRib(String numeroRib) {
+        this.numeroRib = numeroRib;
+        return this;
+    }
+
+    public void setNumeroRib(String numeroRib) {
+        this.numeroRib = numeroRib;
+    }
+
     public Fonction getFonction() {
         return fonction;
     }
@@ -531,6 +547,7 @@ public class Collaborateur implements Serializable {
             ", email='" + getEmail() + "'" +
             ", primeTransport=" + getPrimeTransport() +
             ", telephone='" + getTelephone() + "'" +
+            ", numeroRib='" + getNumeroRib() + "'" +
             "}";
     }
 }

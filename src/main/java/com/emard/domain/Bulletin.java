@@ -90,6 +90,15 @@ public class Bulletin implements Serializable {
     @Column(name = "nb_enfants")
     private Integer nbEnfants;
 
+    @Column(name = "prime_imposable")
+    private Double primeImposable;
+
+    @Column(name = "prime_non_imposable")
+    private Double primeNonImposable;
+
+    @Column(name = "avantage")
+    private Double avantage;
+
     @ManyToOne(optional = false)
     @NotNull
     private Collaborateur collaborateur;
@@ -112,6 +121,12 @@ public class Bulletin implements Serializable {
                joinColumns = @JoinColumn(name="bulletins_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="remboursements_id", referencedColumnName="id"))
     private Set<Remboursement> remboursements = new HashSet<>();
+
+    @ManyToOne
+    private Exercice exercice;
+
+    @ManyToOne
+    private MoisConcerne moisConcerne;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -408,6 +423,45 @@ public class Bulletin implements Serializable {
         this.nbEnfants = nbEnfants;
     }
 
+    public Double getPrimeImposable() {
+        return primeImposable;
+    }
+
+    public Bulletin primeImposable(Double primeImposable) {
+        this.primeImposable = primeImposable;
+        return this;
+    }
+
+    public void setPrimeImposable(Double primeImposable) {
+        this.primeImposable = primeImposable;
+    }
+
+    public Double getPrimeNonImposable() {
+        return primeNonImposable;
+    }
+
+    public Bulletin primeNonImposable(Double primeNonImposable) {
+        this.primeNonImposable = primeNonImposable;
+        return this;
+    }
+
+    public void setPrimeNonImposable(Double primeNonImposable) {
+        this.primeNonImposable = primeNonImposable;
+    }
+
+    public Double getAvantage() {
+        return avantage;
+    }
+
+    public Bulletin avantage(Double avantage) {
+        this.avantage = avantage;
+        return this;
+    }
+
+    public void setAvantage(Double avantage) {
+        this.avantage = avantage;
+    }
+
     public Collaborateur getCollaborateur() {
         return collaborateur;
     }
@@ -497,6 +551,32 @@ public class Bulletin implements Serializable {
     public void setRemboursements(Set<Remboursement> remboursements) {
         this.remboursements = remboursements;
     }
+
+    public Exercice getExercice() {
+        return exercice;
+    }
+
+    public Bulletin exercice(Exercice exercice) {
+        this.exercice = exercice;
+        return this;
+    }
+
+    public void setExercice(Exercice exercice) {
+        this.exercice = exercice;
+    }
+
+    public MoisConcerne getMoisConcerne() {
+        return moisConcerne;
+    }
+
+    public Bulletin moisConcerne(MoisConcerne moisConcerne) {
+        this.moisConcerne = moisConcerne;
+        return this;
+    }
+
+    public void setMoisConcerne(MoisConcerne moisConcerne) {
+        this.moisConcerne = moisConcerne;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -545,6 +625,9 @@ public class Bulletin implements Serializable {
             ", nbPart=" + getNbPart() +
             ", nbFemmes=" + getNbFemmes() +
             ", nbEnfants=" + getNbEnfants() +
+            ", primeImposable=" + getPrimeImposable() +
+            ", primeNonImposable=" + getPrimeNonImposable() +
+            ", avantage=" + getAvantage() +
             "}";
     }
 }

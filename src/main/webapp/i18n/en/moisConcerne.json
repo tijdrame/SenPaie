@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "moisConcerne" : {
+            "home": {
+                "title": "Mois Concernes",
+                "createLabel": "Create a new Mois Concerne",
+                "createOrEditLabel": "Create or edit a Mois Concerne"
+            },
+            "created": "A new Mois Concerne is created with identifier {{ param }}",
+            "updated": "A Mois Concerne is updated with identifier {{ param }}",
+            "deleted": "A Mois Concerne is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Mois Concerne {{ id }}?"
+            },
+            "detail": {
+                "title": "Mois Concerne"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

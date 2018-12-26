@@ -34,5 +34,4 @@ public interface CollaborateurRepository extends JpaRepository<Collaborateur, Lo
 
     Collaborateur findByUserCollab(User user);
 
-
 }

@@ -8,6 +8,7 @@ import com.emard.domain.Pret;
 import com.emard.repository.DetailPretRepository;
 import com.emard.service.DetailPretService;
 import com.emard.service.RemboursementService;
+import com.emard.service.UserService;
 import com.emard.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -56,8 +57,6 @@ public class DetailPretResourceIntTest {
 
     @Autowired
     private DetailPretService detailPretService;
-    @Autowired
-    private RemboursementService remboursementService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -74,11 +73,13 @@ public class DetailPretResourceIntTest {
     private MockMvc restDetailPretMockMvc;
 
     private DetailPret detailPret;
+    @Autowired
+    private RemboursementService userService;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DetailPretResource detailPretResource = new DetailPretResource(detailPretService, remboursementService);
+        final DetailPretResource detailPretResource = new DetailPretResource(detailPretService, userService);
         this.restDetailPretMockMvc = MockMvcBuilders.standaloneSetup(detailPretResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

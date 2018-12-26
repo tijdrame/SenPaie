@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "SenPaie",
+        "title": "SIG-RH",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
@@ -34,6 +34,12 @@
                 "pieces": "Pieces",
                 "typeAbsence": "Type Absence",
                 "sexe": "Sexe",
+                "avantage": "Avantage",
+                "prime": "Prime",
+                "primeCollab": "Prime Collab",
+                "avantageCollab": "Avantage Collab",
+                "recap": "Recap",
+                "moisConcerne": "Mois Concerne",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -156,5 +162,5 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "EM@RD SOFT © 2018"
 }

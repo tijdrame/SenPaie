@@ -2,6 +2,8 @@ package com.emard.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.emard.domain.Bulletin;
+import com.emard.domain.Exercice;
+import com.emard.domain.MoisConcerne;
 import com.emard.security.AuthoritiesConstants;
 import com.emard.service.BulletinService;
 import com.emard.web.rest.errors.BadRequestAlertException;
@@ -137,13 +139,14 @@ public class BulletinResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/bulletinsTer/{prenom}/{nom}/{matricule}/{deleted}")
+    @GetMapping("/bulletinsTer/{prenom}/{nom}/{matricule}/{deleted}/{moisConcerne}/{exercice}")
 //  @GetMapping("/collaborateursTer/{prenom}/{nom}/{tel}/{deleted}")
     @Timed
     @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH, AuthoritiesConstants.DG})
     public ResponseEntity<List<Bulletin>> search(@PathVariable Optional<String> prenom  , @PathVariable Optional<String> nom,
                                                  @PathVariable Optional<String> matricule,
-                                                 @PathVariable Boolean deleted, Pageable pageable) {
+                                                 @PathVariable Boolean deleted, @PathVariable MoisConcerne moisConcerne,
+                                                 @PathVariable Exercice exercice, Pageable pageable) {
         //log.debug("REST request to get a page of Collab====>: "+prenom.isPresent()+" val"+prenom.get());
         log.debug("dans serch bull ressource");
         //SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -154,8 +157,19 @@ public class BulletinResource {
         //LocalDate dateBi = new LocalDate(theDate);
         Page<Bulletin> page = bulletinService.findByCriteres(prenom.isPresent()?"%"+prenom.get().trim()+"%":"",
             nom.isPresent()?"%"+nom.get().trim()+"%":"", matricule.isPresent()?"%"+matricule.get().trim()+"%":"",
-             deleted, pageable);
+            deleted, moisConcerne, exercice, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/bulletins");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/bulletinsRecap/{exercice}")
+    @Timed
+    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH, AuthoritiesConstants.DG})
+    public ResponseEntity<List<Bulletin>> recap(@PathVariable Exercice exercice, Pageable pageable) {
+        log.debug("dans recap bull ressource");
+
+        List<Bulletin> page = bulletinService.recapBulletin(exercice, pageable);
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/bulletins");
+        return new ResponseEntity<>(page/*, headers*/, HttpStatus.OK);
     }
 }

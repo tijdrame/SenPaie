@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "avantageCollab" : {
+            "home": {
+                "title": "Avantage Collabs",
+                "createLabel": "Create a new Avantage Collab",
+                "createOrEditLabel": "Create or edit a Avantage Collab"
+            },
+            "created": "A new Avantage Collab is created with identifier {{ param }}",
+            "updated": "A Avantage Collab is updated with identifier {{ param }}",
+            "deleted": "A Avantage Collab is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Avantage Collab {{ id }}?"
+            },
+            "detail": {
+                "title": "Avantage Collab"
+            },
+            "montant": "Montant",
+            "deleted": "Deleted",
+            "collaborateur": "Collaborateur",
+            "avantage": "Avantage"
+        }
+    }
+}

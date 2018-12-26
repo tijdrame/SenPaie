@@ -10,6 +10,8 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import {Pieces} from "../pieces/pieces.model";
 import {isUndefined} from "util";
 import {isBlank} from "ngx-cookie";
+import {MoisConcerne, MoisConcerneService} from "../mois-concerne";
+import {Exercice, ExerciceService} from "../exercice";
 
 
 
@@ -38,6 +40,10 @@ currentAccount: any;
     matricule: string;
     theDate: any;
     deleted: boolean = false;
+    moisConcerne: MoisConcerne;
+    moisConcernes: MoisConcerne[];
+    exercice: Exercice;
+    exercices: Exercice[];
 
     constructor(
         private bulletinService: BulletinService,
@@ -46,6 +52,8 @@ currentAccount: any;
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
         private router: Router,
+        private moisService: MoisConcerneService,
+        private exerciceService: ExerciceService,
         private eventManager: JhiEventManager
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -79,7 +87,7 @@ currentAccount: any;
         //let dateBi =this.theDate['day']+"-"+this.theDate['month']+"-"+this.theDate['year'];
 
         console.log("dans search collab..2"+this.prenom+"a"+isUndefined(this.deleted)+" "+this.deleted);
-        this.bulletinService.search(this.prenom, this.nom, this.matricule, this.deleted )
+        this.bulletinService.search(this.prenom, this.nom, this.matricule, this.deleted, this.moisConcerne, this.exercice )
             .subscribe((res: HttpResponse<Bulletin[]>) => { this.bulletins = res.body;
                 },
                 (res: HttpErrorResponse) => this.onError(res.message));
@@ -116,6 +124,12 @@ currentAccount: any;
             this.currentAccount = account;
         });
         this.registerChangeInBulletins();
+
+        this.moisService.query()
+            .subscribe((res: HttpResponse<MoisConcerne[]>) => { this.moisConcernes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+
+        this.exerciceService.query()
+            .subscribe((res: HttpResponse<Exercice[]>) => { this.exercices = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     ngOnDestroy() {
@@ -123,6 +137,10 @@ currentAccount: any;
     }
 
     trackId(index: number, item: Bulletin) {
+        return item.id;
+    }
+
+    trackExerciceById(index: number, item: Exercice) {
         return item.id;
     }
     registerChangeInBulletins() {

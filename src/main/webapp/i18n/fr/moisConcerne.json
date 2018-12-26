@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "moisConcerne" : {
+            "home": {
+                "title": "Liste Mois Concernes",
+                "createLabel": "Créer un nouveau Mois",
+                "createOrEditLabel": "Créer ou éditer un Mois"
+            },
+            "created": "Un nouveau Mois a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Mois avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Mois avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Mois {{ id }} ?"
+            },
+            "detail": {
+                "title": "Mois Concerne"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

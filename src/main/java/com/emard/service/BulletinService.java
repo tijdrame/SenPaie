@@ -1,8 +1,6 @@
 package com.emard.service;
 
-import com.emard.domain.Bulletin;
-import com.emard.domain.DetailPret;
-import com.emard.domain.Remboursement;
+import com.emard.domain.*;
 import com.emard.repository.BulletinRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,9 +116,15 @@ public class BulletinService {
 
     @Transactional(readOnly = true)
     public Page<Bulletin> findByCriteres(String prenom, String nom, String matricule,
-                                          Boolean deleted, Pageable pageable) {
+                                         Boolean deleted, MoisConcerne moisConcerne, Exercice exercice, Pageable pageable) {
         log.debug("dans search bull service prenom="+prenom+" nom="+nom+" mat="+matricule+" del="+deleted);
-        return bulletinRepository.findByCollaborateur_PrenomLikeIgnoreCaseAndCollaborateur_NomLikeIgnoreCaseAndCollaborateur_MatriculeLikeIgnoreCaseAndDeletedOrderByDateCreatedDesc
-            (prenom, nom, matricule, deleted, pageable);
+        return bulletinRepository.findByCollaborateur_PrenomLikeIgnoreCaseAndCollaborateur_NomLikeIgnoreCaseAndCollaborateur_MatriculeLikeIgnoreCaseAndDeletedAndMoisConcerneAndExerciceOrderByDateCreatedDesc
+            (prenom, nom, matricule, deleted, moisConcerne, exercice, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Bulletin> recapBulletin(Exercice exercice, Pageable pageable) {
+        log.debug("dans recap bull service ="+exercice);
+        return bulletinRepository.findByExerciceAndDeletedFalseAndCollaborateur_DeletedFalseOrderByCollaborateur_NomAscCollaborateur_PrenomAsc(exercice, pageable);
     }
 }

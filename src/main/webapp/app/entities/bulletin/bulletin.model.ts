@@ -25,16 +25,24 @@ export class Bulletin implements BaseEntity {
         public nbPart?: number,
         public nbFemmes?: number,
         public nbEnfants?: number,
+        public primeImposable?: number,
+        public primeNonImposable?: number,
+        public avantage?: number,
         public collaborateur?: BaseEntity,
         public typePaiement?: BaseEntity,
         public userCreated?: User,
         public userUpdated?: User,
         public userDeleted?: User,
         public remboursements?: BaseEntity[],
+        public exercice?: BaseEntity,
+        public moisConcerne?: BaseEntity,
     ) {
         this.deleted = false;
         this.retenueIpm = 0;
         this.retenuePharmacie = 0;
         this.salaireBrutMensuel = 0;
+        this.primeImposable = 0;
+        this.primeNonImposable = 0;
+        this.avantage = 0;
     }
 }

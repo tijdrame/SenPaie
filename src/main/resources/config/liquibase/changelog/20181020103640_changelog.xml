@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MacintoshHD (generated)" id="1540031812227-1">
+        <addColumn tableName="bulletin">
+            <column name="exercice_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MacintoshHD (generated)" id="1540031812227-2">
+        <addForeignKeyConstraint baseColumnNames="exercice_id" baseTableName="bulletin" constraintName="FKd8ocdtmu8xdq4fgdkws61txtm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="exercice"/>
+    </changeSet>
+</databaseChangeLog>

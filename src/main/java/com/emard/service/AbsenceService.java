@@ -17,7 +17,7 @@ import java.time.LocalDate;
  */
 @Service
 @Transactional
-public class AbsenceService {
+public class  AbsenceService {
 
     private final Logger log = LoggerFactory.getLogger(AbsenceService.class);
 

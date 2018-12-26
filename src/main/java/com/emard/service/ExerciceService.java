@@ -2,7 +2,6 @@ package com.emard.service;
 
 import com.emard.domain.Exercice;
 import com.emard.repository.ExerciceRepository;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -51,7 +50,7 @@ public class ExerciceService {
     @Transactional(readOnly = true)
     public Page<Exercice> findAll(Pageable pageable) {
         log.debug("Request to get all Exercices");
-        return exerciceRepository.findByDeletedFalseOrderByDebutExercice(pageable);
+        return exerciceRepository.findByDeletedFalseOrderByDebutExerciceDesc(pageable);
     }
 
     /**

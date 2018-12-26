@@ -49,5 +49,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="remboursement"/>
         
+        <addForeignKeyConstraint baseColumnNames="exercice_id"
+                                 baseTableName="bulletin"
+                                 constraintName="fk_bulletin_exercice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exercice"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -24,6 +24,7 @@
             "matricule": "Matricule",
             "adresse": "Adresse",
             "date": "Date",
+            "rib": "N° RIB",
             "tauxHoraire": "Taux Horaire",
             "salaireDeBase": "Salaire De Base",
             "surSalaire": "SurSalaire",

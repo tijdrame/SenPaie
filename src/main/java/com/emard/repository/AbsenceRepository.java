@@ -1,6 +1,9 @@
 package com.emard.repository;
 
-import com.emard.domain.*;
+import com.emard.domain.Absence;
+import com.emard.domain.Collaborateur;
+import com.emard.domain.Exercice;
+import com.emard.domain.Motif;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;

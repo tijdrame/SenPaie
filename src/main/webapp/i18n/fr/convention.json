@@ -4,14 +4,14 @@
         "convention" : {
             "home": {
                 "title": "Conventions",
-                "createLabel": "Créer un nouveau Convention",
-                "createOrEditLabel": "Créer ou éditer un Convention"
+                "createLabel": "Créer une Convention",
+                "createOrEditLabel": "Créer ou éditer une Convention"
             },
-            "created": "Un nouveau Convention a été créé avec l'identifiant {{ param }}",
+            "created": "Une nouvelle Convention a été créé avec l'identifiant {{ param }}",
             "updated": "Le Convention avec l'identifiant {{ param }} a été mis à jour",
             "deleted": "Le Convention avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Convention {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer la Convention {{ id }} ?"
             },
             "detail": {
                 "title": "Convention"

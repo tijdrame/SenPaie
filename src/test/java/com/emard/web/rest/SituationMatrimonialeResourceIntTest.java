@@ -48,6 +48,9 @@ public class SituationMatrimonialeResourceIntTest {
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
 
+    private static final Double DEFAULT_NB_PARTS = 1D;
+    private static final Double UPDATED_NB_PARTS = 2D;
+
     @Autowired
     private SituationMatrimonialeRepository situationMatrimonialeRepository;
 
@@ -91,7 +94,8 @@ public class SituationMatrimonialeResourceIntTest {
         SituationMatrimoniale situationMatrimoniale = new SituationMatrimoniale()
             .libelle(DEFAULT_LIBELLE)
             .code(DEFAULT_CODE)
-            .deleted(DEFAULT_DELETED);
+            .deleted(DEFAULT_DELETED)
+            .nbParts(DEFAULT_NB_PARTS);
         return situationMatrimoniale;
     }
 
@@ -118,6 +122,7 @@ public class SituationMatrimonialeResourceIntTest {
         assertThat(testSituationMatrimoniale.getLibelle()).isEqualTo(DEFAULT_LIBELLE);
         assertThat(testSituationMatrimoniale.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testSituationMatrimoniale.isDeleted()).isEqualTo(DEFAULT_DELETED);
+        assertThat(testSituationMatrimoniale.getNbParts()).isEqualTo(DEFAULT_NB_PARTS);
     }
 
     @Test
@@ -177,6 +182,24 @@ public class SituationMatrimonialeResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNbPartsIsRequired() throws Exception {
+        int databaseSizeBeforeTest = situationMatrimonialeRepository.findAll().size();
+        // set the field null
+        situationMatrimoniale.setNbParts(null);
+
+        // Create the SituationMatrimoniale, which fails.
+
+        restSituationMatrimonialeMockMvc.perform(post("/api/situation-matrimoniales")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(situationMatrimoniale)))
+            .andExpect(status().isBadRequest());
+
+        List<SituationMatrimoniale> situationMatrimonialeList = situationMatrimonialeRepository.findAll();
+        assertThat(situationMatrimonialeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllSituationMatrimoniales() throws Exception {
         // Initialize the database
         situationMatrimonialeRepository.saveAndFlush(situationMatrimoniale);
@@ -188,7 +211,8 @@ public class SituationMatrimonialeResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(situationMatrimoniale.getId().intValue())))
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
-            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].nbParts").value(hasItem(DEFAULT_NB_PARTS.doubleValue())));
     }
 
     @Test
@@ -204,7 +228,8 @@ public class SituationMatrimonialeResourceIntTest {
             .andExpect(jsonPath("$.id").value(situationMatrimoniale.getId().intValue()))
             .andExpect(jsonPath("$.libelle").value(DEFAULT_LIBELLE.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
-            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
+            .andExpect(jsonPath("$.nbParts").value(DEFAULT_NB_PARTS.doubleValue()));
     }
 
     @Test
@@ -230,7 +255,8 @@ public class SituationMatrimonialeResourceIntTest {
         updatedSituationMatrimoniale
             .libelle(UPDATED_LIBELLE)
             .code(UPDATED_CODE)
-            .deleted(UPDATED_DELETED);
+            .deleted(UPDATED_DELETED)
+            .nbParts(UPDATED_NB_PARTS);
 
         restSituationMatrimonialeMockMvc.perform(put("/api/situation-matrimoniales")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -244,6 +270,7 @@ public class SituationMatrimonialeResourceIntTest {
         assertThat(testSituationMatrimoniale.getLibelle()).isEqualTo(UPDATED_LIBELLE);
         assertThat(testSituationMatrimoniale.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testSituationMatrimoniale.isDeleted()).isEqualTo(UPDATED_DELETED);
+        assertThat(testSituationMatrimoniale.getNbParts()).isEqualTo(UPDATED_NB_PARTS);
     }
 
     @Test

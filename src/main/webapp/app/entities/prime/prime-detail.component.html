@@ -1,0 +1,38 @@
+
+<div *ngIf="prime">
+    <h2><span jhiTranslate="senPaieApp.prime.detail.title">Prime</span> {{prime.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="senPaieApp.prime.libelle">Libelle</span></dt>
+        <dd>
+            <span>{{prime.libelle}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.prime.code">Code</span></dt>
+        <dd>
+            <span>{{prime.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.prime.imposable">Imposable</span></dt>
+        <dd>
+            <span>{{prime.imposable}}</span>
+        </dd>
+        <dt><span jhiTranslate="senPaieApp.prime.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{prime.deleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'prime/'+ prime.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

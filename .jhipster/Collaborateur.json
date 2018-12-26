@@ -173,6 +173,10 @@
         {
             "fieldName": "telephone",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroRib",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180914175158",

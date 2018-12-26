@@ -17,8 +17,8 @@
                 "title": "Demande Congé"
             },
             "dateCreated": "Date Saisie",
-            "dateDebut": "Date Debut",
-            "dateFin": "Date Fin",
+            "dateDebut": "Période du",
+            "dateFin": "Au",
             "motifRejet": "Motif Rejet",
             "deleted": "Deleted",
             "libelle": "Libellé",

@@ -5,7 +5,6 @@ import com.emard.SenPaieApp;
 import com.emard.domain.Bulletin;
 import com.emard.domain.Collaborateur;
 import com.emard.domain.TypePaiement;
-import com.emard.domain.User;
 import com.emard.repository.BulletinRepository;
 import com.emard.service.BulletinService;
 import com.emard.web.rest.errors.ExceptionTranslator;
@@ -68,9 +67,6 @@ public class BulletinResourceIntTest {
     private static final Double DEFAULT_BRUT_FISCAL = 1D;
     private static final Double UPDATED_BRUT_FISCAL = 2D;
 
-    private static final Double DEFAULT_PRIME_TRANSPORT = 1D;
-    private static final Double UPDATED_PRIME_TRANSPORT = 2D;
-
     private static final Double DEFAULT_NET_A_PAYER = 1D;
     private static final Double UPDATED_NET_A_PAYER = 2D;
 
@@ -103,6 +99,24 @@ public class BulletinResourceIntTest {
 
     private static final Double DEFAULT_CONTRIBUTION_FORFAITAIRE = 1D;
     private static final Double UPDATED_CONTRIBUTION_FORFAITAIRE = 2D;
+
+    private static final Float DEFAULT_NB_PART = 1F;
+    private static final Float UPDATED_NB_PART = 2F;
+
+    private static final Integer DEFAULT_NB_FEMMES = 1;
+    private static final Integer UPDATED_NB_FEMMES = 2;
+
+    private static final Integer DEFAULT_NB_ENFANTS = 1;
+    private static final Integer UPDATED_NB_ENFANTS = 2;
+
+    private static final Double DEFAULT_PRIME_IMPOSABLE = 1D;
+    private static final Double UPDATED_PRIME_IMPOSABLE = 2D;
+
+    private static final Double DEFAULT_PRIME_NON_IMPOSABLE = 1D;
+    private static final Double UPDATED_PRIME_NON_IMPOSABLE = 2D;
+
+    private static final Double DEFAULT_AVANTAGE = 1D;
+    private static final Double UPDATED_AVANTAGE = 2D;
 
     @Autowired
     private BulletinRepository bulletinRepository;
@@ -153,7 +167,6 @@ public class BulletinResourceIntTest {
             .dateUpdated(DEFAULT_DATE_UPDATED)
             .dateDeleted(DEFAULT_DATE_DELETED)
             .brutFiscal(DEFAULT_BRUT_FISCAL)
-            //.primeTransport(DEFAULT_PRIME_TRANSPORT)
             .netAPayer(DEFAULT_NET_A_PAYER)
             .salaireBrutMensuel(DEFAULT_SALAIRE_BRUT_MENSUEL)
             .impotSurRevenu(DEFAULT_IMPOT_SUR_REVENU)
@@ -164,7 +177,13 @@ public class BulletinResourceIntTest {
             .cssAccidentDeTravail(DEFAULT_CSS_ACCIDENT_DE_TRAVAIL)
             .cssPrestationFamiliale(DEFAULT_CSS_PRESTATION_FAMILIALE)
             .ipmPatronale(DEFAULT_IPM_PATRONALE)
-            .contributionForfaitaire(DEFAULT_CONTRIBUTION_FORFAITAIRE);
+            .contributionForfaitaire(DEFAULT_CONTRIBUTION_FORFAITAIRE)
+            .nbPart(DEFAULT_NB_PART)
+            .nbFemmes(DEFAULT_NB_FEMMES)
+            .nbEnfants(DEFAULT_NB_ENFANTS)
+            .primeImposable(DEFAULT_PRIME_IMPOSABLE)
+            .primeNonImposable(DEFAULT_PRIME_NON_IMPOSABLE)
+            .avantage(DEFAULT_AVANTAGE);
         // Add required entity
         Collaborateur collaborateur = CollaborateurResourceIntTest.createEntity(em);
         em.persist(collaborateur);
@@ -175,11 +194,6 @@ public class BulletinResourceIntTest {
         em.persist(typePaiement);
         em.flush();
         bulletin.setTypePaiement(typePaiement);
-        // Add required entity
-        User userCreated = UserResourceIntTest.createEntity(em);
-        em.persist(userCreated);
-        em.flush();
-        bulletin.setUserCreated(userCreated);
         return bulletin;
     }
 
@@ -211,7 +225,6 @@ public class BulletinResourceIntTest {
         assertThat(testBulletin.getDateUpdated()).isEqualTo(DEFAULT_DATE_UPDATED);
         assertThat(testBulletin.getDateDeleted()).isEqualTo(DEFAULT_DATE_DELETED);
         assertThat(testBulletin.getBrutFiscal()).isEqualTo(DEFAULT_BRUT_FISCAL);
-        //assertThat(testBulletin.getPrimeTransport()).isEqualTo(DEFAULT_PRIME_TRANSPORT);
         assertThat(testBulletin.getNetAPayer()).isEqualTo(DEFAULT_NET_A_PAYER);
         assertThat(testBulletin.getSalaireBrutMensuel()).isEqualTo(DEFAULT_SALAIRE_BRUT_MENSUEL);
         assertThat(testBulletin.getImpotSurRevenu()).isEqualTo(DEFAULT_IMPOT_SUR_REVENU);
@@ -223,6 +236,12 @@ public class BulletinResourceIntTest {
         assertThat(testBulletin.getCssPrestationFamiliale()).isEqualTo(DEFAULT_CSS_PRESTATION_FAMILIALE);
         assertThat(testBulletin.getIpmPatronale()).isEqualTo(DEFAULT_IPM_PATRONALE);
         assertThat(testBulletin.getContributionForfaitaire()).isEqualTo(DEFAULT_CONTRIBUTION_FORFAITAIRE);
+        assertThat(testBulletin.getNbPart()).isEqualTo(DEFAULT_NB_PART);
+        assertThat(testBulletin.getNbFemmes()).isEqualTo(DEFAULT_NB_FEMMES);
+        assertThat(testBulletin.getNbEnfants()).isEqualTo(DEFAULT_NB_ENFANTS);
+        assertThat(testBulletin.getPrimeImposable()).isEqualTo(DEFAULT_PRIME_IMPOSABLE);
+        assertThat(testBulletin.getPrimeNonImposable()).isEqualTo(DEFAULT_PRIME_NON_IMPOSABLE);
+        assertThat(testBulletin.getAvantage()).isEqualTo(DEFAULT_AVANTAGE);
     }
 
     @Test
@@ -246,24 +265,6 @@ public class BulletinResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDateCreatedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = bulletinRepository.findAll().size();
-        // set the field null
-        bulletin.setDateCreated(null);
-
-        // Create the Bulletin, which fails.
-
-        restBulletinMockMvc.perform(post("/api/bulletins")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(bulletin)))
-            .andExpect(status().isBadRequest());
-
-        List<Bulletin> bulletinList = bulletinRepository.findAll();
-        assertThat(bulletinList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllBulletins() throws Exception {
         // Initialize the database
         bulletinRepository.saveAndFlush(bulletin);
@@ -281,7 +282,6 @@ public class BulletinResourceIntTest {
             .andExpect(jsonPath("$.[*].dateUpdated").value(hasItem(DEFAULT_DATE_UPDATED.toString())))
             .andExpect(jsonPath("$.[*].dateDeleted").value(hasItem(DEFAULT_DATE_DELETED.toString())))
             .andExpect(jsonPath("$.[*].brutFiscal").value(hasItem(DEFAULT_BRUT_FISCAL.doubleValue())))
-            .andExpect(jsonPath("$.[*].primeTransport").value(hasItem(DEFAULT_PRIME_TRANSPORT.doubleValue())))
             .andExpect(jsonPath("$.[*].netAPayer").value(hasItem(DEFAULT_NET_A_PAYER.doubleValue())))
             .andExpect(jsonPath("$.[*].salaireBrutMensuel").value(hasItem(DEFAULT_SALAIRE_BRUT_MENSUEL.doubleValue())))
             .andExpect(jsonPath("$.[*].impotSurRevenu").value(hasItem(DEFAULT_IMPOT_SUR_REVENU.doubleValue())))
@@ -292,7 +292,13 @@ public class BulletinResourceIntTest {
             .andExpect(jsonPath("$.[*].cssAccidentDeTravail").value(hasItem(DEFAULT_CSS_ACCIDENT_DE_TRAVAIL.doubleValue())))
             .andExpect(jsonPath("$.[*].cssPrestationFamiliale").value(hasItem(DEFAULT_CSS_PRESTATION_FAMILIALE.doubleValue())))
             .andExpect(jsonPath("$.[*].ipmPatronale").value(hasItem(DEFAULT_IPM_PATRONALE.doubleValue())))
-            .andExpect(jsonPath("$.[*].contributionForfaitaire").value(hasItem(DEFAULT_CONTRIBUTION_FORFAITAIRE.doubleValue())));
+            .andExpect(jsonPath("$.[*].contributionForfaitaire").value(hasItem(DEFAULT_CONTRIBUTION_FORFAITAIRE.doubleValue())))
+            .andExpect(jsonPath("$.[*].nbPart").value(hasItem(DEFAULT_NB_PART.doubleValue())))
+            .andExpect(jsonPath("$.[*].nbFemmes").value(hasItem(DEFAULT_NB_FEMMES)))
+            .andExpect(jsonPath("$.[*].nbEnfants").value(hasItem(DEFAULT_NB_ENFANTS)))
+            .andExpect(jsonPath("$.[*].primeImposable").value(hasItem(DEFAULT_PRIME_IMPOSABLE.doubleValue())))
+            .andExpect(jsonPath("$.[*].primeNonImposable").value(hasItem(DEFAULT_PRIME_NON_IMPOSABLE.doubleValue())))
+            .andExpect(jsonPath("$.[*].avantage").value(hasItem(DEFAULT_AVANTAGE.doubleValue())));
     }
 
     @Test
@@ -314,7 +320,6 @@ public class BulletinResourceIntTest {
             .andExpect(jsonPath("$.dateUpdated").value(DEFAULT_DATE_UPDATED.toString()))
             .andExpect(jsonPath("$.dateDeleted").value(DEFAULT_DATE_DELETED.toString()))
             .andExpect(jsonPath("$.brutFiscal").value(DEFAULT_BRUT_FISCAL.doubleValue()))
-            .andExpect(jsonPath("$.primeTransport").value(DEFAULT_PRIME_TRANSPORT.doubleValue()))
             .andExpect(jsonPath("$.netAPayer").value(DEFAULT_NET_A_PAYER.doubleValue()))
             .andExpect(jsonPath("$.salaireBrutMensuel").value(DEFAULT_SALAIRE_BRUT_MENSUEL.doubleValue()))
             .andExpect(jsonPath("$.impotSurRevenu").value(DEFAULT_IMPOT_SUR_REVENU.doubleValue()))
@@ -325,7 +330,13 @@ public class BulletinResourceIntTest {
             .andExpect(jsonPath("$.cssAccidentDeTravail").value(DEFAULT_CSS_ACCIDENT_DE_TRAVAIL.doubleValue()))
             .andExpect(jsonPath("$.cssPrestationFamiliale").value(DEFAULT_CSS_PRESTATION_FAMILIALE.doubleValue()))
             .andExpect(jsonPath("$.ipmPatronale").value(DEFAULT_IPM_PATRONALE.doubleValue()))
-            .andExpect(jsonPath("$.contributionForfaitaire").value(DEFAULT_CONTRIBUTION_FORFAITAIRE.doubleValue()));
+            .andExpect(jsonPath("$.contributionForfaitaire").value(DEFAULT_CONTRIBUTION_FORFAITAIRE.doubleValue()))
+            .andExpect(jsonPath("$.nbPart").value(DEFAULT_NB_PART.doubleValue()))
+            .andExpect(jsonPath("$.nbFemmes").value(DEFAULT_NB_FEMMES))
+            .andExpect(jsonPath("$.nbEnfants").value(DEFAULT_NB_ENFANTS))
+            .andExpect(jsonPath("$.primeImposable").value(DEFAULT_PRIME_IMPOSABLE.doubleValue()))
+            .andExpect(jsonPath("$.primeNonImposable").value(DEFAULT_PRIME_NON_IMPOSABLE.doubleValue()))
+            .andExpect(jsonPath("$.avantage").value(DEFAULT_AVANTAGE.doubleValue()));
     }
 
     @Test
@@ -357,7 +368,6 @@ public class BulletinResourceIntTest {
             .dateUpdated(UPDATED_DATE_UPDATED)
             .dateDeleted(UPDATED_DATE_DELETED)
             .brutFiscal(UPDATED_BRUT_FISCAL)
-            //.primeTransport(UPDATED_PRIME_TRANSPORT)
             .netAPayer(UPDATED_NET_A_PAYER)
             .salaireBrutMensuel(UPDATED_SALAIRE_BRUT_MENSUEL)
             .impotSurRevenu(UPDATED_IMPOT_SUR_REVENU)
@@ -368,7 +378,13 @@ public class BulletinResourceIntTest {
             .cssAccidentDeTravail(UPDATED_CSS_ACCIDENT_DE_TRAVAIL)
             .cssPrestationFamiliale(UPDATED_CSS_PRESTATION_FAMILIALE)
             .ipmPatronale(UPDATED_IPM_PATRONALE)
-            .contributionForfaitaire(UPDATED_CONTRIBUTION_FORFAITAIRE);
+            .contributionForfaitaire(UPDATED_CONTRIBUTION_FORFAITAIRE)
+            .nbPart(UPDATED_NB_PART)
+            .nbFemmes(UPDATED_NB_FEMMES)
+            .nbEnfants(UPDATED_NB_ENFANTS)
+            .primeImposable(UPDATED_PRIME_IMPOSABLE)
+            .primeNonImposable(UPDATED_PRIME_NON_IMPOSABLE)
+            .avantage(UPDATED_AVANTAGE);
 
         restBulletinMockMvc.perform(put("/api/bulletins")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -387,7 +403,6 @@ public class BulletinResourceIntTest {
         assertThat(testBulletin.getDateUpdated()).isEqualTo(UPDATED_DATE_UPDATED);
         assertThat(testBulletin.getDateDeleted()).isEqualTo(UPDATED_DATE_DELETED);
         assertThat(testBulletin.getBrutFiscal()).isEqualTo(UPDATED_BRUT_FISCAL);
-        //assertThat(testBulletin.getPrimeTransport()).isEqualTo(UPDATED_PRIME_TRANSPORT);
         assertThat(testBulletin.getNetAPayer()).isEqualTo(UPDATED_NET_A_PAYER);
         assertThat(testBulletin.getSalaireBrutMensuel()).isEqualTo(UPDATED_SALAIRE_BRUT_MENSUEL);
         assertThat(testBulletin.getImpotSurRevenu()).isEqualTo(UPDATED_IMPOT_SUR_REVENU);
@@ -399,6 +414,12 @@ public class BulletinResourceIntTest {
         assertThat(testBulletin.getCssPrestationFamiliale()).isEqualTo(UPDATED_CSS_PRESTATION_FAMILIALE);
         assertThat(testBulletin.getIpmPatronale()).isEqualTo(UPDATED_IPM_PATRONALE);
         assertThat(testBulletin.getContributionForfaitaire()).isEqualTo(UPDATED_CONTRIBUTION_FORFAITAIRE);
+        assertThat(testBulletin.getNbPart()).isEqualTo(UPDATED_NB_PART);
+        assertThat(testBulletin.getNbFemmes()).isEqualTo(UPDATED_NB_FEMMES);
+        assertThat(testBulletin.getNbEnfants()).isEqualTo(UPDATED_NB_ENFANTS);
+        assertThat(testBulletin.getPrimeImposable()).isEqualTo(UPDATED_PRIME_IMPOSABLE);
+        assertThat(testBulletin.getPrimeNonImposable()).isEqualTo(UPDATED_PRIME_NON_IMPOSABLE);
+        assertThat(testBulletin.getAvantage()).isEqualTo(UPDATED_AVANTAGE);
     }
 
     @Test

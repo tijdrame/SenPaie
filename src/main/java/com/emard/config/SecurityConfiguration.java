@@ -131,17 +131,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .disable()
         .and()
             .authorizeRequests()
-            //.antMatchers("/api/register").permitAll()
+            .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/profile-info").permitAll()
-            //.antMatchers("/api/**").authenticated()
-            .antMatchers("/api/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH,
-            AuthoritiesConstants.DG)
-            .antMatchers("/api/demande-conges/**").hasAnyAuthority(AuthoritiesConstants.ADMIN, AuthoritiesConstants.RH,
-            AuthoritiesConstants.USER)
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)

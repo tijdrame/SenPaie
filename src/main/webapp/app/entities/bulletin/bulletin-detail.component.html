@@ -22,9 +22,8 @@
                 <td width="80%">
                     <table>
                         <tr>
-                            <td width="30%"><b><u><span jhiTranslate="senPaieApp.bulletin.dateCreated">Date de paie:</span></u></b></td>
+                            <td width="40%"><b><u><span jhiTranslate="senPaieApp.bulletin.dateCreated">Date de paie:</span></u></b></td>
                             <td >{{bulletin.dateCreated|date:'dd/MM/yyyy'}}</td>
-
                         </tr>
                         <tr>
                             <td><b><u><span jhiTranslate="senPaieApp.collaborateur.matricule">Matricule:</span></u></b></td>
@@ -37,6 +36,10 @@
                         <tr>
                             <td><b><u><span jhiTranslate="senPaieApp.collaborateur.adresse">Adresse</span></u></b></td>
                             <td>{{bulletin.collaborateur?.adresse}}</td>
+                        </tr>
+                        <tr>
+                            <td><b><u><span jhiTranslate="senPaieApp.moisConcerne.detail.title">Mois Concerné</span></u></b></td>
+                            <td>{{bulletin?.moisConcerne?.libelle}}</td>
                         </tr>
 
                     </table>
@@ -68,8 +71,8 @@
                 <td width="33%">
                     <table>
                         <tr>
-                            <td width="70%"><b><u><span jhiTranslate="senPaieApp.collaborateur.statut">Statut</span></u></b></td>
-                            <td>{{bulletin?.collaborateur?.statut?.libelle}}</td>
+                            <td width="80%"><b><u><span jhiTranslate="senPaieApp.collaborateur.statut">Statut</span></u></b></td>
+                            <td>{{bulletin?.collaborateur?.statut?.code}}</td>
                         </tr>
                         <tr>
                             <td><b><u><span jhiTranslate="senPaieApp.collaborateur.situationMatrimoniale">Situation Matrimoniale</span></u></b></td>
@@ -96,11 +99,11 @@
                             <td>{{bulletin?.collaborateur?.tauxHoraire}}</td>
                         </tr>
                         <tr>
-                            <td><b><u><span jhiTranslate="senPaieApp.bulletin.typePaiement">Type Paiement</span></u></b></td>
+                            <td><b><u><span jhiTranslate="senPaieApp.typeContrat.detail.title">Type Contrat</span></u></b></td>
                             <td>{{bulletin?.collaborateur?.typeContrat?.code}}</td>
                         </tr>
                         <tr>
-                            <td><b><u><span jhiTranslate="senPaieApp.statut.detail.NbParts">Nb Parts</span></u></b></td>
+                            <td><b><u><span jhiTranslate="senPaieApp.bulletin.typePaiement">Type Paiement</span></u></b></td>
                             <td>{{bulletin?.typePaiement?.libelle}}</td>
                         </tr>
                     </table>
@@ -135,6 +138,22 @@
             </tr>
             <tr>
                 <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.primeImpo" >Prime(s) imposable</span></td>
+                <td></td>
+                <td></td>
+                <td align="right">{{bulletin?.primeImposable|number:'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.avantage" >Avantage(s)</span></td>
+                <td></td>
+                <td></td>
+                <td align="right">{{bulletin?.avantage|number:'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
                 <td><span jhiTranslate="senPaieApp.categorie.forfait">Forfait heure supplémentaire</span></td>
                 <td></td>
                 <td></td>
@@ -159,6 +178,14 @@
                 <td></td>
                 <td></td>
                 <td align="right">{{bulletin.collaborateur.primeTransport|number :'1.0'}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span jhiTranslate="senPaieApp.bulletin.primeNonImpo" >Prime(s) non imposable</span></td>
+                <td></td>
+                <td></td>
+                <td align="right">{{bulletin?.primeNonImposable|number:'1.0'}}</td>
                 <td></td>
             </tr>
             <div style="height: 20px"></div>

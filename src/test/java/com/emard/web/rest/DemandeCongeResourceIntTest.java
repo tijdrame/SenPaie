@@ -56,6 +56,9 @@ public class DemandeCongeResourceIntTest {
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
 
+    private static final String DEFAULT_LIBELLE = "AAAAAAAAAA";
+    private static final String UPDATED_LIBELLE = "BBBBBBBBBB";
+
     @Autowired
     private DemandeCongeRepository demandeCongeRepository;
 
@@ -101,7 +104,8 @@ public class DemandeCongeResourceIntTest {
             .dateDebut(DEFAULT_DATE_DEBUT)
             .dateFin(DEFAULT_DATE_FIN)
             .motifRejet(DEFAULT_MOTIF_REJET)
-            .deleted(DEFAULT_DELETED);
+            .deleted(DEFAULT_DELETED)
+            .libelle(DEFAULT_LIBELLE);
         return demandeConge;
     }
 
@@ -130,6 +134,7 @@ public class DemandeCongeResourceIntTest {
         assertThat(testDemandeConge.getDateFin()).isEqualTo(DEFAULT_DATE_FIN);
         assertThat(testDemandeConge.getMotifRejet()).isEqualTo(DEFAULT_MOTIF_REJET);
         assertThat(testDemandeConge.isDeleted()).isEqualTo(DEFAULT_DELETED);
+        assertThat(testDemandeConge.getLibelle()).isEqualTo(DEFAULT_LIBELLE);
     }
 
     @Test
@@ -202,7 +207,8 @@ public class DemandeCongeResourceIntTest {
             .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
             .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())))
             .andExpect(jsonPath("$.[*].motifRejet").value(hasItem(DEFAULT_MOTIF_REJET.toString())))
-            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE.toString())));
     }
 
     @Test
@@ -220,7 +226,8 @@ public class DemandeCongeResourceIntTest {
             .andExpect(jsonPath("$.dateDebut").value(DEFAULT_DATE_DEBUT.toString()))
             .andExpect(jsonPath("$.dateFin").value(DEFAULT_DATE_FIN.toString()))
             .andExpect(jsonPath("$.motifRejet").value(DEFAULT_MOTIF_REJET.toString()))
-            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
+            .andExpect(jsonPath("$.libelle").value(DEFAULT_LIBELLE.toString()));
     }
 
     @Test
@@ -248,7 +255,8 @@ public class DemandeCongeResourceIntTest {
             .dateDebut(UPDATED_DATE_DEBUT)
             .dateFin(UPDATED_DATE_FIN)
             .motifRejet(UPDATED_MOTIF_REJET)
-            .deleted(UPDATED_DELETED);
+            .deleted(UPDATED_DELETED)
+            .libelle(UPDATED_LIBELLE);
 
         restDemandeCongeMockMvc.perform(put("/api/demande-conges")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -264,6 +272,7 @@ public class DemandeCongeResourceIntTest {
         assertThat(testDemandeConge.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
         assertThat(testDemandeConge.getMotifRejet()).isEqualTo(UPDATED_MOTIF_REJET);
         assertThat(testDemandeConge.isDeleted()).isEqualTo(UPDATED_DELETED);
+        assertThat(testDemandeConge.getLibelle()).isEqualTo(UPDATED_LIBELLE);
     }
 
     @Test

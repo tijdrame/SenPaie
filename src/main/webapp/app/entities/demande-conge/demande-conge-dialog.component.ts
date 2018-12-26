@@ -63,6 +63,10 @@ export class DemandeCongeDialogComponent implements OnInit {
     }
 
     save() {
+        if(!this.controleDate(this.demandeConge.dateDebut, this.demandeConge.dateFin)) {
+            this.jhiAlertService.error("La date de début doit être antérieur à la date de fin!");
+            return;
+        }
         this.isSaving = true;
         if (this.demandeConge.id !== undefined) {
             this.subscribeToSaveResponse(
@@ -73,6 +77,15 @@ export class DemandeCongeDialogComponent implements OnInit {
         }
     }
 
+    controleDate(strDeb: any, strFin: any){
+
+        let dateDeb = new Date();
+        dateDeb.setFullYear(strDeb['year'], strDeb['month']-1, strDeb['day']);
+        let dateFin = new Date();
+        dateFin.setFullYear(strFin['year'], strFin['month']-1, strFin['day']);
+        if(dateDeb > dateFin) return false;
+        else return true;
+    }
     private subscribeToSaveResponse(result: Observable<HttpResponse<DemandeConge>>) {
         result.subscribe((res: HttpResponse<DemandeConge>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());

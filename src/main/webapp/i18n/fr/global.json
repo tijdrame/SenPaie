@@ -8,6 +8,8 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Paramétrage",
+                "report": "Edition",
+                "gb": "Gestion Budgetaire",
                 "perso": "Personnel",
                 "absence": "Absence",
                 "convention": "Convention",
@@ -35,6 +37,12 @@
                 "pieces": "Pieces",
                 "typeAbsence": "Type Absence",
                 "sexe": "Sexe",
+                "avantage": "Avantage",
+                "prime": "Prime",
+                "primeCollab": "Primes Collaborateur",
+                "avantageCollab": "Avantages Collaborateur",
+                "recap": "Recap",
+                "moisConcerne": "Mois Concerne",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -157,5 +165,5 @@
         "emailexists": "Email déjà utilisé !",
         "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'ID !"
     },
-    "footer": "DR@ SOFT Octobre 2018"
+    "footer": "EM@RD SOFT © 2018"
 }

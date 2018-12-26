@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "prime" : {
+            "home": {
+                "title": "Primes",
+                "createLabel": "Create a new Prime",
+                "createOrEditLabel": "Create or edit a Prime"
+            },
+            "created": "A new Prime is created with identifier {{ param }}",
+            "updated": "A Prime is updated with identifier {{ param }}",
+            "deleted": "A Prime is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Prime {{ id }}?"
+            },
+            "detail": {
+                "title": "Prime"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "imposable": "Imposable",
+            "deleted": "Deleted"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "primeCollab" : {
+            "home": {
+                "title": "Liste des Primes des Collaborateurs",
+                "createLabel": "Créer un nouveau Prime",
+                "createOrEditLabel": "Créer ou éditer un Prime"
+            },
+            "created": "Un nouveau Prime Collaborateur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Prime Collaborateur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Prime Collaborateur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Prime  {{ id }} ?"
+            },
+            "detail": {
+                "title": "Prime Collaborateur"
+            },
+            "montant": "Montant",
+            "deleted": "Deleted",
+            "collaborateur": "Collaborateur",
+            "prime": "Prime"
+        }
+    }
+}

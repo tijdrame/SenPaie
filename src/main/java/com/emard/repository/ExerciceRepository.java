@@ -19,5 +19,5 @@ public interface ExerciceRepository extends JpaRepository<Exercice, Long> {
 
     Optional<Exercice> findByDebutExerciceAndDeletedFalse(Integer debutExercice);
 
-    Page<Exercice> findByDeletedFalseOrderByDebutExercice(Pageable pageable);
+    Page<Exercice> findByDeletedFalseOrderByDebutExerciceDesc(Pageable pageable);
 }

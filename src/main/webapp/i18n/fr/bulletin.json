@@ -20,6 +20,7 @@
             "retenuePharmacie": "Retenue Pharmacie",
             "autreRetenue": "Autre Retenue",
             "deleted": "Deleted",
+            "total": "Total",
             "dateCreated": "Date de paie",
             "dateUpdated": "Date Updated",
             "dateDeleted": "Date Deleted",
@@ -31,7 +32,7 @@
             "trimf": "Trimf",
             "ipresPartSalariale": "Ipres Part Salariale",
             "totRetenue": "Total Retenues",
-            "ipresPartPatronales": "Ipres Part Patronales",
+            "ipresPartPatronales": "Ipres Part Patronale",
             "cssAccidentDeTravail": "Css Accident De Travail",
             "cssPrestationFamiliale": "Css Prestation Familiale",
             "ipmPatronale": "Ipm Patronale",
@@ -47,6 +48,9 @@
             "conve": "Convention",
             "ipresRG": "IPRES Régime Général",
             "ipm": "IPM",
+            "primeImpo": "Prime(s) imposable",
+            "avantage": "Avantage(s)",
+            "primeNonImpo": "Prime(s) non imposable",
             "remboursement": "Remboursement"
         }
     }

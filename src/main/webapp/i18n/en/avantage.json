@@ -1,0 +1,24 @@
+
+{
+    "senPaieApp": {
+        "avantage" : {
+            "home": {
+                "title": "Avantages",
+                "createLabel": "Create a new Avantage",
+                "createOrEditLabel": "Create or edit a Avantage"
+            },
+            "created": "A new Avantage is created with identifier {{ param }}",
+            "updated": "A Avantage is updated with identifier {{ param }}",
+            "deleted": "A Avantage is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Avantage {{ id }}?"
+            },
+            "detail": {
+                "title": "Avantage"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "deleted": "Deleted"
+        }
+    }
+}

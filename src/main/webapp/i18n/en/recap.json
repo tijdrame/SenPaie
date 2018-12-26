@@ -1,0 +1,21 @@
+
+{
+    "senPaieApp": {
+        "recap" : {
+            "home": {
+                "title": "Recaps",
+                "createLabel": "Create a new Recap",
+                "createOrEditLabel": "Create or edit a Recap"
+            },
+            "created": "A new Recap is created with identifier {{ param }}",
+            "updated": "A Recap is updated with identifier {{ param }}",
+            "deleted": "A Recap is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Recap {{ id }}?"
+            },
+            "detail": {
+                "title": "Recap"
+            }
+        }
+    }
+}

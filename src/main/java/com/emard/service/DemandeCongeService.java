@@ -56,7 +56,7 @@ public class DemandeCongeService {
         StatutDemande statut = statutService.findByCode("ENCOURS");
         demandeConge.deleted(false).userCreated(userService.getUserWithAuthorities().get()).dateCreated(LocalDate.now())
             .collaborateur(collaborateurService.finbByUserCollab(userService.getUserWithAuthorities().get()))
-        .statutDG(statut).statutRH(statut);
+            .statutDG(statut).statutRH(statut);
         return demandeCongeRepository.save(demandeConge);
     }
 
@@ -76,7 +76,7 @@ public class DemandeCongeService {
                 motif = motifService.findByCode("C");
             else motif = motifService.findByCode("P");
             log.debug("dans if isert ABS<===>"+demandeConge.getDateDebut()+" "+demandeConge.getDateFin()+" "+
-            demandeConge.getDateDebut().isEqual(demandeConge.getDateFin()));
+                demandeConge.getDateDebut().isEqual(demandeConge.getDateFin()));
             Optional<Exercice> exo = exerciceService.findByDebutExercice(demandeConge.getDateDebut().getYear());
             long numOfDaysBetween = ChronoUnit.DAYS.between(demandeConge.getDateDebut(), demandeConge.getDateFin());
             LocalDate date = demandeConge.getDateDebut();

@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "primeCollab" : {
+            "home": {
+                "title": "Prime Collabs",
+                "createLabel": "Create a new Prime Collab",
+                "createOrEditLabel": "Create or edit a Prime Collab"
+            },
+            "created": "A new Prime Collab is created with identifier {{ param }}",
+            "updated": "A Prime Collab is updated with identifier {{ param }}",
+            "deleted": "A Prime Collab is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Prime Collab {{ id }}?"
+            },
+            "detail": {
+                "title": "Prime Collab"
+            },
+            "montant": "Montant",
+            "deleted": "Deleted",
+            "collaborateur": "Collaborateur",
+            "prime": "Prime"
+        }
+    }
+}

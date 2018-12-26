@@ -17,6 +17,7 @@ import { SituationMatrimonialeService } from '../../../../../../main/webapp/app/
 import { TypeContratService } from '../../../../../../main/webapp/app/entities/type-contrat';
 import { UserService } from '../../../../../../main/webapp/app/shared';
 import { RegimeService } from '../../../../../../main/webapp/app/entities/regime';
+import { SexeService } from '../../../../../../main/webapp/app/entities/sexe';
 
 describe('Component Tests', () => {
 
@@ -40,6 +41,7 @@ describe('Component Tests', () => {
                     TypeContratService,
                     UserService,
                     RegimeService,
+                    SexeService,
                     CollaborateurService
                 ]
             })

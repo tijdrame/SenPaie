@@ -2,8 +2,8 @@
     "home": {
         "title": "Bienvenue, Java Hipster !",
         "nomapp": "SIG-RH",
-        "devise": "Système Informatique de Gestion des Ressources Humaines.",
-        "integre": "Les principales modules:",
+        "devise": "Système Intégré de Gestion des Ressources Humaines.",
+        "integre": "Les principaux modules:",
         "subtitle": "Ceci est votre page d'accueil",
         "logged": {
             "message": "Vous êtes connecté en tant que \"{{username}}\"."

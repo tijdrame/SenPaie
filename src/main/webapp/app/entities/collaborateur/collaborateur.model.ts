@@ -19,6 +19,7 @@ export class Collaborateur implements BaseEntity {
         public email?: string,
         public primeTransport?: number,
         public telephone?: string,
+        public numeroRib?: string,
         public fonction?: BaseEntity,
         public categorie?: BaseEntity,
         public nationalite?: BaseEntity,

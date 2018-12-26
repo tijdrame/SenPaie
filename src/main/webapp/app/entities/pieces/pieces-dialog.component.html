@@ -69,7 +69,7 @@
                 <option [ngValue]="null"></option>
                 <option [ngValue]="collaborateurOption.id === pieces.collaborateur?.id ? pieces.collaborateur : collaborateurOption"
                         *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">
-                    {{collaborateurOption.prenom}} {{collaborateurOption.nom}</option>
+                    {{collaborateurOption.prenom}} {{collaborateurOption.nom}}</option>
             </select>
         </div>
 

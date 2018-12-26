@@ -109,6 +109,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="prime_imposable" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prime_non_imposable" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="avantage" type="double">
+                <constraints nullable="true" />
+            </column>
+
             <column name="collaborateur_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -126,6 +138,10 @@
             </column>
 
             <column name="user_deleted_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="exercice_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

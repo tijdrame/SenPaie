@@ -3,6 +3,7 @@ package com.emard.web.rest;
 import com.emard.SenPaieApp;
 
 import com.emard.domain.Collaborateur;
+import com.emard.domain.Regime;
 import com.emard.repository.CollaborateurRepository;
 import com.emard.service.CollaborateurService;
 import com.emard.web.rest.errors.ExceptionTranslator;
@@ -77,6 +78,21 @@ public class CollaborateurResourceIntTest {
     private static final String DEFAULT_PHOTO_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PHOTO_CONTENT_TYPE = "image/png";
 
+    private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
+    private static final String UPDATED_LOGIN = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final Double DEFAULT_PRIME_TRANSPORT = 1D;
+    private static final Double UPDATED_PRIME_TRANSPORT = 2D;
+
+    private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NUMERO_RIB = "AAAAAAAAAA";
+    private static final String UPDATED_NUMERO_RIB = "BBBBBBBBBB";
+
     @Autowired
     private CollaborateurRepository collaborateurRepository;
 
@@ -129,7 +145,17 @@ public class CollaborateurResourceIntTest {
             .deleted(DEFAULT_DELETED)
             .dateNaissance(DEFAULT_DATE_NAISSANCE)
             .photo(DEFAULT_PHOTO)
-            .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE);
+            .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE)
+            .login(DEFAULT_LOGIN)
+            .email(DEFAULT_EMAIL)
+            .primeTransport(DEFAULT_PRIME_TRANSPORT)
+            .telephone(DEFAULT_TELEPHONE)
+            .numeroRib(DEFAULT_NUMERO_RIB);
+        // Add required entity
+        Regime regime = RegimeResourceIntTest.createEntity(em);
+        em.persist(regime);
+        em.flush();
+        collaborateur.setRegime(regime);
         return collaborateur;
     }
 
@@ -165,6 +191,11 @@ public class CollaborateurResourceIntTest {
         assertThat(testCollaborateur.getDateNaissance()).isEqualTo(DEFAULT_DATE_NAISSANCE);
         assertThat(testCollaborateur.getPhoto()).isEqualTo(DEFAULT_PHOTO);
         assertThat(testCollaborateur.getPhotoContentType()).isEqualTo(DEFAULT_PHOTO_CONTENT_TYPE);
+        assertThat(testCollaborateur.getLogin()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(testCollaborateur.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testCollaborateur.getPrimeTransport()).isEqualTo(DEFAULT_PRIME_TRANSPORT);
+        assertThat(testCollaborateur.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
+        assertThat(testCollaborateur.getNumeroRib()).isEqualTo(DEFAULT_NUMERO_RIB);
     }
 
     @Test
@@ -370,7 +401,12 @@ public class CollaborateurResourceIntTest {
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
             .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))));
+            .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))))
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].primeTransport").value(hasItem(DEFAULT_PRIME_TRANSPORT.doubleValue())))
+            .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE.toString())))
+            .andExpect(jsonPath("$.[*].numeroRib").value(hasItem(DEFAULT_NUMERO_RIB.toString())));
     }
 
     @Test
@@ -395,7 +431,12 @@ public class CollaborateurResourceIntTest {
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
             .andExpect(jsonPath("$.dateNaissance").value(DEFAULT_DATE_NAISSANCE.toString()))
             .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
-            .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)));
+            .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)))
+            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.primeTransport").value(DEFAULT_PRIME_TRANSPORT.doubleValue()))
+            .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE.toString()))
+            .andExpect(jsonPath("$.numeroRib").value(DEFAULT_NUMERO_RIB.toString()));
     }
 
     @Test
@@ -430,7 +471,12 @@ public class CollaborateurResourceIntTest {
             .deleted(UPDATED_DELETED)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .photo(UPDATED_PHOTO)
-            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE);
+            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE)
+            .login(UPDATED_LOGIN)
+            .email(UPDATED_EMAIL)
+            .primeTransport(UPDATED_PRIME_TRANSPORT)
+            .telephone(UPDATED_TELEPHONE)
+            .numeroRib(UPDATED_NUMERO_RIB);
 
         restCollaborateurMockMvc.perform(put("/api/collaborateurs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -453,6 +499,11 @@ public class CollaborateurResourceIntTest {
         assertThat(testCollaborateur.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
         assertThat(testCollaborateur.getPhoto()).isEqualTo(UPDATED_PHOTO);
         assertThat(testCollaborateur.getPhotoContentType()).isEqualTo(UPDATED_PHOTO_CONTENT_TYPE);
+        assertThat(testCollaborateur.getLogin()).isEqualTo(UPDATED_LOGIN);
+        assertThat(testCollaborateur.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testCollaborateur.getPrimeTransport()).isEqualTo(UPDATED_PRIME_TRANSPORT);
+        assertThat(testCollaborateur.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
+        assertThat(testCollaborateur.getNumeroRib()).isEqualTo(UPDATED_NUMERO_RIB);
     }
 
     @Test

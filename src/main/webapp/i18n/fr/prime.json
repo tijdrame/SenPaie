@@ -1,0 +1,25 @@
+
+{
+    "senPaieApp": {
+        "prime" : {
+            "home": {
+                "title": "Primes",
+                "createLabel": "Créer un nouveau Prime",
+                "createOrEditLabel": "Créer ou éditer un Prime"
+            },
+            "created": "Un nouveau Prime a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Prime avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Prime avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Prime {{ id }} ?"
+            },
+            "detail": {
+                "title": "Prime"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "imposable": "Imposable",
+            "deleted": "Deleted"
+        }
+    }
+}

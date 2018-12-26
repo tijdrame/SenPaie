@@ -26,7 +26,7 @@ public class DetailPretService {
 
 
     public DetailPretService(DetailPretRepository detailPretRepository, UserService userService
-                             ) {
+    ) {
         this.detailPretRepository = detailPretRepository;
         this.userService = userService;
 

@@ -8,6 +8,8 @@ import { JhiDateUtils } from 'ng-jhipster';
 import { Bulletin } from './bulletin.model';
 import { createRequestOption } from '../../shared';
 import {Pieces} from "../pieces/pieces.model";
+import {Exercice} from "../exercice";
+import {MoisConcerne} from "../mois-concerne";
 
 export type EntityResponseType = HttpResponse<Bulletin>;
 
@@ -41,9 +43,14 @@ export class BulletinService {
             .map((res: HttpResponse<Bulletin[]>) => this.convertArrayResponse(res));
     }
 
-    search(prenom?: string, nom?: string, matricule?:string, deleted?:boolean): Observable<HttpResponse<Bulletin[]>>{
-        return this.http.get<Bulletin[]>(`${this.resourceUrl+"Ter"}/${prenom}/${nom}/${matricule}/${deleted}`, { observe: 'response'})
+    search(prenom?: string, nom?: string, matricule?:string, deleted?:boolean, moisConcerne?: MoisConcerne, exercice?:Exercice): Observable<HttpResponse<Bulletin[]>>{
+        return this.http.get<Bulletin[]>(`${this.resourceUrl+"Ter"}/${prenom}/${nom}/${matricule}/${deleted}/${moisConcerne.id}/${exercice.id}`, { observe: 'response'})
         //return this.http.get<Bulletin[]>(`${this.resourceUrl+"Ter"}`, { observe: 'response'})
+            .map((res: HttpResponse<Bulletin[]>) => this.convertArrayResponse(res));
+    }
+
+    recap(exercice?: Exercice): Observable<HttpResponse<Bulletin[]>>{
+        return this.http.get<Bulletin[]>(`${this.resourceUrl+"Recap"}/${exercice.id}`, { observe: 'response'})
             .map((res: HttpResponse<Bulletin[]>) => this.convertArrayResponse(res));
     }
 

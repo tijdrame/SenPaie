@@ -15,6 +15,7 @@ import { Motif, MotifService } from '../motif';
 import { Exercice, ExerciceService } from '../exercice';
 import {Nationalite} from "../nationalite";
 import {TypeAbsence, TypeAbsenceService} from "../type-absence";
+import {MoisConcerne} from "../mois-concerne";
 
 @Component({
     selector: 'jhi-absence-dialog',
@@ -109,6 +110,10 @@ export class AbsenceDialogComponent implements OnInit {
     }
 
     trackExerciceById(index: number, item: Exercice) {
+        return item.id;
+    }
+
+    trackMoisConcerneById(index: number, item: MoisConcerne) {
         return item.id;
     }
 }

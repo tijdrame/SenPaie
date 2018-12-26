@@ -1,0 +1,21 @@
+
+{
+    "senPaieApp": {
+        "recap" : {
+            "home": {
+                "title": "Recaps",
+                "createLabel": "Créer un nouveau Recap",
+                "createOrEditLabel": "Créer ou éditer un Recap"
+            },
+            "created": "Un nouveau Recap a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Recap avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Recap avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Recap {{ id }} ?"
+            },
+            "detail": {
+                "title": "Recap"
+            }
+        }
+    }
+}

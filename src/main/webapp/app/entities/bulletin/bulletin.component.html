@@ -20,16 +20,28 @@
                     <td>
                         <input type="text" [(ngModel)]="matricule" name="matricule" id="field_matri">
                     </td>
-                    <!--<td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.date" for="field_dateNaissance">Date</label></td>
+                </tr>
+                <tr>
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.moisConcerne.detail.title" for="field_mois">Mois</label></td>
                     <td>
-                        <div class="input-group">
-                            <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker
-                                   #dateNaissanceDp="ngbDatepicker" [minDate]="1960" [maxDate]="2018" [(ngModel)]="theDate"/>
-                            <span class="input-group-append">
-                    <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
-                        </div>
-                    </td>-->
+
+                            <select class="form-control" id="field_mois" name="field_mois" [(ngModel)]="moisConcerne"  required>
+                                <option *ngIf="!editForm.value.moisConcerne" [ngValue]="null" selected></option>
+                                <option [ngValue]="mois.id === moisConcerne?.id ? moisConcerne : mois"
+                                        *ngFor="let mois of moisConcernes; trackBy: trackMoisConcerneById">{{mois.libelle}}</option>
+                            </select>
+                    </td>
+
+                    <td><label class="form-control-label" jhiTranslate="senPaieApp.exercice.debutExercice" for="field_exo">Exercice</label></td>
+                    <td>
+
+                        <select class="form-control" id="field_exo" name="field_exo" [(ngModel)]="exercice"  required>
+                            <option *ngIf="!editForm.value.exercice" [ngValue]="null" selected></option>
+                            <option [ngValue]="exo.id === exercice?.id ? exercice : exo"
+                                    *ngFor="let exo of exercices; trackBy: trackExerciceById">{{exo.debutExercice}}</option>
+                        </select>
+                    </td>
+
                     <td><label class="form-control-label" jhiTranslate="senPaieApp.collaborateur.deleted" for="field_del">Supprimé?</label></td>
                     <td>
                         <input type="checkbox" [(ngModel)]="deleted" name="deleted" id="field_del">

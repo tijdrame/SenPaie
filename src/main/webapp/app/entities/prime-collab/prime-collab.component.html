@@ -1,0 +1,81 @@
+<div>
+    <h2>
+        <span jhiTranslate="senPaieApp.primeCollab.home.title">Prime Collabs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-prime-collab" [routerLink]="['/', { outlets: { popup: ['prime-collab-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="senPaieApp.primeCollab.home.createLabel">
+            Create new Prime Collab
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="primeCollabs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+
+            <th jhiSortBy="collaborateur.prenom"><span jhiTranslate="senPaieApp.primeCollab.collaborateur">Collaborateur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prime.libelle"><span jhiTranslate="senPaieApp.primeCollab.prime">Prime</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montant"><span jhiTranslate="senPaieApp.primeCollab.montant">Montant</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="imposable"><span jhiTranslate="senPaieApp.prime.imposable">Imposable</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let primeCollab of primeCollabs ;trackBy: trackId">
+
+                <td>
+                    <div *ngIf="primeCollab.collaborateur">
+                        <a [routerLink]="['../collaborateur', primeCollab.collaborateur?.id ]" >{{primeCollab.collaborateur?.prenom}} {{primeCollab.collaborateur?.nom}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="primeCollab.prime">
+                        <a [routerLink]="['../prime', primeCollab.prime?.id ]" >{{primeCollab.prime?.libelle}}</a>
+                    </div>
+                </td>
+                <td>{{primeCollab.montant|number:'1.0'}}</td>
+                <td>{{primeCollab.prime.imposable?'Oui':'Non'}}</td>
+
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../prime-collab', primeCollab.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'prime-collab/'+ primeCollab.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'prime-collab/'+ primeCollab.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="primeCollabs && primeCollabs.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

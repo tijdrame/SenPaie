@@ -1,0 +1,67 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPrimeCollabLabel" jhiTranslate="senPaieApp.primeCollab.home.createOrEditLabel">Create or edit a Prime Collab</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+
+
+
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.primeCollab.collaborateur" for="field_collaborateur">Collaborateur</label>
+            <select class="form-control" id="field_collaborateur" name="collaborateur" [(ngModel)]="primeCollab.collaborateur"  required>
+                <option *ngIf="!editForm.value.collaborateur" [ngValue]="null" selected></option>
+                <option [ngValue]="collaborateurOption.id === primeCollab.collaborateur?.id ? primeCollab.collaborateur : collaborateurOption"
+                        *ngFor="let collaborateurOption of collaborateurs; trackBy: trackCollaborateurById">
+                    {{collaborateurOption.prenom}} {{collaborateurOption.nom}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.collaborateur?.dirty && editForm.controls.collaborateur?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.collaborateur?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.primeCollab.prime" for="field_prime">Prime</label>
+            <select class="form-control" id="field_prime" name="prime" [(ngModel)]="primeCollab.prime"  required>
+                <option *ngIf="!editForm.value.prime" [ngValue]="null" selected></option>
+                <option [ngValue]="primeOption.id === primeCollab.prime?.id ? primeCollab.prime : primeOption" *ngFor="let primeOption of primes; trackBy: trackPrimeById">{{primeOption.libelle}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.prime?.dirty && editForm.controls.prime?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.prime?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="senPaieApp.primeCollab.montant" for="field_montant">Montant</label>
+            <input type="number" class="form-control" name="montant" id="field_montant"
+                   [(ngModel)]="primeCollab.montant" required/>
+            <div [hidden]="!(editForm.controls.montant?.dirty && editForm.controls.montant?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.montant?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.montant?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
